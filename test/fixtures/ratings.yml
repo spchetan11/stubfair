@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  seller_id: MyString
+  user_id: MyString
+  type: 1
+  rate: 1
+
+two:
+  seller_id: MyString
+  user_id: MyString
+  type: 1
+  rate: 1

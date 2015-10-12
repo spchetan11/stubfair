@@ -1,0 +1,13 @@
+    <% if @search_result.count==0 %>
+  No Results Found
+
+<%else%>
+  <% @search_result.each do |result| %>
+    <tr>
+        <td><%= result.title %></td>
+        <td><%= result.description %></td>
+        <td><%= result.venue %></td>
+        <td><%= result.genere %></td>
+        <td><%= result.event_date_time %></td>
+  <%end%>
+<%end%>

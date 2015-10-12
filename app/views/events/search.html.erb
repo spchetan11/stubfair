@@ -1,0 +1,37 @@
+<section>
+  <%= form_for(@event, :html =>{:class =>"simform",:id=>"theForm",:autocomplete=>"off"}, :url => {:action => :ticket_step1}) do |f| %>
+        
+          <div class="simform-inner">
+            <ol class="questions">
+              <li>
+                <span><label for="q1">Enter Event Name</label></span>
+                
+                <%= f.text_field :title ,:class=>"q1",:id=>"q1"%>
+              </li>
+              <li>
+                <span><label for="q2">Enter Event Location</label></span>
+                <%= f.text_field :venue ,:class=>"q2",:id=>"q2"%>
+              </li>
+            </ol><!-- /questions -->
+            <button class="submit" type="submit">Send answers</button>
+            <div class="controls">
+              <button class="next hidden"></button>
+              <div class="progress"></div>
+              <span class="number">
+                <span class="number-current"></span>
+                <span class="number-total"></span>
+              </span>
+              <span class="error-message"></span>
+            </div><!-- / controls -->
+          </div><!-- /simform-inner -->
+          <span class="final-message"></span>
+        </form><!-- /simform -->      
+        <%= link_to 'Try Again'%>
+      </section>
+
+  <% end %>  
+  
+
+  <section class="dynamic_search">
+    <%= render partial: 'search_result'%>
+  </section>

@@ -1,0 +1,17 @@
+
+		<% @events.each do |event| %>
+		<%= link_to event ,:class => "event-link" do%>
+		<div class="col-md-4">
+			<div class="event-wrapper square">
+				<img src="../../assets/logo.png" alt="">
+				<div class="desc">
+					<h3><%= event.title %></h3>
+					<p><%= event.description %></p>
+					<p><%= event.venue %></p>
+					<p><%= event.genere %></p>
+					<p><%= event.event_date_time %></p>
+				</div>
+			</div>
+		</div>
+		<% end %>
+		<% end %>

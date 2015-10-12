@@ -1,0 +1,23 @@
+
+ <table>
+    <tr>
+      
+      <th>ticket price</th>
+    
+      <th>comments</th>
+      <th>number of tickets</th>
+      
+
+    </tr>
+
+<% @tickets.each do |ticket| %>
+    <tr>
+      <td><%= ticket.ticket_number %></td>
+      
+      <td><%= ticket.ticket_price %></td>
+      
+      <td><%= ticket.comments %></td>
+      <td><%= ticket.number_of_tickets %></td>
+ </tr>
+ <%end%>
+</table>

@@ -1,0 +1,71 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+a{
+	text-decoration: none !important;
+}
+
+section.page-section{
+	background: white;
+}
+.spacing-top{
+	 margin-top: 100px;
+}
+#main-navbar{
+	height: 65px;
+    background-color: #fff;
+    box-shadow: #BCC3C3 0px 0px 20px;
+}
+
+.event-wrapper *{
+	text-align: center;
+}
+.event-wrapper img{
+	display: block;
+	margin: 0 auto;
+}
+.event-link:hover{
+	color: inherit;
+}
+
+.inner-nav .clearlist,.inner-nav .clearlist li,.inner-nav .clearlist li a{
+	height:75px;
+	line-height: 75px;
+}
+
+.submit_btn.btn.btn-mod.btn-medium.btn-round{
+	background: #373737 !important;
+	border: none;
+}
+.input-md.round.form-control{
+	width: 100% !important;
+}
+
+
+.simform div ol input{
+	border: none ;
+	width: 100%;
+}
+
+.simform div ol input:focus{
+	border: none;
+	box-shadow: none;
+}
+
+section.dynamic_search{
+	background:#E74C3C;
+	float:left;
+	width:100%
+}

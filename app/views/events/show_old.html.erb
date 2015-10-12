@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @event.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @event.description %>
+</p>
+
+<p>
+  <strong>Venue:</strong>
+  <%= @event.venue %>
+</p>
+
+<p>
+  <strong>Genre:</strong>
+  <%= @event.genre %>
+</p>
+
+<p>
+  <strong>Event date time:</strong>
+  <%= @event.event_date_time %>
+</p>
+<p>
+  <strong>Expires on:</strong>
+  <%= @event.expires_on %>
+</p>
+
+<p>
+  <strong>ticket_attachment:</strong>
+  <%= @event.ticket_attachment %>
+</p>
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>
