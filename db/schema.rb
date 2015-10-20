@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151012091540) do
+ActiveRecord::Schema.define(version: 20151019143120) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -65,29 +65,6 @@ ActiveRecord::Schema.define(version: 20151012091540) do
 
   add_index "events", ["user_id"], name: "index_events_on_user_id"
 
-  create_table "purchases", force: :cascade do |t|
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.integer  "user_id"
-    t.integer  "ticket_id"
-    t.datetime "expires_on"
-    t.float    "purchase_amount"
-    t.string   "comments"
-    t.integer  "seller_id"
-    t.integer  "number_of_tickets"
-    t.float    "ticket_price"
-    t.text     "ticket_restrictions"
-    t.string   "ticket_number"
-    t.boolean  "published"
-    t.boolean  "ticket_type"
-    t.integer  "status"
-    t.integer  "event_id"
-  end
-
-  add_index "purchases", ["event_id"], name: "index_purchases_on_event_id"
-  add_index "purchases", ["ticket_id"], name: "index_purchases_on_ticket_id"
-  add_index "purchases", ["user_id"], name: "index_purchases_on_user_id"
-
   create_table "ratings", force: :cascade do |t|
     t.integer  "seller_id"
     t.integer  "user_id"
@@ -107,30 +84,49 @@ ActiveRecord::Schema.define(version: 20151012091540) do
 
   add_index "sellers", ["user_id"], name: "index_sellers_on_user_id"
 
-  create_table "tests", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "tickets", force: :cascade do |t|
     t.string   "comments"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.integer  "user_id"
     t.integer  "events_id"
     t.integer  "seller_id"
     t.integer  "number_of_tickets"
-    t.float    "ticket_price"
-    t.text     "ticket_restrictions"
+    t.float    "ticket_selling_price"
     t.string   "ticket_number"
-    t.boolean  "published",           default: false
-    t.boolean  "ticket_type"
+    t.boolean  "published",            default: false
+    t.float    "ticket_printed_price"
+    t.string   "ticket_type"
   end
 
   add_index "tickets", ["events_id"], name: "index_tickets_on_events_id"
   add_index "tickets", ["seller_id"], name: "index_tickets_on_seller_id"
   add_index "tickets", ["user_id"], name: "index_tickets_on_user_id"
+
+  create_table "transactions", force: :cascade do |t|
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "user_id"
+    t.integer  "ticket_id"
+    t.datetime "expires_on"
+    t.float    "purchase_amount"
+    t.string   "comments"
+    t.integer  "seller_id"
+    t.integer  "number_of_tickets"
+    t.float    "ticket_price"
+    t.text     "ticket_restrictions"
+    t.string   "ticket_number"
+    t.boolean  "published"
+    t.boolean  "ticket_type"
+    t.integer  "status"
+    t.integer  "event_id"
+    t.boolean  "purshase"
+    t.boolean  "sale"
+  end
+
+  add_index "transactions", ["event_id"], name: "index_transactions_on_event_id"
+  add_index "transactions", ["ticket_id"], name: "index_transactions_on_ticket_id"
+  add_index "transactions", ["user_id"], name: "index_transactions_on_user_id"
 
   create_table "trusted_users", force: :cascade do |t|
     t.integer  "user_id"

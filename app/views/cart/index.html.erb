@@ -1,0 +1,31 @@
+<div class="container">
+	<h1>Your Cart</h1>
+
+<%if @cart.empty?%>
+<p> Your cart is empty</p>
+<%else%>
+<!--clear the cart first-->
+<%= link_to 'Empty Cart', cart_clear_path%>
+<%end%></br></br>
+
+<% total = 0%>
+
+<ul>
+<% @cart.each do |id, number_of_tickets|%>
+<% ticket = Ticket.find_by_id(id)%>
+
+<table>
+	<th>Ticket Number</th><th>Ticket Type</th><th>Anount/Ticket</th><th>Quantity</th>
+	<tr><td><%=ticket.ticket_number%></td><td><%=ticket.ticket_type%></td><td><%=number_to_currency(ticket.ticket_selling_price, :unit => '$')%></td><td><%= number_of_tickets%></td></tr>
+</table>
+
+<% total += number_of_tickets * ticket.ticket_selling_price %>
+
+
+
+
+<p><b> Total: <%= number_to_currency(total, :unit => '$')%></b> </p>
+<a href="/cart/checkout/<%=ticket.id%>"><button class="btn btn-mod btn-large btn-round">Checkout</button></a>
+<%end%>
+</ul>
+</div>

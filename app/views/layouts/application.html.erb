@@ -10,6 +10,7 @@
 		color:white !important;
 	}
   </style>
+  <%= javascript_include_tag "themed/jquery-1.11.2.min", 'data-turbolinks-track' => true %>
 </head>
 <body>
 	
@@ -92,7 +93,7 @@
                             
                             <!-- Cart -->
                             <li>
-                                <a href="#" class="active"><i class="fa fa-shopping-cart"></i> Cart</a>
+                                <a href="/cart/" class="active"><i class="fa fa-shopping-cart"></i> Cart</a>
                             </li>
                             <!-- End Cart -->
                             
@@ -158,5 +159,12 @@
         }
       } );
     </script>
+    <script>
+    $(document).ready(function(){
+        $(".page-loader").css({
+            display:"none",
+        });
+    });
+</script>
 </body>
 </html>

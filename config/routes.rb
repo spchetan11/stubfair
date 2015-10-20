@@ -25,6 +25,13 @@ Rails.application.routes.draw do
   post 'ticket/search_result' => 'events#ticket_step1'
   get "my_events" => "events#my_events"
 
+  get '/cart' => 'cart#index' #same as get 'cart/index'
+  get '/cart/clear' => 'cart#clearCart'
+  post '/cart/:id' => 'cart#add'
+  get '/cart/checkout/:id' => 'cart#checkout'
+
+  get '/tickets/gen_ticket/:events_id' => 'tickets#gen_ticket'
+
   match ':controller(/:action(/:id))',:via => [:get, :post]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -15,8 +15,9 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     #only show users events
+    @tickets_q=Ticket.new
     @events=Event.find(params[:id])
-    @tickets=Ticket.where(:events_id => @events.id).where(:published => true).order('ticket_price ASC')
+    @tickets=Ticket.where(:events_id => @events.id).where(:published => true).order('ticket_selling_price ASC')
    
   end
 

@@ -1,5 +1,5 @@
 class TicketsController < ApplicationController
-  before_action :set_ticket, only: [:show, :edit, :update, :destroy, :gen_ticket]
+  before_action :set_ticket, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:create,:update,:edit,:new]
   # GET /tickets
   # GET /tickets.json
@@ -19,7 +19,7 @@ class TicketsController < ApplicationController
 
   # GET /tickets/new
   def new
-    @ticket = Ticket.new
+    
   end
 
   # GET /tickets/1/edit
@@ -27,7 +27,25 @@ class TicketsController < ApplicationController
   end
 
   def gen_ticket
+    #to create ticket
+   
+    @event=Event.find(params[:events_id])
 
+     puts(@event)
+    
+    seller_id=current_user.id
+
+     puts(seller_id)
+    
+    @ticket = Ticket.new
+
+    @ticket.update_attributes(:seller_id => seller_id, :events_id => @event.id, :user_id => seller_id)
+    
+
+  end
+
+  def purchase
+    #to purchase ticket
   end
   # POST /tickets
   # POST /tickets.json
@@ -78,6 +96,8 @@ class TicketsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ticket_params
-    params.require(:ticket).permit(:seller_id, :user_id, :events_id, :published, :comments,  :number_of_tickets, :ticket_type, :ticket_price, :ticket_restrictions, :ticket_number)
+    params.require(:ticket).permit(:seller_id, :user_id, :events_id, :published, :comments,  :number_of_tickets, :ticket_type, :ticket_printed_price, :ticket_selling_price, :ticket_number)
     end
+  
+
 end
