@@ -2,7 +2,7 @@ class Event < ActiveRecord::Base
     
 
    
-	has_many :tickets 
+	has_many :tickets
 	belongs_to :user, :foreign_key => "user_id", dependent: :destroy
 
 
@@ -12,6 +12,15 @@ class Event < ActiveRecord::Base
     #DONT FORGET TO SETUP paperclip.rb IN CONFIG->INITIALIZERS
     #AND PASTE  --  Paperclip::Railtie.insert -- IN CONFIG->LOCALES->application.rb
     #add config.gem 'paperclip' to your environment.rb 
+    #scope :named, lambda {|title,venue| where(:title => title, :venue => venue)}
+    # scope :visible, lambda { where(:visible => true) }
+    # scope :invisible, lambda { where(:visible => false) }
+    # scope :sorted, lambda { order("subjects.position ASC") }
+    # scope :newest_first, lambda { order("subjects.created_at DESC")}
+    # scope :search, lambda {|query| where(["name LIKE ?", "%#{query}%"])
 
-	scope :named, lambda {|title,venue| where(:title => title, :venue => venue)}
+    validates :title, :length => {:maximum => 30}, :presence =>true
+    validates :description, :length => {:maximum => 500}, :presence =>true
+    validates :venue, :length => {:maximum => 30}, :presence =>true
+    validates :genre, :length => {:maximum => 30}, :presence =>true
 end

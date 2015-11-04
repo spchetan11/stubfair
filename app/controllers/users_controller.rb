@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+   before_action :authenticate_user!, only: [:create,:update,:edit,:new]
 
   # GET /users
   # GET /users.json
@@ -17,6 +18,11 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @user_id = User.find(params[:id])
+    id = @user_id.id
+    puts(id)
+    @user = User.find(id)
+    puts(@user)
   end
 
   # GET /users/new
@@ -35,9 +41,9 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        render :show
-        #format.html { redirect_to :show, notice: 'User was successfully created.' }
-        #format.json { render :show, status: :created, location: @user }
+       
+        format.html { redirect_to :show, notice: 'User was successfully created.' }
+        format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -49,7 +55,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
+      if @user.update(user_edit_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -77,6 +83,11 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email,:password, :first_name, :last_name, :gender, :phone, :age, :address, :postcode )
+      params.require(:user).permit(:email,:password).except(:first_name, :last_name, :gender, :phone, :age, :address, :postcode)
     end
+
+    def user_edit_params
+      params.require(:user).permit(:first_name, :last_name, :gender, :phone, :age, :address, :postcode)
+    end
+    
 end

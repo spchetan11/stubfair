@@ -4,7 +4,11 @@
 	<table>
 		<th>Event Name</th><th>Event Venue</th><th>Event Date</th>
 		<% @e_checkout.each do |event|%>
-			<tr><td><%= event.title%></td><td><%= event.venue%></td><td><%= event.event_date_time %></td></tr>
+			<tr><td><%= event.title%></td>
+				<td><%= event.venue%></td>
+				<td><%= event.event_date_time %></td>
+				
+			</tr>
 		<% end %>
 	</table>
 	

@@ -30,7 +30,7 @@
                             <div class="post-prev-more align-center">
 
                                  <%if user_signed_in?%>
-                                 <%= link_to "Sell Ticket", controller:"tickets", action:"gen_ticket", events_id: @event.id%> 
+                                 <%= link_to "Sell Ticket", controller:"tickets", action:"new", events_id: @event.id%> 
 
                                <!--   <a href = "/tickets/gen_ticket/<%=@event.id%>"> Sell Ticket </a> -->
 
@@ -111,17 +111,18 @@
                                             <td>
                                                  <%= form_for(@tickets_q ,:url => {:controller => :cart, :action => :add ,:id=> ticket.id}) do |f| %>   
                                                     <%= f.select(:number_of_tickets, 1.. ticket.number_of_tickets) %>
-                                                <%end%>
+                                                
                                             </td>
 
                                             <!--<td><input type="radio" for="select_ticket"  value="<%= ticket.id%>"></td>-->
 
                                             <td>
-                                                <button class="btn btn-mod btn-large btn-round" onclick="submit_this_form()">Add to Cart</button>
+                                                
+                                                <%= f.submit "Add To Cart",:class=>"submit_btn btn btn-mod btn-medium btn-round" %>
 
-                                                <a href = "/cart/<%=ticket.id%>"> Add to Cart </a>
+                                               <!-- <a href = "/cart/<%=ticket.id%>"> Add to Cart </a> -->
                                             </td>
-
+                                              <%end%>  
                                         </tr>
                                     <% end %>
                                     </table>
@@ -450,20 +451,4 @@
         
         </div>
         <!-- End Page Wrap -->
-<script>
-    function submit_this_form()
-    {
-         
-         $('#new_ticket').submit();
-    }
 
-</script>
-
-<script>
-    $(document).ready(function(){
-        $('select').addClass("select_ticket");
-        $('select').on('change', function() {
-            
-        });
-    });
-</script>

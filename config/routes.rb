@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
+ post "/hook" => "tickets#hook"
   
   
  
@@ -30,7 +31,13 @@ Rails.application.routes.draw do
   post '/cart/:id' => 'cart#add'
   get '/cart/checkout/:id' => 'cart#checkout'
 
-  get '/tickets/gen_ticket/:events_id' => 'tickets#gen_ticket'
+  get '/transactions/purchase/:id' => 'transactions#purchase'
+
+  get '/tickets/new/:events_id' => 'tickets#new'
+
+  get '/users/:id' => 'users#show'
+
+  get '/search' => 'searches#index'
 
   match ':controller(/:action(/:id))',:via => [:get, :post]
   # The priority is based upon order of creation: first created -> highest priority.

@@ -13,15 +13,15 @@
 
 
   <div class="field">
-    <%= f.label :email %><br>
+    <h3>Email</h3>
     <%= f.text_field :email %>
   </div>
     <div class="field">
-      <%= f.label :password %><br>
+      <h3>Password</h3>
       <%= f.password_field :password %>
     </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Register", :class=>"submit_btn btn btn-mod btn-medium btn-round"  %>
   </div>
 <% end %>

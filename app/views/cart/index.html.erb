@@ -2,30 +2,56 @@
 	<h1>Your Cart</h1>
 
 <%if @cart.empty?%>
-<p> Your cart is empty</p>
+	<p> Your cart is empty</p>
 <%else%>
-<!--clear the cart first-->
-<%= link_to 'Empty Cart', cart_clear_path%>
+	<!--clear the cart first-->
+	<%= link_to 'Empty Cart', cart_clear_path%>
 <%end%></br></br>
 
-<% total = 0%>
+	<% total = 0%>
 
-<ul>
+
+	<ul>
 <% @cart.each do |id, number_of_tickets|%>
-<% ticket = Ticket.find_by_id(id)%>
-
-<table>
-	<th>Ticket Number</th><th>Ticket Type</th><th>Anount/Ticket</th><th>Quantity</th>
-	<tr><td><%=ticket.ticket_number%></td><td><%=ticket.ticket_type%></td><td><%=number_to_currency(ticket.ticket_selling_price, :unit => '$')%></td><td><%= number_of_tickets%></td></tr>
-</table>
-
-<% total += number_of_tickets * ticket.ticket_selling_price %>
+	<% ticket = Ticket.find_by_id(id)%>
 
 
+	 
+
+	<table>
+	   
+		<th>Ticket Number</th>
+		<th>Ticket Type</th>
+		<th>Amount/Ticket</th>
+		<th>Quantity</th>
+		<tr>
+
+		<td><%=ticket.ticket_number%></td>
+		<td><%=ticket.ticket_type%></td>
+		<td><%=number_to_currency(ticket.ticket_selling_price, :unit => '$')%></td>
+		<td><%=number_of_tickets%></td></tr>
+	</table>
+
+	<% total += number_of_tickets * ticket.ticket_selling_price %>
+	<% total += total*0.05%>
 
 
-<p><b> Total: <%= number_to_currency(total, :unit => '$')%></b> </p>
-<a href="/cart/checkout/<%=ticket.id%>"><button class="btn btn-mod btn-large btn-round">Checkout</button></a>
+
+
+	<p><b> Total (+5% service charge): <%= number_to_currency(total, :unit => '$')%></b> </p>
+	<a href="/cart/checkout/<%=ticket.id%>"><button class="btn btn-mod btn-large btn-round">Checkout</button></a>
+
+	<a href="/transactions/purchase/<%=ticket.id%>"><button class="btn btn-mod btn-large btn-round">Transactions</button></a>
+
+	<td><%= link_to 'Proceed to Payment', controller: "tickets", action: "payment",ticket_number: ticket.ticket_number,ticket_type: ticket.ticket_type,ticket_selling_price: ticket.ticket_selling_price, number_of_tickets: number_of_tickets, :id => ticket.id %></td>
+
 <%end%>
+
+
+
+
+
+
+
 </ul>
 </div>

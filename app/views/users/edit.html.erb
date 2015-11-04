@@ -1,11 +1,49 @@
-<h1>Editing User</h1>
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-  <%= form_for(:users, :url => {:action => 'update', :id => @user}) do |f| %>
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-    <%= render(:partial => "form", :locals => {:f => f}) %>
 
-   <% end %>
+
+  <div class="field">
+      <h3>First Name</h3>
+      <%= f.text_field :first_name %>
+    </div>
+
+      <div class="field">
+      <h3>Last Name</h3>
+      <%= f.text_field :last_name %>
+    </div>
+
+      <div class="field">
+      <h3>Gender</h3>
+      <%= f.select :gender, ['male', 'female']%>
+    </div>
+
+      <div class="field">
+      <h3>Address</h3>
+      <%= f.text_field :address %>
+    </div>
+
+      <div class="field">
+      <h3>Postcode</h3>
+      <%= f.text_field :postcode %>
+    </div>
+
+  <div class="actions">
+    <%= f.submit "Update", :class=>"submit_btn btn btn-mod btn-medium btn-round"  %>
+  </div>
+<% end %>
+
 
 
 <%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+<%= link_to 'Back', user_path %>

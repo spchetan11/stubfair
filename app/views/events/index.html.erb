@@ -22,8 +22,8 @@
         <td><%= event.description %></td>
         <td><%= event.venue %></td>
         <td><%= event.genre %></td>
-        <td><%= event.event_date_time %></td>
-        <td><%= event.expires_on %></td>
+        <td><%= local_time(event.event_date_time) %></td>
+        <td><%= local_time(event.expires_on) %></td>
         <td><%= event.ticket_attachment_file_name %></td>
        <!--<td> <%= link_to("View Tickets", {:controller => 'tickets', :events_id => event.id}, :class => 'action show') %> </td> -->
         <td><%= link_to 'Show', event %></td>

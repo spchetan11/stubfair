@@ -11,9 +11,15 @@ class User < ActiveRecord::Base
 
   EMAIL_REGEX = /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/
 
-  validates :name, :length => {:maximum => 30}
-  validates :email, :presence =>true, :length => {:maximum => 100}, :format => EMAIL_REGEX, :confirmation => true
-  validates :password, :confirmation => true, :length => {:within => 6..20}
+  validates :first_name, :length => {:maximum => 30}, format: { with: /\A[a-zA-Z]+\z/,
+    message: "only allows letters" }
+  validates :last_name, :length => {:maximum => 30}, format: { with: /\A[a-zA-Z]+\z/,
+    message: "only allows letters" }
+  validates :email, :presence =>true, :length => {:maximum => 100}, :format => EMAIL_REGEX, :confirmation => true, :uniqueness => { :case_sensitive => false }
+  #validates :password, :confirmation => true, :length => {:within => 8..20}, :presence =>true
+  validates :gender, :inclusion => %w(male female)
+  validates :address,  :length =>  {:maximum => 100}
+  validates :postcode, :length =>  {:within => 3..10}, numericality: { only_integer: true }
 
   
   def name

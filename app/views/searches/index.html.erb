@@ -1,0 +1,10 @@
+<h1 style="text-align:center">Search For Event or Search By Location</h1>
+
+<%= form_for(@event_search, :url=>{:controller =>"searches", :action=>"search"}) do |f| %>
+<%= f.text_field :title, :placeholder =>"Event Name" %>
+<%= f.text_field :venue, :placeholder =>"Venue" %>
+
+<%= f.select "category", options_from_collection_for_select(@category, "category_name", "category_name")%>
+<%= f.submit 'Search'%>
+</select>
+<%end%>

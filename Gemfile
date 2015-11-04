@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-
+ruby "2.2.2"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use pg as the database for Active Record
@@ -35,6 +35,10 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'paperclip', '~> 4.3.1', :git => "http://github.com/thoughtbot/paperclip.git"
 
+gem 'aws-sdk'
+
+gem 'local_time'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -55,5 +59,6 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
 end
 
