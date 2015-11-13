@@ -38,27 +38,27 @@ class CartController < ApplicationController
   		redirect_to :action => :index
   	end #end add method
 
-  def checkout
-    #this is checkout/ for testing, just add to transactions table
-    #puts(params[:id])
-    e_id=Ticket.find(params[:id])
-    e_id=e_id.events_id
-    #we now have event id in e_id
-    @e_checkout=Event.where(:id => e_id)
+  # def checkout
+  #   #this is checkout/ for testing, just add to transactions table
+  #   #puts(params[:id])
+  #   e_id=Ticket.find(params[:id])
+  #   e_id=e_id.events_id
+  #   #we now have event id in e_id
+  #   @e_checkout=Event.where(:id => e_id)
     
-    #add decrement
-    @det_id=Ticket.find(params[:id])
-    #puts(det_id)
-    quant=session[:quantity].to_i
-    #puts(quant)
-    delta = @det_id.number_of_tickets# - quant
-    #puts(@det_id.number_of_tickets)
-    puts(delta)
-    @det_id.update_attributes(:number_of_tickets => delta)
-    #@det_id.update
+  #   #add decrement
+  #   @det_id=Ticket.find(params[:id])
+  #   #puts(det_id)
+  #   quant=session[:quantity].to_i
+  #   #puts(quant)
+  #   delta = @det_id.number_of_tickets# - quant
+  #   #puts(@det_id.number_of_tickets)
+  #   puts(delta)
+  #   @det_id.update_attributes(:number_of_tickets => delta)
+  #   #@det_id.update
     
 
-  end
+  # end
 
 
   def clearCart

@@ -6,7 +6,7 @@ class Ticket < ActiveRecord::Base
 	belongs_to :seller,  :foreign_key => "seller_id", dependent: :destroy
   
   
-  attr_accessor :quantity
+  
 
   # scope :visible, lambda { where(:visible => true) }
   # scope :invisible, lambda { where(:visible => false) }
@@ -32,7 +32,7 @@ class Ticket < ActiveRecord::Base
         upload: 1,
         return: "#{Rails.application.secrets.app_host}#{return_path}",
         #invoice: id,
-        invoice: '99',
+        invoice: '155',
       
         amount: (ticket_selling_price * no_of_ticket.to_f) + (0.05 *(ticket_selling_price * no_of_ticket.to_f) ),
         item_name: 'ticket',

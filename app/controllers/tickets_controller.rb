@@ -82,8 +82,8 @@ class TicketsController < ApplicationController
     # amount = params[:ticket_selling_price]
     # type_of_ticket = params[:ticket_type]
     no_of_ticket= params["number_of_tickets"]
-    #redirect_to @ticket.paypal_url(transaction_path(@ticket),no_of_ticket)
-    redirect_to @ticket.paypal_url(transaction_path,no_of_ticket)
+    redirect_to @ticket.paypal_url(transaction_path(@ticket),no_of_ticket)
+    
     
   end
 
@@ -93,8 +93,8 @@ class TicketsController < ApplicationController
     status = params[:payment_status]
     if status == "Completed"
       puts "successfully completed the transaction"
-      @transaction = Transaction.find params[:invoice]
-      @transaction.update_attributes notification_params: params, status: status, transaction_id: params[:txn_id], purchased_at: Time.now
+      #@transaction = Transaction.find params[:invoice]
+      #@transaction.update_attributes notification_params: params, status: status, transaction_id: params[:txn_id], purchased_at: Time.now
     end
     render nothing: true
   end
