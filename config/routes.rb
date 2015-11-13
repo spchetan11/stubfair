@@ -3,7 +3,8 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
- post "/tickets/:id" => "tickets#show"
+ #post "/tickets/:id" => "tickets#show"
+ post "/transactions" => "transactions#paypal_redirect", as: :transaction
  post "/hook" => "tickets#hook"
   
   

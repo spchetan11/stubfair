@@ -1,6 +1,7 @@
 class TransactionsController < ApplicationController
 	before_action :set_transactions, only: [:show, :edit, :update, :destroy]
     before_action :authenticate_user!, only: [:create,:update,:edit,:new]
+     skip_before_action :verify_authenticity_token
 
 def purchase
 	@ticket = Ticket.find(params[:id])

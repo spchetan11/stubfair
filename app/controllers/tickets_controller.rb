@@ -82,7 +82,8 @@ class TicketsController < ApplicationController
     # amount = params[:ticket_selling_price]
     # type_of_ticket = params[:ticket_type]
     no_of_ticket= params["number_of_tickets"]
-    redirect_to @ticket.paypal_url(transaction_path(@ticket),no_of_ticket)
+    #redirect_to @ticket.paypal_url(transaction_path(@ticket),no_of_ticket)
+    redirect_to @ticket.paypal_url(transaction_path,no_of_ticket)
     
   end
 

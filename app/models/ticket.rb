@@ -32,7 +32,7 @@ class Ticket < ActiveRecord::Base
         upload: 1,
         return: "#{Rails.application.secrets.app_host}#{return_path}",
         #invoice: id,
-        invoice: '41',
+        invoice: '99',
       
         amount: (ticket_selling_price * no_of_ticket.to_f) + (0.05 *(ticket_selling_price * no_of_ticket.to_f) ),
         item_name: 'ticket',

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151109102219) do
+ActiveRecord::Schema.define(version: 20151113102622) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -112,8 +112,8 @@ ActiveRecord::Schema.define(version: 20151109102219) do
   add_index "tickets", ["user_id"], name: "index_tickets_on_user_id"
 
   create_table "transactions", force: :cascade do |t|
-    t.datetime "created_at",                                         null: false
-    t.datetime "updated_at",                                         null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.integer  "user_id"
     t.integer  "ticket_id"
     t.datetime "expires_on"
@@ -132,7 +132,10 @@ ActiveRecord::Schema.define(version: 20151109102219) do
     t.datetime "ticket_updated_at"
     t.boolean  "purchase_flag"
     t.integer  "number_of_tickets_purchased"
-    t.string   "status",                      default: "Processing"
+    t.text     "notification_params"
+    t.string   "status"
+    t.string   "transaction_id"
+    t.datetime "purchased_at"
   end
 
   add_index "transactions", ["event_id"], name: "index_transactions_on_event_id"
