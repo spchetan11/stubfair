@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151104101310) do
+ActiveRecord::Schema.define(version: 20151109102219) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20151104101310) do
     t.integer  "ticket_attachment_file_size"
     t.datetime "ticket_attachment_updated_at"
     t.string   "category"
+    t.string   "location"
   end
 
   add_index "events", ["user_id"], name: "index_events_on_user_id"

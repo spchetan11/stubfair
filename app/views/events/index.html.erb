@@ -4,8 +4,10 @@
 <table class="table">
   <thead>
     <tr>
+      <th>Category</th>
       <th>Title</th>
       <th>Description</th>
+      <th>Location</th>
       <th>Venue</th>
       <th>Genre</th>
       <th>Event date time</th>
@@ -18,17 +20,22 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
+        <td><%= event.category %></td>
         <td><%= event.title %></td>
         <td><%= event.description %></td>
+        <td><%= event.location %></td>
         <td><%= event.venue %></td>
         <td><%= event.genre %></td>
         <td><%= local_time(event.event_date_time) %></td>
         <td><%= local_time(event.expires_on) %></td>
         <td><%= event.ticket_attachment_file_name %></td>
        <!--<td> <%= link_to("View Tickets", {:controller => 'tickets', :events_id => event.id}, :class => 'action show') %> </td> -->
+      
         <td><%= link_to 'Show', event %></td>
+         <%if user_signed_in?%>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
-       <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+       <%end%>
        
       </tr>
     <% end %>

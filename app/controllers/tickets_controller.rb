@@ -20,6 +20,7 @@ class TicketsController < ApplicationController
     @ticket = Ticket.new
     @event=Event.find(params[:events_id])
     #puts(@event.id)
+    @transaction = Transaction.new
   end
 
   # GET /tickets/1/edit
@@ -71,9 +72,17 @@ class TicketsController < ApplicationController
     end
   end
 
+ #  {"number_of_tickets"=>"3",
+ # "ticket_number"=>"121212",
+ # "ticket_selling_price"=>"600.0",
+ # "ticket_type"=>"Electronic",
+ # "id"=>"12"}
+
   def payment
-    #puts "this was called"
-    redirect_to @ticket.paypal_url(ticket_path(@ticket))
+    # amount = params[:ticket_selling_price]
+    # type_of_ticket = params[:ticket_type]
+    no_of_ticket= params["number_of_tickets"]
+    redirect_to @ticket.paypal_url(transaction_path(@ticket),no_of_ticket)
     
   end
 
@@ -83,37 +92,13 @@ class TicketsController < ApplicationController
     status = params[:payment_status]
     if status == "Completed"
       puts "successfully completed the transaction"
-      # @ticket = Ticket.find params[:invoice]
-      # @ticket.update_attributes notification_params: params, status: status, transaction_id: params[:txn_id], purchased_at: Time.now
+      @transaction = Transaction.find params[:invoice]
+      @transaction.update_attributes notification_params: params, status: status, transaction_id: params[:txn_id], purchased_at: Time.now
     end
     render nothing: true
   end
 
-  def self.send_money(to_email, how_much_in_cents, options = {})
-  credentials = {
-    "USER" => "chetan-seller_api1.gmail.com",
-    "PWD" => "J7AXDX3QQWVU2UZ2",
-    "SIGNATURE" => "AFcWxV21C7fd0v3bYYYRCpSSRl31ADb9r-ueKABlYKBV2b6tCmWKZuYq"
-  }
- 
-  params = {
-    "METHOD" => "MassPay",
-    "CURRENCYCODE" => "USD",
-    "RECEIVERTYPE" => "EmailAddress",
-    "L_EMAIL0" => to_email,
-    "L_AMT0" => ((how_much_in_cents.to_i)/100.to_f).to_s,
-    "VERSION" => "51.0"
-  }
- 
-  endpoint = RAILS_ENV == 'production' ? "https://api-3t.paypal.com" : "https://api-3t.sandbox.paypal.com"
-  url = URI.parse(endpoint)
-  http = Net::HTTP.new(url.host, url.port)
-  http.use_ssl = true
-  all_params = credentials.merge(params)
-  stringified_params = all_params.collect { |tuple| "#{tuple.first}=#{CGI.escape(tuple.last)}" }.join("&")
- 
-  response = http.post("/nvp", stringified_params)
-end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.

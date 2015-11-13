@@ -10,16 +10,24 @@
       </ul>
     </div>
   <% end %>
-
+  
+  <div class="field">
+     <h3>Select Category</h3>
+    <%= f.select :category, ['Concerts', 'Sports', 'Theatre', 'Comedy', 'Festivals', 'Family', 'Deals', 'Other'], :autocomplete => :off %>
+  </div>
   <div class="field">
     <%= f.text_field :title, :placeholder=>"Title" %>
   </div>
   <div class="field">
     <%= f.text_area :description, :placeholder=>"Description", :rows => 5 %>
   </div>
+    <div class="field">
+    <%= f.text_field :location, :placeholder=>"Location" %>
+  </div>
   <div class="field">
     <%= f.text_field :venue, :placeholder=>"Venue" %>
   </div>
+ 
   <div class="field">
     <%= f.text_field :genre, :placeholder=>"Genre" %>
   </div>

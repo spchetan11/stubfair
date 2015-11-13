@@ -87,7 +87,7 @@ class UsersController < ApplicationController
     end
 
     def user_edit_params
-      params.require(:user).permit(:first_name, :last_name, :gender, :phone, :age, :address, :postcode)
+      params.require(:user).permit(:first_name, :last_name, :gender, :phone, :age, :address, :postcode).except(:email, :password)
     end
     
 end

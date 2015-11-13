@@ -1,8 +1,10 @@
 <table class="table">
   <thead>
     <tr>
+      <th>Category</th>
       <th>Title</th>
       <th>Description</th>
+      <th>Location</th>
       <th>Venue</th>
       <th>Genre</th>
       <th>Event date time</th>
@@ -14,8 +16,10 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
+        <td><%= event.category %></td>
         <td><%= event.title %></td>
         <td><%= event.description %></td>
+        <td><%= event.location %></td>
         <td><%= event.venue %></td>
         <td><%= event.genre %></td>
         <td><%= event.event_date_time %></td>

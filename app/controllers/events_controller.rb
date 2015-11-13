@@ -34,8 +34,8 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     #@event=params[:event]
     title=@event.title
-    venue=@event.venue
-    @search_result=Event.where("title LIKE ? and venue LIKE ?", "%#{title}%" ,"%#{venue}%").where(:published => true)
+    location=@event.location
+    @search_result=Event.where("title LIKE ? and location LIKE ?", "%#{title}%" ,"%#{location}%").where(:published => true)
     #redirect_to '/event/search_result' 
     render 'events/search'
 
@@ -90,11 +90,11 @@ class EventsController < ApplicationController
   # DELETE /events/1.json
   def destroy
     @event.destroy
-    # respond_to do |format|
-    #   format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
-    #   format.json { head :no_content }
-     redirect_to events_url, notice: 'Event was successfully destroyed.'
-  #   end
+    respond_to do |format|
+      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+      format.json { head :no_content }
+     #redirect_to events_url, notice: 'Event was successfully destroyed.'
+    end
   end
 
   private
@@ -105,10 +105,10 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:category, :title, :description, :venue, :genre, :event_date_time,:user_id, :expires_on, :ticket_attachment,:published)
+      params.require(:event).permit(:category, :title, :description, :venue, :genre, :event_date_time,:user_id, :expires_on, :ticket_attachment,:published, :location)
     end
 
     def event_edit_params
-      params.require(:event).permit(:category, :title, :description, :venue, :genre, :event_date_time, :expires_on, :ticket_attachment)
+      params.require(:event).permit(:category, :title, :description, :venue, :genre, :event_date_time, :expires_on, :ticket_attachment, :location)
     end
 end

@@ -88,3 +88,11 @@ form h3{
 	width: 50% !important;
 	margin-left: 25%;
 }
+
+.myDropDown
+{
+   overflow: auto;
+   width: 70px; /* adjust this width depending to amount of text to display */
+   height: 80px; /* adjust height depending on number of options to display */
+   border: 1px silver solid;
+}
