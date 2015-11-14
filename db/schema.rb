@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 20151114113057) do
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
     t.integer  "user_id"
-    t.integer  "event_id"
+    t.integer  "events_id"
     t.integer  "number_of_tickets"
     t.float    "ticket_selling_price"
     t.string   "ticket_number"

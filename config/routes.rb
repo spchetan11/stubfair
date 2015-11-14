@@ -11,7 +11,7 @@ Rails.application.routes.draw do
  
 
   devise_for :users
-  resources :sellers
+  
   resources :users
   resources :events
   resources :devise
