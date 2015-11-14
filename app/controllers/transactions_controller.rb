@@ -49,9 +49,9 @@ class TransactionsController < ApplicationController
     payment_gross = params[:payment_gross]
     quantity = params[:quantity]
 
-    
+    @user_transaction = @purchase.update(:ticket_id => @ticket.id,:comments => @ticket.comments, :ticket_created_at => @ticket.created_at, :ticket_updated_at => @ticket.updated_at, :user_id => @user, :event_id => @ticket.events_id, :seller_id => @ticket.seller_id, :number_of_tickets => @ticket.number_of_tickets, :ticket_selling_price => @ticket.ticket_selling_price, :ticket_printed_price => @ticket.ticket_printed_price, :ticket_number => @ticket.ticket_number, :published => @ticket.published, :ticket_type => @ticket.ticket_type, number_of_tickets_purchased: quant)
     if status == "Completed"
-    @user_transaction = @purchase.update(:ticket_id => @ticket.id,:comments => @ticket.comments, :ticket_created_at => @ticket.created_at, :ticket_updated_at => @ticket.updated_at, :user_id => @user, :event_id => @ticket.events_id, :seller_id => @ticket.seller_id, :number_of_tickets => @ticket.number_of_tickets, :ticket_selling_price => @ticket.ticket_selling_price, :ticket_printed_price => @ticket.ticket_printed_price, :ticket_number => @ticket.ticket_number, :published => @ticket.published, :ticket_type => @ticket.ticket_type, status: status, transaction_id: txn_id, purchased_at: Time.now, purchase_amount: payment_gross, number_of_tickets_purchased: quantity)
+    @user_transaction = @purchase.update(status: status, transaction_id: txn_id, purchased_at: Time.now, purchase_amount: payment_gross)
     else
     render nothing: true
     end

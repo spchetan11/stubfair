@@ -2,7 +2,7 @@
 	<h1>Your Transaction History</h1>
 
 <table id="transactions-history-table">
-	<th>Transaction ID</th><th>Event Name</th><th>Ticket Number</th><th>Event Time</th><th>Price Paid</th><th>Ticket Type</th><th>Status</th><th>Purchased At</th>
+	<th>Transaction ID</th><th>Event Name</th><th>Ticket Number</th><th>Event Time</th><th>Price Paid</th><th>Quantity</th><th>Ticket Type</th><th> Payment Status</th><th>Purchased At</th>
 	<% @purchase_history.each do |purchase_history|%>
 	<tr>
 		<td><%= purchase_history.transaction_id%></td>
@@ -10,6 +10,7 @@
 		<td><%= purchase_history.ticket_number%></td>
 		<td><%= Event.where(:id => purchase_history.event_id).first.event_date_time %></td>
 		<td><%= purchase_history.purchase_amount%></td>
+		<td><%= purchase_history.number_of_tickets_purchased%></td>
 		<td><%= purchase_history.ticket_type%></td>
 		<td><%= purchase_history.status%></td>
 		<td><%= purchase_history.purchased_at%></td>

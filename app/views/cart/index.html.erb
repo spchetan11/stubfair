@@ -1,4 +1,4 @@
-<div class="container">
+ <div class="container">
 	<h1>Your Cart</h1>
 
 <%if @cart.empty?%>
@@ -43,7 +43,7 @@
 
 	<a href="/transactions/purchase/<%=ticket.id%>"><button class="btn btn-mod btn-large btn-round">Transactions</button></a>
 
-	<td><%= link_to 'Proceed to Payment', controller: "tickets", action: "payment",ticket_number: ticket.ticket_number,ticket_type: ticket.ticket_type,ticket_selling_price: ticket.ticket_selling_price, number_of_tickets: number_of_tickets, :id => ticket.id %></td>
+	<td><%= link_to 'Proceed to Payment', controller: "tickets", action: "payment",ticket_number: ticket.ticket_number,ticket_type: ticket.ticket_type,ticket_selling_price: ticket.ticket_selling_price, number_of_tickets: number_of_tickets, :id => ticket.id, events_id: ticket.events_id%></td>
 
 <%end%>
 

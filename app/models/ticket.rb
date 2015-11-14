@@ -25,30 +25,26 @@ class Ticket < ActiveRecord::Base
 
 
   
-   def paypal_url(return_path,no_of_ticket)
+   def paypal_url(return_path,no_of_ticket,event_name)
     values = {
         business: "chetan-seller@gmail.com",
         cmd: "_xclick",
         upload: 1,
         return: "#{Rails.application.secrets.app_host}#{return_path}",
         #invoice: id,
-        invoice: '155',
+        invoice: '806',
       
         amount: (ticket_selling_price * no_of_ticket.to_f) + (0.05 *(ticket_selling_price * no_of_ticket.to_f) ),
-        item_name: 'ticket',
+        item_name: event_name,
         item_number: self.id,
         #quantity: no_of_ticket,  
-
-        # ticket_number: ticket_number,
-        # ticket_type: ticket_type,
-        # ticket_selling_price: ticket_selling_price,
-        # number_of_tickets: number_of_tickets,
         notify_url: "#{Rails.application.secrets.app_host}/hook"
         
     }
     "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
   end
 
+# FOR PAYPAL SITE TO SELLER PAYMENT
 
 #   def self.send_money(to_email, how_much_in_cents, options = {})
 #   credentials = {
