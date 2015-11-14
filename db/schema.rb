@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(version: 20151114113057) do
     t.string   "ticket_type"
   end
 
-  add_index "tickets", ["event_id"], name: "index_tickets_on_event_id"
+  add_index "tickets", ["events_id"], name: "index_tickets_on_events_id"
   add_index "tickets", ["user_id"], name: "index_tickets_on_user_id"
 
   create_table "transactions", force: :cascade do |t|
