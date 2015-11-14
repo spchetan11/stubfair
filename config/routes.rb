@@ -33,8 +33,10 @@ Rails.application.routes.draw do
   get '/cart/checkout/:id' => 'cart#checkout'
 
   get '/transactions/purchase/:id' => 'transactions#purchase'
-
-  get '/tickets/new/:events_id' => 'tickets#new'
+ 
+ #was
+  #get '/tickets/new/:events_id' => 'tickets#new'
+  get '/tickets/new/:event_id' => 'tickets#new'
 
   get '/users/:id' => 'users#show'
 
