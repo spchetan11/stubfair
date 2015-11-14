@@ -107,7 +107,7 @@ ActiveRecord::Schema.define(version: 20151113102622) do
     t.string   "ticket_type"
   end
 
-  add_index "tickets", ["events_id"], name: "index_tickets_on_events_id"
+  add_index "tickets", ["event_id"], name: "index_tickets_on_events_id"
   add_index "tickets", ["seller_id"], name: "index_tickets_on_seller_id"
   add_index "tickets", ["user_id"], name: "index_tickets_on_user_id"
 
