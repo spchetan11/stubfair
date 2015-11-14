@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 20151114113057) do
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
     t.integer  "user_id"
-    #t.integer  "event_id"
+    t.integer  "event_id"
     t.integer  "number_of_tickets"
     t.float    "ticket_selling_price"
     t.string   "ticket_number"
@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(version: 20151114113057) do
     t.string   "ticket_type"
   end
 
-  #add_index "tickets", ["event_id"], name: "index_tickets_on_event_id"
+  add_index "tickets", ["event_id"], name: "index_tickets_on_event_id"
   add_index "tickets", ["user_id"], name: "index_tickets_on_user_id"
 
   create_table "transactions", force: :cascade do |t|
@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(version: 20151114113057) do
     t.datetime "expires_on"
     t.float    "purchase_amount"
     t.string   "comments"
-    t.integer  "seller_id"
+    #t.integer  "seller_id"
     t.integer  "number_of_tickets"
     t.float    "ticket_printed_price"
     t.string   "ticket_number"

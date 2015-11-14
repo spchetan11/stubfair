@@ -3,7 +3,7 @@ class AddColumnsToPurchasesTable < ActiveRecord::Migration
   	add_column :purchases, :expires_on, :datetime
   	add_column :purchases, :purchase_amount,  :float
     add_column :purchases, :comments, :string
-    add_column :purchases, :seller_id, :integer
+    #add_column :purchases, :seller_id, :integer
     add_column :purchases, :number_of_tickets, :integer
     add_column :purchases, :ticket_price, :float
     add_column :purchases, :ticket_restrictions, :text
