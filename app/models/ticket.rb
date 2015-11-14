@@ -3,7 +3,7 @@ class Ticket < ActiveRecord::Base
 
 	belongs_to :event, :foreign_key => "events_id", dependent: :destroy
 	belongs_to :user,  :foreign_key => "user_id", dependent: :destroy
-	belongs_to :seller,  :foreign_key => "seller_id", dependent: :destroy
+	
   
   
   
@@ -16,8 +16,8 @@ class Ticket < ActiveRecord::Base
 
    validates :comments, :length => {:maximum => 1000}
    validates :number_of_tickets, :length => {:maximum => 100}  , :numericality => {:greater_than => 0, :only_integer => true }
-   validates :ticket_selling_price, :format => { :with => /\A\d+(?:\.\d{0,2})?\z/ }, :numericality => {:greater_than => 0}
-   validates :ticket_printed_price, :format => { :with => /\A\d+(?:\.\d{0,2})?\z/ }, :numericality => {:greater_than => 0}
+   validates :ticket_selling_price, :format => { :with => /\A\d+(?:\.\d{0,2})?\z/ }, :numericality => {:greater_than_or_equal_to => 0.0}
+   validates :ticket_printed_price, :format => { :with => /\A\d+(?:\.\d{0,2})?\z/ }, :numericality => {:greater_than_or_equal_to => 0.0}
    validates :ticket_number, :length =>  {:within => 1..10}
    validates :ticket_type, :inclusion => %w(Electronic Paper)
 
@@ -32,7 +32,7 @@ class Ticket < ActiveRecord::Base
         upload: 1,
         return: "#{Rails.application.secrets.app_host}#{return_path}",
         #invoice: id,
-        invoice: '806',
+        invoice: '886',
       
         amount: (ticket_selling_price * no_of_ticket.to_f) + (0.05 *(ticket_selling_price * no_of_ticket.to_f) ),
         item_name: event_name,

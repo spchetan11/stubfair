@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151113102622) do
+ActiveRecord::Schema.define(version: 20151114113057) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -74,7 +74,6 @@ ActiveRecord::Schema.define(version: 20151113102622) do
   add_index "events", ["user_id"], name: "index_events_on_user_id"
 
   create_table "ratings", force: :cascade do |t|
-    t.integer  "seller_id"
     t.integer  "user_id"
     t.integer  "type"
     t.integer  "rate"
@@ -82,23 +81,12 @@ ActiveRecord::Schema.define(version: 20151113102622) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "sellers", force: :cascade do |t|
-    t.string   "tag_name"
-    t.string   "card_no"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "user_id"
-  end
-
-  add_index "sellers", ["user_id"], name: "index_sellers_on_user_id"
-
   create_table "tickets", force: :cascade do |t|
     t.string   "comments"
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
     t.integer  "user_id"
     t.integer  "events_id"
-    t.integer  "seller_id"
     t.integer  "number_of_tickets"
     t.float    "ticket_selling_price"
     t.string   "ticket_number"
@@ -108,7 +96,6 @@ ActiveRecord::Schema.define(version: 20151113102622) do
   end
 
   add_index "tickets", ["event_id"], name: "index_tickets_on_events_id"
-  add_index "tickets", ["seller_id"], name: "index_tickets_on_seller_id"
   add_index "tickets", ["user_id"], name: "index_tickets_on_user_id"
 
   create_table "transactions", force: :cascade do |t|

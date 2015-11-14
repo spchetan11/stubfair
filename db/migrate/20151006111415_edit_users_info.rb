@@ -4,6 +4,6 @@ class EditUsersInfo < ActiveRecord::Migration
   	add_column :users, :last_name, :string
   	add_column :users, :address, :text
   	add_column :users, :postcode, :integer
-  	remove_column :sellers, :phone
+  	#remove_column :sellers, :phone
   end
 end
