@@ -49,6 +49,8 @@ gem 'local_time'
    gem 'pg', '~> 0.18.2'
 
    gem 'yui-compressor', '~> 0.12.0'
+
+   gem 'rails_12factor'
  end
 
 group :development, :test do
