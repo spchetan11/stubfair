@@ -4,7 +4,7 @@
 Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( themed/jquery-1.11.2.min.js )
 Rails.application.config.assets.precompile += %w( minimal_form/classie.js )
-Rails.application.config.assets.precompile += %w( minimal_form/stepForm.js )
+Rails.application.config.assets.precompile += %w( minimal_form/stepsForm.js )
 Rails.application.config.assets.precompile += %w( minimal_form/modernizr.custom.js )
 
 # Add additional assets to the asset load path
