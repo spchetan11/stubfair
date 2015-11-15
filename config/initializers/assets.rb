@@ -1,7 +1,7 @@
 # Be sure to restart your server when you modify this file.
 
 # Version of your assets, change this if you want to expire all your assets.
-Rails.application.config.assets.version = '1.0'
+Rails.application.config.assets.version = '2.0'
 Rails.application.config.assets.precompile += %w( themed/jquery-1.11.2.min.js )
 Rails.application.config.assets.precompile += %w( minimal_form/classie.js )
 Rails.application.config.assets.precompile += %w( minimal_form/stepsForm.js )
