@@ -2,7 +2,7 @@
   <h1>New Ticket</h1>
 
 
-<%= form_for(@ticket,:url =>  {controller:"tickets", action:"create", events_id: @event.id}) do |f| %>
+<%= form_for(@ticket,:url =>  {controller:"tickets", action:"create", event_id: @event.id}) do |f| %>
 
   <% if @ticket.errors.any? %>
     <div id="error_explanation">
