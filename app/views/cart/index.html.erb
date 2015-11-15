@@ -39,9 +39,9 @@
 
 
 	<p><b> Total (+5% service charge): <%= number_to_currency(total, :unit => '$')%></b> </p>
-	<a href="/cart/checkout/<%=ticket.id%>"><button class="btn btn-mod btn-large btn-round">Checkout</button></a>
+	<!--<a href="/cart/checkout/<%=ticket.id%>"><button class="btn btn-mod btn-large btn-round">Checkout</button></a>-->
 
-	<a href="/transactions/purchase/<%=ticket.id%>"><button class="btn btn-mod btn-large btn-round">Transactions</button></a>
+	<!--<a href="/transactions/purchase/<%=ticket.id%>"><button class="btn btn-mod btn-large btn-round">Transactions</button></a>-->
 
 	<td><%= link_to 'Proceed to Payment', controller: "tickets", action: "payment",ticket_number: ticket.ticket_number,ticket_type: ticket.ticket_type,ticket_selling_price: ticket.ticket_selling_price, number_of_tickets: number_of_tickets, :id => ticket.id, event_id: ticket.event_id%></td>
 
