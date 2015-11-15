@@ -2,4 +2,6 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-//= require 'minimal_form'
+//= require 'minimal_form/classie.js'
+//= require 'minimal_form/modernizr.custom.js'
+//= require 'minimal_form/stepsform.js'
