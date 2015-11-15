@@ -22,7 +22,7 @@ class TransactionsController < ApplicationController
    def paypal_redirect
     #item_number is ticket_id from the paypal response
     e_id=Ticket.find(params[:id])
-    e_id=e_id.events_id
+    e_id=e_id.event_id
     #we now have event id in e_id
     @e_checkout=Event.where(:id => e_id)
     
@@ -49,7 +49,7 @@ class TransactionsController < ApplicationController
     payment_gross = params[:payment_gross]
     quantity = params[:quantity]
 
-    @user_transaction = @purchase.update(:ticket_id => @ticket.id,:comments => @ticket.comments, :ticket_created_at => @ticket.created_at, :ticket_updated_at => @ticket.updated_at, :user_id => @user, :event_id => @ticket.events_id, :number_of_tickets => @ticket.number_of_tickets, :ticket_selling_price => @ticket.ticket_selling_price, :ticket_printed_price => @ticket.ticket_printed_price, :ticket_number => @ticket.ticket_number, :published => @ticket.published, :ticket_type => @ticket.ticket_type, number_of_tickets_purchased: quant)
+    @user_transaction = @purchase.update(:ticket_id => @ticket.id,:comments => @ticket.comments, :ticket_created_at => @ticket.created_at, :ticket_updated_at => @ticket.updated_at, :user_id => @user, :event_id => @ticket.event_id, :number_of_tickets => @ticket.number_of_tickets, :ticket_selling_price => @ticket.ticket_selling_price, :ticket_printed_price => @ticket.ticket_printed_price, :ticket_number => @ticket.ticket_number, :published => @ticket.published, :ticket_type => @ticket.ticket_type, number_of_tickets_purchased: quant)
     if status == "Completed"
     @user_transaction = @purchase.update(status: status, transaction_id: txn_id, purchased_at: Time.now, purchase_amount: payment_gross)
     else
@@ -74,7 +74,7 @@ class TransactionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transactions_params
-    params.require(:transaction).permit(:user_id, :events_id, :ticket_id, :published, :comments,  :number_of_tickets, :ticket_type, :ticket_printed_price, :ticket_selling_price, :ticket_number, :ticket_created_at, :ticket_updated_at, :number_of_tickets_purchased, :purchase_flag, :event_expires_on )
+    params.require(:transaction).permit(:user_id, :event_id, :ticket_id, :published, :comments,  :number_of_tickets, :ticket_type, :ticket_printed_price, :ticket_selling_price, :ticket_number, :ticket_created_at, :ticket_updated_at, :number_of_tickets_purchased, :purchase_flag, :event_expires_on )
     end
 
 

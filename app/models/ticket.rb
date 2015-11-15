@@ -1,8 +1,9 @@
 class Ticket < ActiveRecord::Base
 
   #change event_id to events_id after heroku push
-	belongs_to :event, :foreign_key => "events_id", dependent: :destroy
+	#belongs_to :event, :foreign_key => "event_id", dependent: :destroy
 	belongs_to :user,  :foreign_key => "user_id", dependent: :destroy
+  belongs_to :event, class_name: "Event"
 	
   
   

@@ -38,7 +38,7 @@ class TicketsController < ApplicationController
         respond_to do |format|
           if@ticket.save
              
-             @ticket.update_attributes(:events_id => @event.id, :user_id => session[:id])
+             @ticket.update_attributes(:event_id => @event.id, :user_id => session[:id])
             format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
             format.json { render :show, status: :created, location: @ticket}
           else
@@ -114,7 +114,7 @@ class TicketsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ticket_params
-    params.require(:ticket).permit(:user_id, :events_id, :published, :comments,  :number_of_tickets, :ticket_type, :ticket_printed_price, :ticket_selling_price, :ticket_number)
+    params.require(:ticket).permit(:user_id, :event_id, :published, :comments,  :number_of_tickets, :ticket_type, :ticket_printed_price, :ticket_selling_price, :ticket_number)
     end
 
   
