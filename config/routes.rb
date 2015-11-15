@@ -36,7 +36,7 @@ Rails.application.routes.draw do
  
  #was
   #get '/tickets/new/:events_id' => 'tickets#new'
-  get '/tickets/new/:events_id' => 'tickets#new'
+  get '/tickets/new/:event_id' => 'tickets#new'
 
   get '/users/:id' => 'users#show'
 

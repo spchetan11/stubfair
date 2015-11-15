@@ -9,7 +9,7 @@ class EventsController < ApplicationController
   end
   def my_events
     @user = current_user.id
-    @events=Event.where(:user_id => @user).where(:published => true)
+    @events=Event.where(:user_id => current_user.id).where(:published => true)
   end
   # GET /events/1
   # GET /events/1.json

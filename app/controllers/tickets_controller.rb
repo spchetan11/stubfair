@@ -18,7 +18,7 @@ class TicketsController < ApplicationController
   # GET /tickets/new
   def new
     @ticket = Ticket.new
-    @event=Event.find(params[:events_id])
+    @event=Event.find(params[:event_id])
     #puts(@event.id)
     @transaction = Transaction.new
   end
@@ -33,7 +33,7 @@ class TicketsController < ApplicationController
 
     @ticket = Ticket.new(ticket_params)
     @ticket.user_id=current_user.id
-    @event=Event.find(params[:events_id])
+    @event=Event.find(params[:event_id])
     #seller_id=current_user.id
         respond_to do |format|
           if@ticket.save
@@ -82,9 +82,9 @@ class TicketsController < ApplicationController
     # amount = params[:ticket_selling_price]
     # type_of_ticket = params[:ticket_type]
     no_of_ticket= params["number_of_tickets"]
-    events_id = params["events_id"]
+    events_id = params["event_id"]
     puts(events_id)
-    @event=Event.find(params[:events_id])
+    @event=Event.find(params[:event_id])
     event_name = @event.title
     puts(event_name)
     redirect_to @ticket.paypal_url(transaction_path(@ticket),no_of_ticket,event_name)
