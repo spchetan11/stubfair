@@ -48,8 +48,10 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     #only show users events
+
     @tickets_q=Ticket.new
     @events=Event.find(params[:id])
+    @pictures = @events.pictures
     @tickets=Ticket.where(:event_id => @events.id).where(:published => true).order('ticket_selling_price ASC')
    
   end
@@ -94,6 +96,12 @@ class EventsController < ApplicationController
     @event.user_id=current_user.id
         respond_to do |format|
           if @event.save
+            if params[:images]
+          # The magic is here for image handeling ;)
+            params[:images].each { |image|
+            @event.pictures.create(image: image)
+          }
+        end
             format.html { redirect_to @event, notice: 'Event was successfully created.' }
             format.json { render :show, status: :created, location: @event }
           else
@@ -138,7 +146,7 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:category, :title, :description, :venue, :genre, :event_date_time,:user_id, :expires_on, :ticket_attachment,:published, :location)
+      params.require(:event).permit(:category, :title, :description, :venue, :genre, :event_date_time,:user_id, :expires_on, :ticket_attachment,:published, :location, :pictures)
     end
 
     def event_edit_params

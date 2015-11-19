@@ -3,6 +3,7 @@ class Event < ActiveRecord::Base
 
    
 	has_many :tickets
+    has_many :pictures, :dependent => :destroy
 	belongs_to :user, :foreign_key => "user_id", dependent: :destroy
 
 
