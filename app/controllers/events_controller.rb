@@ -11,6 +11,39 @@ class EventsController < ApplicationController
     @user = current_user.id
     @events=Event.where(:user_id => current_user.id).where(:published => true)
   end
+
+  def concerts
+    @events=Event.where(:published => true).where(:category => "Concerts")
+  end
+
+  def theatre
+    @events=Event.where(:published => true).where(:category => "Theatre")
+  end
+
+  def sports
+    @events=Event.where(:published => true).where(:category => "Sports")
+  end
+
+  def comedy
+    @events=Event.where(:published => true).where(:category => "Comedy")
+  end
+
+  def festivals
+    @events=Event.where(:published => true).where(:category => "Festivals")
+  end
+
+  def family
+    @events=Event.where(:published => true).where(:category => "Family")
+  end
+
+  def deals
+    @events=Event.where(:published => true).where(:category => "Deals")
+  end
+
+  def other
+    @events=Event.where(:published => true).where(:category => "Other")
+  end
+
   # GET /events/1
   # GET /events/1.json
   def show

@@ -53,15 +53,13 @@ class TransactionsController < ApplicationController
     if status == "Completed"
     @transaction = Transaction.find params[:invoice]
     @user_transaction = @transaction.update(status: status, transaction_id: txn_id, purchased_at: Time.now, purchase_amount: payment_gross)
+    session[:cart] = nil
     else
     render nothing: true
     end
     @ticket_i=Ticket.new
     @purchase_history=Transaction.where(:user_id => @user).where.not(:transaction_id => nil)
     
-    unless txn_id.nil?
-    session[:cart] = nil
-    end
 
     end
 

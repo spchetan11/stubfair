@@ -3,13 +3,11 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
- #post "/tickets/:id" => "tickets#show"
- post "/transactions/:id" => "transactions#paypal_redirect", as: :transaction
- post "/hook" => "tickets#hook"
-  
-  
- 
+  #post "/tickets/:id" => "tickets#show"
+  post "/transactions/:id" => "transactions#paypal_redirect", as: :transaction
 
+  post "/hook" => "tickets#hook"
+  
   devise_for :users
   
   resources :users
@@ -17,19 +15,28 @@ Rails.application.routes.draw do
   resources :devise
   resources :sessions
   resources :tickets
+
   devise_scope :user do 
     root 'welcome#index'
     match '/sessions/user', to: 'devise/sessions#create', via: :post
   end
-  get 'welcome/index'
+
+  get 'welcome/index' => 'welcome#index'
+
   get 'event/search_result' => 'events#search_result'
+
   get 'ticket/new' => 'events#search'
+
   post 'ticket/search_result' => 'events#ticket_step1'
+
   get "my_events" => "events#my_events"
 
   get '/cart' => 'cart#index' #same as get 'cart/index'
+
   get '/cart/clear' => 'cart#clearCart'
+
   post '/cart/:id' => 'cart#add'
+
   get '/cart/checkout/:id' => 'cart#checkout'
 
   get '/transactions/purchase/:id' => 'transactions#purchase'
@@ -41,6 +48,22 @@ Rails.application.routes.draw do
   get '/users/:id' => 'users#show'
 
   get '/search' => 'searches#index'
+
+  get "/concerts" => "events#concerts", as: :concerts
+
+  get "/theatre" => "events#theatre", as: :theatre
+
+  get "/sports" => "events#sports", as: :sports
+
+  get "/comedy" => "events#comedy", as: :comedy
+
+  get "/festivals" => "events#festivals", as: :festivals
+
+  get "/family" => "events#family", as: :family
+
+  get "/deals" => "events#deals", as: :deals
+
+  get "/other" => "events#other", as: :other
 
   match ':controller(/:action(/:id))',:via => [:get, :post]
   # The priority is based upon order of creation: first created -> highest priority.
