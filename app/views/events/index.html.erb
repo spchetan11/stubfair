@@ -32,7 +32,7 @@
        <!--<td> <%= link_to("View Tickets", {:controller => 'tickets', :events_id => event.id}, :class => 'action show') %> </td> -->
       
         <td><%= link_to 'Show', event %></td>
-         <%if user_signed_in?%>
+         <%if user_signed_in? && current_user.id == event.user_id%>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
         <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
        <%end%>

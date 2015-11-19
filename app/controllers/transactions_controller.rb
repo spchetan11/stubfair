@@ -59,6 +59,10 @@ class TransactionsController < ApplicationController
     @ticket_i=Ticket.new
     @purchase_history=Transaction.where(:user_id => @user).where.not(:transaction_id => nil)
     
+    unless txn_id.nil?
+    session[:cart] = nil
+    end
+
     end
 
  private

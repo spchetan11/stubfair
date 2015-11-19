@@ -116,7 +116,11 @@
                                             </td>
 
                                             <!--<td><input type="radio" for="select_ticket"  value="<%= ticket.id%>"></td>-->
+                                            <%unless session[:cart]%>
+                                            
                                               <%= f.submit "Add To Cart",:class=>"submit_btn btn btn-mod btn-medium btn-round" %>
+
+                                              <%end%>
                                             <td>
                                                 
                                                
