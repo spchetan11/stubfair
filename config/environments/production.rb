@@ -88,9 +88,9 @@ Rails.application.configure do
   :s3_host_name => ENV['s3-us-west-2.amazonaws.com'],
   :s3_region => ENV['us-west-2'],
   :s3_credentials => {
-    :bucket => ENV['pavan-events'],
-    :access_key_id => ENV['AKIAIZRE5MDXY27RZO3A'],
-    :secret_access_key => ENV['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'],
+    :bucket => ENV['AWS_BUCKET'],
+    :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+    :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'],
   }
 }
 
