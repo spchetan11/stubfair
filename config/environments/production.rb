@@ -89,6 +89,7 @@ Rails.application.configure do
     :bucket => ENV['pavan-events'],
     :access_key_id => ENV['AKIAIZRE5MDXY27RZO3A'],
     :secret_access_key => ENV['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']
+    :region => ENV['us-west-2']
   }
 }
 
