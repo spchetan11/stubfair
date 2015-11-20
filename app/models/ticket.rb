@@ -46,6 +46,10 @@ class Ticket < ActiveRecord::Base
     "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
   end
 
+  def quantity_available
+      number_of_tickets - transactions.sum(:number_of_tickets_purchased)
+  end
+
 # FOR PAYPAL SITE TO SELLER PAYMENT
 
 #   def self.send_money(to_email, how_much_in_cents, options = {})
@@ -74,9 +78,7 @@ class Ticket < ActiveRecord::Base
 #   response = http.post("/nvp", stringified_params)
 # end
 
-def quantity_available
-      number_of_tickets - transactions.sum(:number_of_tickets_purchased)
-end
+
 
 
   end
