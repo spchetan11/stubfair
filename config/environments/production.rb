@@ -88,7 +88,7 @@ Rails.application.configure do
   :s3_credentials => {
     :bucket => ENV['pavan-events'],
     :access_key_id => ENV['AKIAIZRE5MDXY27RZO3A'],
-    :secret_access_key => ENV['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']
+    :secret_access_key => ENV['HNW7ufpF8KW+zEQUOZeDDuNsJNvP3PbhTxT8BwJt'],
     :region => ENV['us-west-2']
   }
 }
