@@ -41,6 +41,12 @@ gem 'aws-sdk'
 
 gem 'local_time'
 
+gem 'rmagick'
+
+gem 'twitter-bootstrap-rails'
+
+gem 'therubyracer'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

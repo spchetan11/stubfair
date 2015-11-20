@@ -111,7 +111,7 @@
                                             <td>
                                                  <%= form_for(@tickets_q ,:url => {:controller => :cart, :action => :add ,:id=> ticket.id}) do |f| %>   
                                                  
-                                                    <%= f.select(:number_of_tickets, 1.. ticket.number_of_tickets,  :class => "myDropDown") %>
+                                                    <%= f.select(:number_of_tickets, 1.. ticket.quantity_available,  :class => "myDropDown") %>
                                                 
                                             </td>
 

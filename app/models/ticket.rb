@@ -4,6 +4,7 @@ class Ticket < ActiveRecord::Base
 	#belongs_to :event, :foreign_key => "event_id", dependent: :destroy
 	belongs_to :user,  :foreign_key => "user_id", dependent: :destroy
   belongs_to :event, class_name: "Event"
+  has_many :transactions
 	
   
   
@@ -72,6 +73,10 @@ class Ticket < ActiveRecord::Base
  
 #   response = http.post("/nvp", stringified_params)
 # end
+
+def quantity_available
+      number_of_tickets - transactions.sum(:number_of_tickets_purchased)
+end
 
 
   end
