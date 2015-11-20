@@ -85,11 +85,11 @@ Rails.application.configure do
   #enter the amazon s3 credentials here 
   config.paperclip_defaults = {
   :storage => :s3,
+  :s3_region => ENV['us-west-2'],
   :s3_credentials => {
     :bucket => ENV['pavan-events'],
     :access_key_id => ENV['AKIAIZRE5MDXY27RZO3A'],
     :secret_access_key => ENV['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'],
-    :region => ENV['us-west-2']
   }
 }
 
