@@ -53,7 +53,7 @@ class EventsController < ApplicationController
     @events=Event.find(params[:id])
     @pictures = @events.pictures
     @picture_id=Picture.where(:event_id => @events.id)
-    @img_paths="https://s3-us-west-2.amazonaws.com/pavan-events.s3.amazonaws.com/apps/public/images/" + @picture_id.first.id.to_s + "/"
+    @img_paths="https://s3-us-west-2.amazonaws.com/pavan-events.s3.amazonaws.com/app/public/images/" + @picture_id.first.id.to_s + "/"
     @tickets=Ticket.where(:event_id => @events.id).where(:published => true).order('ticket_selling_price ASC')
    
   end
