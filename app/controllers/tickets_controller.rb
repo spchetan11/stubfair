@@ -38,7 +38,7 @@ class TicketsController < ApplicationController
         respond_to do |format|
           if@ticket.save
              
-             @ticket.update_attributes(:event_id => @event.id, :user_id => session[:id])
+             @ticket.update_attributes(:event_id => @event.id, :user_id => current_user.id)
             format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
             format.json { render :show, status: :created, location: @ticket}
           else
