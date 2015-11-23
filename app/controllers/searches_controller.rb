@@ -11,7 +11,7 @@ class SearchesController < ApplicationController
     	venue=@event.venue
     	categ=@event.category
     	puts(categ)
-		@search_result=Event.where("title LIKE ? and venue LIKE ?", "%#{title}%" ,"%#{venue}%").where(:published => true,:category => @event.category)
+		@search_result=Event.where("title LIKE ? and venue LIKE ?", "%#{title}%" ,"%#{venue}%").where(:published => true)
 	end
 
 	private

@@ -96,3 +96,44 @@ form h3{
    height: 80px; /* adjust height depending on number of options to display */
    border: 1px silver solid;
 }
+
+
+.call-to-action-sale{
+	width: 50%;
+	height: 50px;
+	background:white;
+	border-radius: 0px;
+	border: none;
+	float: left;
+	line-height: 50px;
+	transition: .2s all linear;
+	text-transform: uppercase;
+}
+.post-prev-text{
+	opacity: 0;
+	position: relative;
+	top: -100px;
+	transition:.2s all linear;
+}
+
+.item-event:hover .post-prev-text{
+	opacity: 1;
+}
+.call-to-action-sale.sell:hover{
+	background: #E9D460;
+	color:white;
+}
+.call-to-action-sale.buy:hover{
+	background: #87D37C;
+	color:white;
+}
+th{
+	font-size: 14px;
+	text-align: center;
+}
+td{
+	text-align: center;
+}
+td .btn-medium{
+	padding: 10px 10px !important;
+}

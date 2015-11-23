@@ -11,31 +11,31 @@
     </div>
   <% end %>
   
-  <div class="field">
+  <div class="field cat">
      <h3>Select Category</h3>
     <%= f.select :category, ['Concerts', 'Sports', 'Theatre', 'Comedy', 'Festivals', 'Family', 'Deals', 'Other'], :autocomplete => :off %>
   </div>
-  <div class="field">
+  <div class="field title">
     <%= f.text_field :title, :placeholder=>"Title" %>
   </div>
-  <div class="field">
+  <div class="field desc">
     <%= f.text_area :description, :placeholder=>"Description", :rows => 5 %>
   </div>
-    <div class="field">
+    <div class="field loc">
     <%= f.text_field :location, :placeholder=>"Location" %>
   </div>
-  <div class="field">
+  <div class="field ven">
     <%= f.text_field :venue, :placeholder=>"Venue" %>
   </div>
  
-  <div class="field">
+  <div class="field gen">
     <%= f.text_field :genre, :placeholder=>"Genre" %>
   </div>
-  <div class="field">
+  <div class="field date">
   <%= f.label :Event_Date %><br>
     <%= f.datetime_select :event_date_time %>
   </div>
-   <div class="field">
+   <div class="field date">
    <%= f.label :"Event Expires On" %><br>
     <%= f.datetime_select :expires_on %>
   </div>

@@ -1,3 +1,6 @@
+<%= javascript_include_tag "minimal_form/classie.js", 'data-turbolinks-track' => true %>
+<%= javascript_include_tag "minimal_form/modernizr.custom.js", 'data-turbolinks-track' => true %>
+<%= javascript_include_tag "minimal_form/stepsform.js", 'data-turbolinks-track' => true %>
 <section>
   <%= form_for(@event, :html =>{:class =>"simform",:id=>"theForm",:autocomplete=>"off"}, :url => {:action => :ticket_step1}) do |f| %>
         

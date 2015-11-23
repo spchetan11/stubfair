@@ -1,51 +1,407 @@
-<h3> Other </h3>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>StubFair</title>
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta charset="utf-8">
+        <meta name="author" content="Roman Kirichik">
+        <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        
+        <!-- Favicons -->
+        <link rel="shortcut icon" href="images/favicon.png">
+        <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+        
+        <!-- CSS -->
+             
+        
+        
+        
+    </head>
+    <body class="appear-animate">
+        
+        <!-- Page Loader -->        
+        <div class="page-loader">
+            <div class="loader">Loading...</div>
+        </div>
+        <!-- End Page Loader -->
+        
+        <!-- Page Wrap -->
+        <div class="page" id="top">
+            
+            
+            
+            
+            <!-- Section -->
+            <section class="page-section" style="background:white">
+                <div class="container relative">
+                    
+                    <div class="row">
+                        
+                        <!-- Content -->
+                        <div class="col-sm-12">
+                            
+                            <!-- Shop options -->
+                            <div class="clearfix mb-40">
+                                
+                                <div class="left section-text mt-10">
+                                    Showing 1 – <% if (@events.count >12) %>12 <% else %> <%= @events.count%><%end%> of <%= @events.count%> results
+                                </div>
+                                
+                                <div class="right">
+                                    <form method="post" action="#" class="form">
+                                        <select class="input-md round">
+                                            <option>Default sorting</option>
+                                            <option>Sort by price: low to high</option>
+                                            <option>Sort by price: high to low</option>
+                                        </select>
+                                    </form>
+                                </div>
+                                
+                            </div>
+                            <!-- End Shop options -->
+                            
+                            <div class="row multi-columns-row">
+                                <% @events.each do |event| %>
+                                <!-- Shop Item -->
+                                <div class="col-md-3 col-lg-3 mb-60 mb-xs-40 item-event">
+                                    
+                                    <div class="post-prev-img">
+                                        
+                                        <%= link_to event ,:class => "event-link" do%><img src="../../assets/shop/shop-prev-1.jpg" alt="" /><% end %>
+                                        
+                                        <!-- <div class="intro-label">
+                                            <span class="label label-danger bg-red">Sale</span>
+                                        </div> -->
+                                        
+                                    </div>
+                                    
+                                    <div class="post-prev-title font-alt align-center">
+                                        
+                                        <%= link_to event ,:class => "event-link" do%><%= event.title %><% end %>
+                                    </div>
 
-<p id="notice"><%= notice %></p>
-<div class="spacing-top"></div>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Category</th>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Location</th>
-      <th>Venue</th>
-      <th>Genre</th>
-      <th>Event date time</th>
-      <th>Expires on</th>
-       <th>Ticket Attachment</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= event.category %></td>
-        <td><%= event.title %></td>
-        <td><%= event.description %></td>
-        <td><%= event.location %></td>
-        <td><%= event.venue %></td>
-        <td><%= event.genre %></td>
-        <td><%= local_time(event.event_date_time) %></td>
-        <td><%= local_time(event.expires_on) %></td>
-        <td><%= event.ticket_attachment_file_name %></td>
-       <!--<td> <%= link_to("View Tickets", {:controller => 'tickets', :events_id => event.id}, :class => 'action show') %> </td> -->
-      
-        <td><%= link_to 'Show', event %></td>
-         <%if user_signed_in? && current_user.id == event.user_id%>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-       <%end%>
-       
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%if user_signed_in?%>
-<%= link_to 'New Event', new_event_path %>
-<%end%>
+                                    <div class="post-prev-text align-center">
+                                        <%= link_to  controller:"tickets", action:"new", event_id: event.id do%><div class="call-to-action-sale sell">Sell Ticket</div><%end%>
+                                        <%= link_to event ,:class => "event-link" do%><div class="call-to-action-sale buy">Buy Ticket</div>
+                                        <%end%>
+                                    </div>
+                                    
+                                    <!-- <div class="post-prev-more align-center">
+                                        <a href="#" class="btn btn-mod btn-gray btn-round"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                    </div> -->
+                                    
+                                </div>
+                                <!-- End Shop Item -->
+                                <% end %>
+                            </div>
+                            
+                            <!-- Pagination -->
+                            <div class="pagination">
+                                <a href=""><i class="fa fa-angle-left"></i></a>
+                                <a href="" class="active">1</a>
+                                <a href="">2</a>
+                                <a href="">3</a>
+                                <a class="no-active">...</a>
+                                <a href="">9</a>
+                                <a href=""><i class="fa fa-angle-right"></i></a>
+                            </div>
+                            <!-- End Pagination -->
+                            
+                        </div>
+                        <!-- End Content -->
+                        
+                        
+                    </div>
+                    
+                </div>
+            </section>
+            <!-- End Section -->
+            
+            
+            <!-- Divider -->
+            <hr class="mt-0 mb-0"/>
+            <!-- End Divider -->
+            
+            
+            <!-- Widgets Section -->
+            <section class="page-section">
+                <div class="container relative">
+                    
+                    <div class="row multi-columns-row">
+                        
+                        <div class="col-sm-6 col-md-3 col-lg-3">
+                            
+                            <!-- Widget -->
+                            <div class="widget">
+                                
+                                <h5 class="widget-title font-alt">Cart</h5>
+                                
+                                <div class="widget-body">
+                                    <ul class="clearlist widget-posts">
+                                        
+                                        <!-- Preview item 
+                                        <li class="clearfix">
+                                            <a href=""><img src="../../assets/shop-prev-1.jpg" alt="" class="widget-posts-img" /></a>
+                                            <div class="widget-posts-descr">
+                                                <a href="#" title="">Polo Shirt With Argyle Print</a>
+                                                <div>
+                                                    1 x $25.99
+                                                </div>
+                                                <div>
+                                                    <a href=""><i class="fa fa-times"></i> Remove</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- End Preview item -->
+                                        
+                                         <!-- Preview item 
+                                        <li class="clearfix">
+                                            <a href=""><img src="../../assets/shop-prev-1.jpg" alt="" class="widget-posts-img" /></a>
+                                            <div class="widget-posts-descr">
+                                                <a href="#" title="">Shirt With Mesh Sleeves</a>
+                                                <div>
+                                                    1 x $30.00
+                                                </div>
+                                                <div>
+                                                    <a href=""><i class="fa fa-times"></i> Remove</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- End Preview item -->
+                                        
+                                    </ul>
+                                    
+                                    
+                                    
+                                    <div>
+                                        
+                                    </div>
+                                    
+                                </div>
+                                
+                            </div>
+                            <!-- End Widget -->
+                            
+                        </div>
+                        
+                        <div class="col-sm-6 col-md-3 col-lg-3">
+                            
+                            <!-- Widget -->
+                            <div class="widget">
+                                
+                                <h5 class="widget-title font-alt">Tags</h5>
+                                
+                                <div class="widget-body">
+                                    <div class="tags">
+                                        <a href="">Concert</a>
+                                        <a href="">Rock</a>
+                                        <a href="">Conference</a>
+                                        <a href="">Theatre</a>
+                                        <a href="">Musicals</a>
+                                        <a href="">Speeches</a>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <!-- End Widget -->
+                            
+                            
+                            
+                        </div>
+                        
+                        <div class="col-sm-6 col-md-3 col-lg-3">
+                            
+                            <!-- Widget -->
+                            <div class="widget">
+                                
+                                <h5 class="widget-title font-alt">Categories</h5>
+                                
+                                <div class="widget-body">
+                                    <ul class="clearlist widget-menu">
+                                        <li>
+                                            <a href="#" title="">Branding</a>
+                                            <small>
+                                                - 7
+                                            </small>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="">Design</a>
+                                            <small>
+                                                - 15
+                                            </small>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="">Development</a>
+                                            <small>
+                                                - 3
+                                            </small>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="">Photography</a>
+                                            <small>
+                                                - 5
+                                            </small>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="">Other</a>
+                                            <small>
+                                                - 1
+                                            </small>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                            </div>
+                            <!-- End Widget -->
+                            
+                            
+                            
+                        </div>
+                        
+                        <div class="col-sm-6 col-md-3 col-lg-3">
+                            
+                            <!-- Widget -->
+                            <div class="widget">
+                                
+                                <h5 class="widget-title font-alt">Bestsellers</h5>
+                                
+                                <div class="widget-body">
+                                    <ul class="clearlist widget-posts">
+                                        
+                                        <!-- Preview item -->
+                                        <li class="clearfix">
+                                            <a href=""><img src="../../assets/shop-prev-1.jpg" alt="" class="widget-posts-img" /></a>
+                                            <div class="widget-posts-descr">
+                                                <a href="#" title="">Polo Shirt With Argyle Print</a>
+                                                <div>
+                                                    <del>
+                                                        50.00
+                                                    </del>&nbsp;
+                                                    $25.99
+                                                </div>
+                                                <div>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-half-o"></i>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- End Preview item -->
+                                        
+                                        <!-- Preview item -->
+                                        <li class="clearfix">
+                                            <a href=""><img src="../../assets/shop-prev-1.jpg" alt="" class="widget-posts-img" /></a>
+                                            <div class="widget-posts-descr">
+                                                <a href="#" title="">Polo Slim Fit Pique Badge Logo</a>
+                                                <div>
+                                                    $75.00
+                                                </div>
+                                                <div>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- End Preview item -->
+                                        
+                                        <!-- Preview item -->
+                                        <li class="clearfix">
+                                            <a href=""><img src="../../assets/shop-prev-1.jpg" alt="" class="widget-posts-img" /></a>
+                                            <div class="widget-posts-descr">
+                                                <a href="#" title="">Esprit Pique Polo Shirt</a>
+                                                <div>
+                                                    $30.99
+                                                </div>
+                                                <div>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-half-o"></i>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- End Preview item -->
+                                        
+                                    </ul>
+                                </div>
+                                
+                            </div>
+                            <!-- End Widget -->
+                            
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </section>
+            <!-- End Widgets Section -->
+            
+            
+            <!-- Foter -->
+            <footer class="page-section bg-gray-lighter footer pb-60">
+                <div class="container">
+                    
+                    <!-- Footer Logo -->
+                    <div class="local-scroll mb-30 wow fadeInUp" data-wow-duration="1.5s">
+                        <a href="#top"><img src="../../assets/logo.png" width="78" height="36" alt="" /></a>
+                    </div>
+                    <!-- End Footer Logo -->
+                    
+                    <!-- Social Links -->
+                    <div class="footer-social-links mb-110 mb-xs-60">
+                        <a href="#" title="Facebook" target="_blank"><i class="fa fa-facebook"></i></a>
+                        <a href="#" title="Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
+                        <a href="#" title="Behance" target="_blank"><i class="fa fa-behance"></i></a>
+                        <a href="#" title="LinkedIn+" target="_blank"><i class="fa fa-linkedin"></i></a>
+                        <a href="#" title="Pinterest" target="_blank"><i class="fa fa-pinterest"></i></a>
+                    </div>
+                    <!-- End Social Links -->  
+                    
+                    <!-- Footer Text -->
+                    <div class="footer-text">
+                        
+                        <!-- Copyright -->
+                        <div class="footer-copy font-alt">
+                            <a href="www.thosetwoguys.in" target="_blank">&copy; TTG 2015</a>.
+                        </div>
+                        <!-- End Copyright -->
+                        
+                        <div class="footer-made">
+                            Made with love for great people.
+                        </div>
+                        
+                    </div>
+                    <!-- End Footer Text --> 
+                    
+                 </div>
+                 
+                 
+                 <!-- Top Link -->
+                 <div class="local-scroll">
+                     <a href="#top" class="link-to-top"><i class="fa fa-caret-up"></i></a>
+                 </div>
+                 <!-- End Top Link -->
+                 
+            </footer>
+            <!-- End Foter -->
+        
+        
+        </div>
+        <!-- End Page Wrap -->
+        
+        
+          
+        <!--[if lt IE 10]><script type="text/javascript" src="js/placeholder.js"></script><![endif]-->
+        
+    </body>
+</html>

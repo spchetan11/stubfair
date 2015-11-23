@@ -51,6 +51,8 @@ class EventsController < ApplicationController
 
     @tickets_q=Ticket.new
     @events=Event.find(params[:id])
+    loc=@events.location
+    @related=Event.where("location LIKE ?","%#{loc}%").where(:published =>true)
     @pictures = @events.pictures
     @picture_id=Picture.where(:event_id => @events.id)
     @img_paths="https://s3-us-west-2.amazonaws.com/pavan-events.s3.amazonaws.com/app/public/images/" + @picture_id.first.id.to_s + "/"+@picture_id.first.image_file_name.to_s

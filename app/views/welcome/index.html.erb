@@ -67,7 +67,7 @@
                             <div class="row multi-columns-row">
                                 <% @events.each do |event| %>
                                 <!-- Shop Item -->
-                                <div class="col-md-3 col-lg-3 mb-60 mb-xs-40">
+                                <div class="col-md-3 col-lg-3 mb-60 mb-xs-40 item-event">
                                     
                                     <div class="post-prev-img">
                                         
@@ -85,9 +85,9 @@
                                     </div>
 
                                     <div class="post-prev-text align-center">
-                                        <del>$150.00</del>
-                                        &nbsp;
-                                        <strong>$94.75</strong>
+                                        <%= link_to  controller:"tickets", action:"new", event_id: event.id do%><div class="call-to-action-sale sell">Sell Ticket</div><%end%>
+                                        <%= link_to event ,:class => "event-link" do%><div class="call-to-action-sale buy">Buy Ticket</div>
+                                        <%end%>
                                     </div>
                                     
                                     <!-- <div class="post-prev-more align-center">

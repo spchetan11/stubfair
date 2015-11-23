@@ -10,7 +10,7 @@
                                     <div class="post-prev-img">
                                         
                                         
-                                        <%= link_to  controller:"tickets", action:"create", id: event.id do%><img src="../../assets/shop/shop-prev-1.jpg" alt="" /><% end %>
+                                        <%= link_to  event do%><img src="../../assets/shop/shop-prev-1.jpg" alt="" /><% end %>
                                         <!-- <div class="intro-label">
                                             <span class="label label-danger bg-red">Sale</span>
                                         </div> -->
@@ -22,15 +22,6 @@
                                         <%= link_to event ,:class => "event-link" do%><%= event.title %><% end %>
                                     </div>
 
-                                    <div class="post-prev-text align-center">
-                                        <del>$150.00</del>
-                                        &nbsp;
-                                        <strong>$94.75</strong>
-                                    </div>
-                                    
-                                    <!-- <div class="post-prev-more align-center">
-                                        <a href="#" class="btn btn-mod btn-gray btn-round"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                    </div> -->
                                     
                                 </div>
                                 <!-- End Shop Item -->

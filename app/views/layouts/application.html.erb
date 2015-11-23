@@ -164,9 +164,14 @@
                             <!-- End Signup -->
                             
                         </ul>
+                        
                     </div>
                     <!-- End Main Menu -->
-                    
+                    <div class="underbar" style="float:left;clear:both;width:100%;text-align:center; font-weight:400;font-size:16px;">
+                            <%if user_signed_in?%>
+<%= link_to 'Create New Event', new_event_path %>
+<%end%>
+                        </div>
 
                 </div>
             </nav>
