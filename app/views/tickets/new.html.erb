@@ -41,15 +41,15 @@
   </div>
   
   <div class="field">
-    <h3>Ticket Number</h3>
-    <%= f.text_field :ticket_number, :autocomplete => :off %>
+    <h3>Ticket Serial Number</h3>
+    <%= f.text_field :ticket_number, :autocomplete => :off,:placeholder=>"Please Enter the Serial Number On your Ticket" %>
   </div>
  
-  <!--<div class="field">
+  <div class="field">
   <h3>Ticket Type</h3>
     <%= f.select :ticket_type, ['Electronic', 'Paper'], {}, {:class =>"input-md round",:autocomplete => :off} %>
   </div>
-
+<!--
     <div class="field">
      <h3>Comments</h3>
     <%= f.text_area :comments, :autocomplete => :off %>
