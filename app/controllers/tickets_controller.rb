@@ -32,13 +32,20 @@ class TicketsController < ApplicationController
   def create
 
     @ticket = Ticket.new(ticket_params)
-    @ticket.user_id=current_user.id
+    #@ticket.user_id=current_user.id
     @event=Event.find(params[:event_id])
     #seller_id=current_user.id
         respond_to do |format|
           if@ticket.save
-             
-             @ticket.update_attributes(:event_id => @event.id, :user_id => current_user.id)
+            
+            if params[:images]
+          # The magic is here for image handeling ;)
+            params[:images].each { |image|
+            @ticket.ticket_images.create(image: image)
+           }
+            end
+
+            @ticket.update_attributes(:event_id => @event.id, :user_id => current_user.id)
             format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
             format.json { render :show, status: :created, location: @ticket}
           else
@@ -122,7 +129,7 @@ class TicketsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ticket_params
-    params.require(:ticket).permit(:user_id, :event_id, :published, :comments,  :number_of_tickets, :ticket_type, :ticket_printed_price, :ticket_selling_price, :ticket_number)
+    params.require(:ticket).permit(:user_id, :event_id, :published, :comments,  :number_of_tickets, :ticket_type, :ticket_printed_price, :ticket_selling_price, :ticket_number, :ticket_images)
     end
 
   

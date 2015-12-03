@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151119214407) do
+ActiveRecord::Schema.define(version: 20151203085812) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -45,6 +45,11 @@ ActiveRecord::Schema.define(version: 20151119214407) do
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+
+  create_table "bands", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "catergories", force: :cascade do |t|
     t.string   "category_name"
@@ -81,6 +86,7 @@ ActiveRecord::Schema.define(version: 20151119214407) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "event_id"
+    t.text     "image_url"
   end
 
   add_index "pictures", ["event_id"], name: "index_pictures_on_event_id"
@@ -92,6 +98,19 @@ ActiveRecord::Schema.define(version: 20151119214407) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "ticket_images", force: :cascade do |t|
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "ticket_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.text     "image_url"
+  end
+
+  add_index "ticket_images", ["ticket_id"], name: "index_ticket_images_on_ticket_id"
 
   create_table "tickets", force: :cascade do |t|
     t.string   "comments"
@@ -168,6 +187,8 @@ ActiveRecord::Schema.define(version: 20151119214407) do
     t.string   "last_name"
     t.text     "address"
     t.integer  "postcode"
+    t.float    "seller_band"
+    t.float    "buyer_band"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

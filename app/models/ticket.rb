@@ -5,6 +5,7 @@ class Ticket < ActiveRecord::Base
 	belongs_to :user,  :foreign_key => "user_id", dependent: :destroy
   belongs_to :event, class_name: "Event"
   has_many :transactions
+  has_many :ticket_images, :dependent => :destroy
 	
   
   

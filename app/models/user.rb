@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :transactions 
   has_many :events , dependent: :destroy
   has_many :tickets , dependent: :destroy
+  has_many :bands
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 

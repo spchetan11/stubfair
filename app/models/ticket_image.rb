@@ -1,9 +1,9 @@
-class Picture < ActiveRecord::Base
-	belongs_to :event, class_name: "Event"
+class TicketImage < ActiveRecord::Base
+	belongs_to :ticket, class_name: "Ticket"
 
 	has_attached_file :image,
-    :path => ":rails_root/public/events/:id/:filename",
-    :url  => "/events/:id/:filename",
+    :path => ":rails_root/public/tickets/:id/:filename",
+    :url  => "/tickets/:id/:filename",
 
     :storage => :s3,
     :s3_host_name => ENV['s3-us-west-2.amazonaws.com'],
@@ -17,3 +17,4 @@ class Picture < ActiveRecord::Base
 
     do_not_validate_attachment_file_type :image
 end
+

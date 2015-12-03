@@ -19,7 +19,11 @@ class Event < ActiveRecord::Base
     # scope :sorted, lambda { order("subjects.position ASC") }
     # scope :newest_first, lambda { order("subjects.created_at DESC")}
     # scope :search, lambda {|query| where(["name LIKE ?", "%#{query}%"])
-
+    
+    scope :upcoming, -> {
+    date = Date.today >> 1
+    where(event_date_time: (date.beginning_of_month..date.end_of_month))
+    }
     validates :title, :length => {:maximum => 30}, :presence =>true
     validates :description, :length => {:maximum => 500}, :presence =>true
     validates :venue, :length => {:maximum => 30}, :presence =>true

@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:create,:update,:edit,:new, :destroy]
+  skip_before_filter :verify_authenticity_token
   # GET /events
   # GET /events.json
   def index
@@ -42,6 +43,10 @@ class EventsController < ApplicationController
 
   def other
     @events=Event.where(:published => true).where(:category => "Other")
+  end
+
+  def upcoming
+    @events=Event.upcoming.where(:published => true)
   end
 
   # GET /events/1
@@ -97,15 +102,19 @@ class EventsController < ApplicationController
   def create
 
     @event = Event.new(event_params)
-    @event.user_id=current_user.id
+    #@event.user_id=current_user.id
+    
         respond_to do |format|
           if @event.save
+            @event.update_attributes(:user_id => current_user.id)
+
             if params[:images]
           # The magic is here for image handeling ;)
             params[:images].each { |image|
             @event.pictures.create(image: image)
-          }
-        end
+              }
+            end
+            
             format.html { redirect_to @event, notice: 'Event was successfully created.' }
             format.json { render :show, status: :created, location: @event }
           else
