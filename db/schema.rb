@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151203085812) do
+ActiveRecord::Schema.define(version: 20151207100415) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -63,15 +63,11 @@ ActiveRecord::Schema.define(version: 20151203085812) do
     t.string   "venue"
     t.string   "genre"
     t.datetime "event_date_time"
-    t.datetime "created_at",                                     null: false
-    t.datetime "updated_at",                                     null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.integer  "user_id"
-    t.boolean  "published",                      default: false
+    t.boolean  "published",       default: false
     t.datetime "expires_on"
-    t.string   "ticket_attachment_file_name"
-    t.string   "ticket_attachment_content_type"
-    t.integer  "ticket_attachment_file_size"
-    t.datetime "ticket_attachment_updated_at"
     t.string   "category"
     t.string   "location"
   end
