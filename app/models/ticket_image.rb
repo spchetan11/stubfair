@@ -1,7 +1,7 @@
 class TicketImage < ActiveRecord::Base
 	belongs_to :ticket, class_name: "Ticket"
 
-	has_attached_file :image,
+	has_attached_file :image
     # :path => ":rails_root/public/images/:id/:filename",
     # :url  => "/images/:id/:filename"
 
