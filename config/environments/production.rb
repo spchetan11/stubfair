@@ -85,8 +85,8 @@ Rails.application.configure do
   #enter the amazon s3 credentials here 
   config.paperclip_defaults = {
   :storage => :s3,
-  :s3_host_name => ENV['s3-us-west-2.amazonaws.com'],
-  :s3_region => ENV['s3-us-west-2.amazonaws.com'],
+  #:s3_host_name => ENV['s3-us-west-2.amazonaws.com'],
+  #:s3_region => ENV['s3-us-west-2.amazonaws.com'],
   :bucket => ENV['S3_BUCKET_NAME'],
   :s3_credentials => {
     :bucket => ENV['S3_BUCKET_NAME'],
