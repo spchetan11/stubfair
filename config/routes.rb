@@ -23,6 +23,8 @@ Rails.application.routes.draw do
 
   get 'welcome/index' => 'welcome#index'
 
+  get '/band/' => 'bands#band'
+
   get 'event/search_result' => 'events#search_result'
 
   get 'ticket/new' => 'events#search'
@@ -66,6 +68,12 @@ Rails.application.routes.draw do
   get "/other" => "events#other", as: :other
 
   get "/upcoming" => "events#upcoming", as: :upcoming
+
+  post "/events/ticket_step1" => "events#ticket_step1", as: :events_ticket_step1
+
+  post "/events/popular_events" => "events#popular_events", as: :popular_events
+
+  
 
   match ':controller(/:action(/:id))',:via => [:get, :post]
   # The priority is based upon order of creation: first created -> highest priority.

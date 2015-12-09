@@ -6,6 +6,8 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all
+    @popular_events = PopularEvent.all
+  
     
   end
   def my_events
@@ -59,9 +61,12 @@ class EventsController < ApplicationController
     loc=@events.location
     @related=Event.where("location LIKE ?","%#{loc}%").where(:published =>true)
     @pictures = @events.pictures
-    @picture_id=Picture.where(:event_id => @events.id)
-    @img_paths="https://s3-us-west-2.amazonaws.com/pavan-events.s3.amazonaws.com/app/public/images/" + @picture_id.first.id.to_s + "/"+@picture_id.first.image_file_name.to_s
+    @image=Picture.where(:event_id => @events.id)
+    #@img_paths="https://s3-us-west-2.amazonaws.com/pavan-events.s3.amazonaws.com/app/public/images/" + @picture_id.first.id.to_s + "/"+@picture_id.first.image_file_name.to_s
     @tickets=Ticket.where(:event_id => @events.id).where(:published => true).order('ticket_selling_price ASC')
+    # @img_path = @image.image.url
+    # puts ("this is image url -- #{@image.image.url}")
+ 
    
   end
 
@@ -84,6 +89,16 @@ class EventsController < ApplicationController
     render 'events/search'
 
 
+  end
+
+  def popular_events
+    @event = Event.new(event_params)
+    #@event=params[:event]
+    title=@event.title
+    location=@event.location
+    @search_result=Event.where("title LIKE ?", "%#{title}%").where(:published => true)
+    #redirect_to '/event/search_result' 
+    render 'events/popular_events'
   end
 
   
@@ -111,7 +126,8 @@ class EventsController < ApplicationController
             if params[:images]
           # The magic is here for image handeling ;)
             params[:images].each { |image|
-            @event.pictures.create(image: image)
+            @pic=@event.pictures.create(image: image)
+            @event.pictures.update_all(:image_url => @pic.image.url)
               }
             end
             

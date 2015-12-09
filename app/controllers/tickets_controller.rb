@@ -41,7 +41,8 @@ class TicketsController < ApplicationController
             if params[:images]
           # The magic is here for image handeling ;)
             params[:images].each { |image|
-            @ticket.ticket_images.create(image: image)
+            @pic=@ticket.ticket_images.create(image: image)
+            @ticket.pictures.update_all(:image_url => @pic.image.url)
            }
             end
 

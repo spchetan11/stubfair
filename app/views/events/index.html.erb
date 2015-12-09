@@ -16,8 +16,12 @@
         <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
         
         <!-- CSS -->
-             
-        
+             <h3>Popular Events </h3>
+             <%@popular_events.each do |pop|%>
+             <%= link_to popular_events_path(@event, event: {:title => "#{pop.name}"}), :method => :post do %>
+             <div><%=pop.name%></div>
+             <%end%>  
+             <%end%>        
         
         
     </head>

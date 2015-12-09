@@ -1,0 +1,16 @@
+
+<%=@band.name  %>
+<%=@band.value  %>
+<%=@band.user_id  %>
+
+<br />
+
+<%@current_user_band.each do |band|%>
+<%=band.name  %>
+<%=band.value  %>
+<%=band.user_id  %>
+<%end%>
+
+ 
+
+

@@ -12,7 +12,7 @@
 
 
 	<ul>
-<% @cart.each do |id, number_of_tickets|%>
+    <% @cart.each do |id, number_of_tickets|%>
 	<% ticket = Ticket.find_by_id(id)%>
 
 
@@ -33,8 +33,11 @@
 	</table>
 
 	<% total += number_of_tickets * ticket.ticket_selling_price %>
-	<% total += total*0.05%>
+	<% current_user_band = Band.where(:user_id => current_user.id) %>
 
+	<% current_user_band.each do |band|%>
+	<% total += total*band.value%>
+    <%end%>
 
 
 
