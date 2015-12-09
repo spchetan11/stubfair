@@ -42,7 +42,7 @@ class TicketsController < ApplicationController
           # The magic is here for image handeling ;)
             params[:images].each { |image|
             @pic=@ticket.ticket_images.create(image: image)
-            @ticket.pictures.update_all(:image_url => @pic.image.url)
+            @ticket.ticket_images.update_all(:image_url => @pic.image.url)
            }
             end
 

@@ -38,10 +38,11 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-
+    
     respond_to do |format|
       if @user.save
-       
+        @band = Band.new
+        @band.update(:user_id => @user.id, :value => "0.05")
         format.html { redirect_to :show, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
