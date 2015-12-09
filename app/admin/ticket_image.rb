@@ -1,9 +1,9 @@
-ActiveAdmin.register User do
+ActiveAdmin.register TicketImage do
 
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :email,:password, :first_name, :last_name, :gender, :phone, :age, :address, :postcode,:id, :buyer_band, :seller_band
+# permit_params :list, :of, :attributes, :on, :model
 #
 # or
 #

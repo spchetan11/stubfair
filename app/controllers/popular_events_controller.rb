@@ -1,0 +1,3 @@
+class PopularEventsController < ApplicationController
+	
+end

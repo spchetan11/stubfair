@@ -52,7 +52,7 @@ class TransactionsController < ApplicationController
     #@user_transaction = @purchase.update(:ticket_id => @ticket.id,:comments => @ticket.comments, :ticket_created_at => @ticket.created_at, :ticket_updated_at => @ticket.updated_at, :user_id => @user, :event_id => @ticket.event_id, :number_of_tickets => @ticket.number_of_tickets, :ticket_selling_price => @ticket.ticket_selling_price, :ticket_printed_price => @ticket.ticket_printed_price, :ticket_number => @ticket.ticket_number, :published => @ticket.published, :ticket_type => @ticket.ticket_type, number_of_tickets_purchased: quant)
     if status == "Completed"
     @transaction = Transaction.find params[:invoice]
-    @user_transaction = @transaction.update(status: status, transaction_id: txn_id, purchased_at: Time.now, purchase_amount: payment_gross, number_of_tickets_purchased: quant)
+    @user_transaction = @transaction.update(status: status, transaction_id: txn_id, purchased_at: Time.now, purchase_amount: payment_gross, number_of_tickets_purchased: quant, :purchased => true)
     session[:cart] = nil
     else
     render nothing: true
@@ -71,7 +71,7 @@ class TransactionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transactions_params
-    params.require(:transaction).permit(:user_id, :event_id, :ticket_id, :published, :comments,  :number_of_tickets, :ticket_type, :ticket_printed_price, :ticket_selling_price, :ticket_number, :ticket_created_at, :ticket_updated_at, :number_of_tickets_purchased, :purchase_flag, :event_expires_on )
+    params.require(:transaction).permit(:user_id, :ticket_id, :expires_on, :purchase_amount, :comments, :number_of_tickets, :ticket_printed_price, :ticket_number, :published, :event_id, :ticket_selling_price, :sale_amount, :ticket_type, :ticket_created_at, :ticket_updated_at, :purchased, :number_of_tickets_purchased, :notification_params, :status, :transaction_id,:purchased_at, :seller_id)     
     end
 
 

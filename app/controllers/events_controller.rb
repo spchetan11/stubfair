@@ -124,6 +124,15 @@ class EventsController < ApplicationController
         end
   end
 
+     # @as = @event.pictures.create(image: image)
+     #        puts @as.image.url
+     #        if @as.image.url
+     #        @event.pictures.update_all(:image_url => @as.image.url)
+     #         end
+     #       }
+
+     #puts "URL is #{Picture.first.image.url}"
+
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update

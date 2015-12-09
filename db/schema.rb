@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151207100415) do
+ActiveRecord::Schema.define(version: 20151208140529) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -87,6 +87,12 @@ ActiveRecord::Schema.define(version: 20151207100415) do
 
   add_index "pictures", ["event_id"], name: "index_pictures_on_event_id"
 
+  create_table "popular_events", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "ratings", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "type"
@@ -143,12 +149,13 @@ ActiveRecord::Schema.define(version: 20151207100415) do
     t.string   "ticket_type"
     t.datetime "ticket_created_at"
     t.datetime "ticket_updated_at"
-    t.boolean  "purchase_flag"
+    t.boolean  "purchased"
     t.integer  "number_of_tickets_purchased"
     t.text     "notification_params"
     t.string   "status"
     t.string   "transaction_id"
     t.datetime "purchased_at"
+    t.integer  "seller_id"
   end
 
   add_index "transactions", ["event_id"], name: "index_transactions_on_event_id"
