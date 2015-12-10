@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151209094646) do
+ActiveRecord::Schema.define(version: 20151210104115) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -80,17 +80,29 @@ ActiveRecord::Schema.define(version: 20151209094646) do
   add_index "events", ["user_id"], name: "index_events_on_user_id"
 
   create_table "pictures", force: :cascade do |t|
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "event_id"
     t.text     "image_url"
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
   end
 
+  add_index "pictures", ["email"], name: "index_pictures_on_email", unique: true
   add_index "pictures", ["event_id"], name: "index_pictures_on_event_id"
+  add_index "pictures", ["reset_password_token"], name: "index_pictures_on_reset_password_token", unique: true
 
   create_table "popular_events", force: :cascade do |t|
     t.string   "name"
