@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
  
 
+  devise_for :pictures, ActiveAdmin::Devise.config
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   #post "/tickets/:id" => "tickets#show"
