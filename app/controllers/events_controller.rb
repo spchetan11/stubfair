@@ -5,8 +5,8 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
-    @popular_events = PopularEvent.all
+    @events = Event.all.where(:published => true)
+    @popular_events = PopularEvent.all.where(:published => true)
   
     
   end

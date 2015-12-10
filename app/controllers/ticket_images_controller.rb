@@ -112,6 +112,6 @@
   private
 
   def picture_params
-    params.require(:ticket_image).permit(:image,:id)
+    params.require(:ticket_image).permit(:image, :id, :image_url)
   end
 end
