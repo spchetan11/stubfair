@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-   before_action :authenticate_user!, only: [:create,:update,:edit,:new]
+   #before_action :authenticate_user!, only: [:create,:update,:edit,:new]
 
   # GET /users
   # GET /users.json
@@ -41,8 +41,12 @@ class UsersController < ApplicationController
     
     respond_to do |format|
       if @user.save
-        @band = Band.new
-        @band.update(:user_id => @user.id, :value => "0.05")
+        #below not working for some reason
+        # id = @user.id
+        # puts (id)
+        # puts("new user created")
+        # @band = Band.new
+        # @band.update(:user_id => @user.id, :value => "0.05")
         format.html { redirect_to :show, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else

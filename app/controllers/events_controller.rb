@@ -5,7 +5,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all.where(:published => true)
+    @events = Event.all
     @popular_events = PopularEvent.all
     
   end
@@ -123,11 +123,11 @@ class EventsController < ApplicationController
           if @event.save
             @event.update_attributes(:user_id => current_user.id)
 
-            if params[:images]
+            if params[:attachments]
           # The magic is here for image handeling ;)
-            params[:images].each { |image|
-            @pic=@event.pictures.create(image: image)
-            @event.pictures.update_all(:image_url => @pic.image.url)
+            params[:attachments].each { |image|
+            @pic=@event.event_images.create(attachment: image)
+            @event.event_images.update_all(:image_url => @pic.attachment.url)
               }
             end
             
@@ -184,7 +184,7 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:category, :title, :description, :venue, :genre, :event_date_time,:user_id, :expires_on, :published, :location, :pictures)
+      params.require(:event).permit(:category, :title, :description, :venue, :genre, :event_date_time,:user_id, :expires_on, :published, :location, :event_image)
     end
 
     def event_edit_params

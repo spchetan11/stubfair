@@ -4,6 +4,7 @@ class Event < ActiveRecord::Base
    
 	has_many :tickets
     has_many :pictures, :dependent => :destroy
+    has_many :event_images, :dependent => :destroy
 	belongs_to :user, :foreign_key => "user_id"
 
 
