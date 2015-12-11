@@ -11,11 +11,11 @@ class EventsController < ApplicationController
 
     @events.each do |event|
     @image=EventImage.where(:event_id => event.id)
-    @image.each do |img|
-      @url=img.image_url
-      puts("url is")
-      puts(@url)
-    end
+    # @image.each do |img|
+    #   @url=img.image_url
+    #   puts("url is")
+    #   puts(@url)
+    # end
   end
 
     
