@@ -33,19 +33,19 @@ show do
         event.user_id
       end
       row :number_of_images do
-      	event.pictures.length
+      	event.event_images.length
       end
-    #   row :images do
-	   #     event.pictures.each{ |img|
-	   #     	image_tag img.image.url
+    #   row :attachments do
+	   #     event.event_images.each{ |img|
+	   #     	image_tag img.attachment.url
 	   #     }
 	   # end
-	  table_for event.pictures do
+	  table_for event.event_images do
 	  	#column :description do |col|
 	  		#{}"#{col.description}"
 	  	#end
-        column :image do |col|
-        	image_tag col.image.url, class: "img-responsive" ,style: "width: 600px;"
+        column :attachment do |col|
+        	image_tag col.attachment.url, class: "img-responsive" ,style: "width: 600px;"
         end
       end
     
