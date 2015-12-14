@@ -26,7 +26,7 @@ class Event < ActiveRecord::Base
     where(event_date_time: (date.beginning_of_month..date.end_of_month))
     }
     validates :title, :length => {:maximum => 30}, :presence =>true
-    validates :description, :length => {:maximum => 500}, :presence =>true
+    validates :description, :length => {:maximum => 10000}, :presence =>true
     validates :venue, :length => {:maximum => 30}, :presence =>true
     validates :location, :length => {:maximum => 50}, :presence =>true
     validates :genre, :length => {:maximum => 30}, :presence =>true

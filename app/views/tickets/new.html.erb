@@ -44,6 +44,8 @@
     <h3>Ticket Serial Number</h3>
     <%= f.text_field :ticket_number, :autocomplete => :off,:placeholder=>"Please Enter the Serial Number On your Ticket" %>
   </div>
+
+
  
   <div class="field">
   <h3>Ticket Type</h3>
@@ -55,9 +57,12 @@
     <%= f.text_area :comments, :autocomplete => :off %>
   </div>
 -->
-  <div class="field">
-    <%= f.label :ticket_images %>
+
+
+    
   <!-- The magic is coming ...look at my eyes....shazammmm , multiple: true -->
+  <div class="field">
+  <h3>Ticket Image</h3>
   <%= file_field_tag "images[]", type: :file, multipart: true, :required => true %>
   </div>
 

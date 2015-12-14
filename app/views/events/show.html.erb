@@ -74,28 +74,13 @@
                                             
                                               <img src="<%=@events.event_images.first.image_url%>" alt="" />
                                     <%else%>
-                                              <img src="../../assets/logo.png" alt="" class="widget-posts-img"/></a>
-                                    <%end%>
-                                <div class="intro-label">
-                                    <span class="label label-danger bg-red">Hot</span>
-                                </div>
+                                              <img src="../../assets/logo.png" alt="" />  
+                                <%end%>
+                                  </a>
+                                
                             </div>
                             
-                       <!--      <div class="row">
-                                
-                                <div class="col-xs-3 post-prev-img">
-                                    <a href="images/shop/shop-prev-2.jpg" class="lightbox-gallery-3 mfp-image"><img src="../../assets/shop-prev-1.jpg" alt="" /></a>
-                                </div>
-                                
-                                <div class="col-xs-3 post-prev-img">
-                                    <a href="images/shop/shop-prev-3.jpg" class="lightbox-gallery-3 mfp-image"><img src="../../assets/shop-prev-1.jpg" alt="" /></a>
-                                </div>
-                                
-                                <div class="col-xs-3 post-prev-img">
-                                    <a href="images/shop/shop-prev-4.jpg" class="lightbox-gallery-3 mfp-image"><img src="../../assets/shop-prev-1.jpg" alt="" /></a>
-                                </div>
-                                
-                            </div> -->
+                       
                             
                         </div>
                         <!-- End Product Images -->
@@ -115,6 +100,11 @@
                                     <h3>Location</h3>
                                     <%= @event.location %>
                                 </div>
+
+                                <!--   <div class="col-xs-6 lead mt-0 mb-20">
+                                    <h3>Event Time</h3>
+                                    <%= @event.event_date_time %>
+                                </div> -->
                                 
                             </div>
                             <hr class="mt-0 mb-30"/>
@@ -124,7 +114,7 @@
                                         <th>Price</th><th>Available Quantity</th><th>Select Quantity</th>
                                     <% @tickets.each do |ticket|  %>
                                         <tr>
-                                            <td><%= ticket.ticket_selling_price %></td>
+                                            <td><%= number_to_currency(ticket.ticket_selling_price, :unit => '$') %></td>
                                             <td><%= ticket.number_of_tickets - ticket.transactions.sum(:number_of_tickets_purchased)%></td>
                                             <%= form_for(@tickets_q ,:url => {:controller => :cart, :action => :add ,:id=> ticket.id}) do |f| %>
                                             <td>
@@ -160,13 +150,7 @@
                                 <h3>Description</h3>
                                 <%= @event.description %>
                             </div>
-                            
-                            
-
-                            
-                           
-
-                            
+                        
                         </div>
                         <!-- End Product Description -->
                         
