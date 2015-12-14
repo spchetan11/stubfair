@@ -15,9 +15,9 @@
            
             
             <!-- Head Section --><%if @events.event_images.exists?%>
-            <section class="small-section bg-gray-lighter" style="background:url(<%=@events.event_images.first.attachment.url%>);background-size:cover;background-position:center center">
+                    <section class="small-section bg-gray-lighter" style="background:url(<%=@events.event_images.first.attachment.url%>);background-size:cover;background-position:center center">
                 <%else%>
-                <section class="small-section bg-gray-lighter" style="background:url("https://s3-us-west-2.amazonaws.com/stubfair-images/event_images/attachments/original/missing.png");background-size:cover;background-position:center center">
+                    <section class="small-section bg-gray-lighter" style="background:url("");background-size:cover;background-position:center center">
 
                 <%end%>
                 <div class="relative container align-left">
@@ -74,7 +74,7 @@
                                             
                                               <img src="<%=@events.event_images.first.attachment.url%>" alt="" />
                                     <%else%>
-                                              <img src="https://s3-us-west-2.amazonaws.com/stubfair-images/event_images/attachments/original/missing.png" alt="" class="widget-posts-img"/></a>
+                                              <img src="../../assets/logo.png" alt="" class="widget-posts-img"/></a>
                                     <%end%>
                                 <div class="intro-label">
                                     <span class="label label-danger bg-red">Hot</span>
