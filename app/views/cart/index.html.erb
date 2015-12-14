@@ -41,7 +41,7 @@
 
 
 
-	<p><b> Total (+5% service charge): <%= number_to_currency(total, :unit => '$')%></b> </p>
+	<p><b> Total (+<%=band.value%>% service charge): <%= number_to_currency(total, :unit => '$')%></b> </p>
 	<!--<a href="/cart/checkout/<%=ticket.id%>"><button class="btn btn-mod btn-large btn-round">Checkout</button></a>-->
 
 	<!--<a href="/transactions/purchase/<%=ticket.id%>"><button class="btn btn-mod btn-large btn-round">Transactions</button></a>-->
