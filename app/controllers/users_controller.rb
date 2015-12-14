@@ -38,9 +38,10 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    
+    puts("before looop")
     respond_to do |format|
       if @user.save
+        puts("inside looop")
         #below not working for some reason
         # id = @user.id
         # puts (id)
