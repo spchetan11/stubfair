@@ -137,3 +137,51 @@ td{
 td .btn-medium{
 	padding: 10px 10px !important;
 }
+
+.events-sub{
+	float: left !important;
+	width: 100px;
+	padding-left: 0;
+    margin-left: 30px !important;
+}
+.events-sub:hover{
+	background: black;
+	color: white;
+}
+.events-sub:hover > li{
+	display: block !important;
+}
+.clearlist .events-sub li{
+	width: 100px;
+	display: block;
+	margin: 0 auto;
+	float: left;
+	clear: both;
+	display: none;
+	text-align: center;
+	border-bottom: 1px solid white;	
+}
+.clearlist .events-sub li a:hover{
+	color: white !important;
+}
+.events-sub li.first{
+	display: block;
+}
+a:hover{
+	background: none !important;
+}
+
+.event-name-search,.event-venue-search{
+	margin-top:15px ;
+	margin-bottom: 15px;
+}
+.submit_btn.btn.btn-mod.btn-medium.btn-round.small{
+	width: 25% !important;
+	margin: 0 auto !important;
+	display: block;
+}
+.popular-event-tile{
+	float: left;
+	margin-left: 10px;
+	margin-right: 10px; 
+}
