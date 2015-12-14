@@ -65,7 +65,12 @@
                             
                             <div class="post-prev-img">
                                 <!--@event.event_images.first.attachment.url -->
-                                <a href="#" class="lightbox-gallery-3 mfp-image"><img src="<%=@event.event_images.first.attachment.url%>" alt="" /></a>
+                                <a href="#" class="lightbox-gallery-3 mfp-image">
+                                <%if (event.event_images.first.attachment.url.to_s== "/attachments/original/missing.png")%>
+                                            <img src="https://s3-us-west-2.amazonaws.com/stubfair-images/event_images/attachments/original/missing.png" alt="" class="widget-posts-img"/>
+                                        <%else%>
+                                    <img src="<%=@event.event_images.first.attachment.url%>" alt="" /></a>
+                                    <%end%>
                                 <div class="intro-label">
                                     <span class="label label-danger bg-red">Hot</span>
                                 </div>
