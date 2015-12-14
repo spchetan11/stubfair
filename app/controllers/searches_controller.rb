@@ -11,7 +11,7 @@ class SearchesController < ApplicationController
     	venue=@event.venue
     	categ=@event.category
     	puts(categ)
-		@search_result=Event.where("title LIKE ? and venue LIKE ?", "%#{title}%" ,"%#{venue}%").where(:published => true)
+		@search_result=Event.where("title LIKE ? and venue LIKE ?", "%#{title}%" ,"%#{venue}%").where(:published => true).paginate(:page => params[:page], :per_page => 16)
 	end
 
 	private

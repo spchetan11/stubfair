@@ -5,7 +5,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all.where(:published=>"t")
+    @events = Event.all.where(:published=>"t").paginate(:page => params[:page], :per_page => 16)
     @popular_events = PopularEvent.all
 
 
@@ -22,39 +22,39 @@ class EventsController < ApplicationController
   end
   def my_events
     @user = current_user.id
-    @events=Event.where(:user_id => current_user.id).where(:published => true)
+    @events=Event.where(:user_id => current_user.id).where(:published => true).paginate(:page => params[:page], :per_page => 16)
   end
 
   def concerts
-    @events=Event.where(:published => true).where(:category => "Concerts")
+    @events=Event.where(:published => true).where(:category => "Concerts").paginate(:page => params[:page], :per_page => 16)
   end
 
   def theatre
-    @events=Event.where(:published => true).where(:category => "Theatre")
+    @events=Event.where(:published => true).where(:category => "Theatre").paginate(:page => params[:page], :per_page => 16)
   end
 
   def sports
-    @events=Event.where(:published => true).where(:category => "Sports")
+    @events=Event.where(:published => true).where(:category => "Sports").paginate(:page => params[:page], :per_page => 16)
   end
 
   def comedy
-    @events=Event.where(:published => true).where(:category => "Comedy")
+    @events=Event.where(:published => true).where(:category => "Comedy").paginate(:page => params[:page], :per_page => 16)
   end
 
   def festivals
-    @events=Event.where(:published => true).where(:category => "Festivals")
+    @events=Event.where(:published => true).where(:category => "Festivals").paginate(:page => params[:page], :per_page => 16)
   end
 
   def family
-    @events=Event.where(:published => true).where(:category => "Family")
+    @events=Event.where(:published => true).where(:category => "Family").paginate(:page => params[:page], :per_page => 16)
   end
 
   def deals
-    @events=Event.where(:published => true).where(:category => "Deals")
+    @events=Event.where(:published => true).where(:category => "Deals").paginate(:page => params[:page], :per_page => 16)
   end
 
   def other
-    @events=Event.where(:published => true).where(:category => "Other")
+    @events=Event.where(:published => true).where(:category => "Other").paginate(:page => params[:page], :per_page => 16)
   end
 
   def upcoming
@@ -94,7 +94,7 @@ class EventsController < ApplicationController
     #@event=params[:event]
     title=@event.title
     location=@event.location
-    @search_result=Event.where("title LIKE ? and location LIKE ?", "%#{title}%" ,"%#{location}%").where(:published => true)
+    @search_result=Event.where("title LIKE ? and location LIKE ?", "%#{title}%" ,"%#{location}%").where(:published => true).paginate(:page => params[:page], :per_page => 16)
     #redirect_to '/event/search_result' 
     render 'events/search'
 
@@ -106,7 +106,7 @@ class EventsController < ApplicationController
     #@event=params[:event]
     title=@event.title
     location=@event.location
-    @search_result=Event.where("title LIKE ?", "%#{title}%").where(:published => true)
+    @search_result=Event.where("title LIKE ?", "%#{title}%").where(:published => true).paginate(:page => params[:page], :per_page => 16)
     #redirect_to '/event/search_result' 
     render 'events/popular_events'
   end

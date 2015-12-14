@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
    message: "only allows letters" }, :allow_nil => true, :allow_blank => true
   validates :email, :presence =>true, :length => {:maximum => 100}, :format => EMAIL_REGEX, :confirmation => true, :uniqueness => { :case_sensitive => false }
   #validates :password, :confirmation => true, :length => {:within => 8..20}, :presence =>true
-  validates :gender, :inclusion => %w(male female), :allow_nil => true, :allow_blank => true
+  validates :gender, :inclusion => %w(Male Female), :allow_nil => true, :allow_blank => true
   validates :address,  :length =>  {:maximum => 100}, :allow_nil => true, :allow_blank => true
   validates :postcode, :length =>  {:within => 3..10}, numericality: { only_integer: true }, :allow_nil => true, :allow_blank => true
 

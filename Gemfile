@@ -47,6 +47,8 @@ gem 'twitter-bootstrap-rails'
 
 gem 'therubyracer'
 
+gem 'will_paginate', '~> 3.0', '>= 3.0.7'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
