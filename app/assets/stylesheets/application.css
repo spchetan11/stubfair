@@ -112,7 +112,7 @@ form h3{
 .post-prev-text{
 	opacity: 0;
 	position: relative;
-	top: -100px;
+	top: -80px;
 	transition:.2s all linear;
 }
 
