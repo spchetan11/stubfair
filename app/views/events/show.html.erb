@@ -15,7 +15,7 @@
            
             
             <!-- Head Section --><%if @events.event_images.exists?%>
-                    <section class="small-section bg-gray-lighter" style="background:url(<%=@events.event_images.first.attachment.url%>);background-size:cover;background-position:center center">
+                    <section class="small-section bg-gray-lighter" style="background:url(<%=@events.event_images.first.image_url%>);background-size:cover;background-position:center center">
                 <%else%>
                     <section class="small-section bg-gray-lighter" style="background:url("");background-size:cover;background-position:center center">
 
@@ -72,7 +72,7 @@
                                 <a href="#" class="lightbox-gallery-3 mfp-image">
                                 <%if (@events.event_images.exists?)%>
                                             
-                                              <img src="<%=@events.event_images.first.attachment.url%>" alt="" />
+                                              <img src="<%=@events.event_images.first.image_url%>" alt="" />
                                     <%else%>
                                               <img src="../../assets/logo.png" alt="" class="widget-posts-img"/></a>
                                     <%end%>

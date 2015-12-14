@@ -73,7 +73,7 @@
                                         
                                         <%if (event.event_images.exists?)%>
                                          
-                                            <%= link_to event ,:class => "event-link" do%><img src="<%=event.event_images.first.attachment.url%>" alt="" /><% end %>
+                                            <%= link_to event ,:class => "event-link" do%><img src="<%=event.event_images.first.image_url%>" alt="" /><% end %>
                                         <%else%>
                                             <%= link_to event ,:class => "event-link" do%><img src="../../assets/logo.png"  alt="" /><% end %>
                                         <%end%>
