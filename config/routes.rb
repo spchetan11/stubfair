@@ -16,6 +16,15 @@ Rails.application.routes.draw do
   resources :sessions
   resources :tickets
 
+  # devise_for :users, :controllers => {:sessions =>
+  #   "sessions", :passwords => "passwords", :registrations =>
+  #   "registrations"} do
+  #   get "signup", :to => "registrations#new"
+  #   get "login", :to => "sessions#new"
+  #   post "login", :to => "sessions#new"
+  #   get "logout", :to => "devise/sessions#destroy"
+  #   end
+
   devise_scope :user do 
     root 'welcome#index'
     match '/sessions/user', to: 'devise/sessions#create', via: :post

@@ -98,5 +98,12 @@ Rails.application.configure do
   }
 }
 
-  
+  #devise mail
+  config.action_mailer.default_url_options = {:host => 'stubfair.herokuapp.com'}
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  :address => "127.0.0.1",
+  :port    => 25,
+  :domain  => 'stubfair.herokuapp.com'
+}
 end

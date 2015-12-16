@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_many :tickets , dependent: :destroy
   has_many :bands
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable#, :confirmable
 
   #has_secure_password
 
