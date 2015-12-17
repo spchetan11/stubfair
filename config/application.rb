@@ -53,7 +53,7 @@ ActionMailer::Base.smtp_settings = {
   :domain             => 'gmail.com', #you can also use google.com
   :authentication     => :plain,
   :user_name          => 'stubfairsmtp@gmail.com',
-  :password           => 'stubfair1'
+  :password           => 'stubfair1',
   :openssl_verify_mode  => 'none'
 }
 
