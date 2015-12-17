@@ -15,7 +15,7 @@
                                          
                                             <%= link_to event ,:class => "event-link" do%><img src="<%=event.event_images.first.image_url%>" alt="" /><% end %>
                                         <%else%>
-                                            <%= link_to event ,:class => "event-link" do%><img src="../../assets/logo.png"  alt="" /><% end %>
+                                            <%= link_to event ,:class => "event-link" do%><img src=<%= image_path("logo.png") %>   alt="" /><% end %>
                                         <%end%>
                                         <!-- <div class="intro-label">
                                             <span class="label label-danger bg-red">Sale</span>

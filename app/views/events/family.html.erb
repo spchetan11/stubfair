@@ -22,7 +22,7 @@
                                     Showing 1 – <% if (@events.count >12) %>12 <% else %> <%= @events.count%><%end%> of <%= @events.count%> results
                                 </div>
                                 
-                                <div class="right">
+                                <!-- <div class="right">
                                     <form method="post" action="#" class="form">
                                         <select class="input-md round">
                                             <option>Default sorting</option>
@@ -30,7 +30,7 @@
                                             <option>Sort by price: high to low</option>
                                         </select>
                                     </form>
-                                </div>
+                                </div> -->
                                 
                             </div>
                             <!-- End Shop options -->
@@ -43,11 +43,11 @@
                                     
                                     <div class="post-prev-img">
                                         
-                                       <%if (event.event_images.exists?)%>
+                                         <%if (event.event_images.exists?)%>
                                          
                                             <%= link_to event ,:class => "event-link" do%><img src="<%=event.event_images.first.image_url%>" alt="" /><% end %>
                                         <%else%>
-                                            <%= link_to event ,:class => "event-link" do%><img src="../../assets/logo.png"  alt="" /><% end %>
+                                            <%= link_to event ,:class => "event-link" do%><img src=<%= image_path("logo.png") %>   alt="" /><% end %>
                                         <%end%>
                                         
                                         <!-- <div class="intro-label">
@@ -77,7 +77,7 @@
                             </div>
                             
                             <!-- Pagination -->
-                            <div class="pagination">
+                            <!-- <div class="pagination">
                                 <a href=""><i class="fa fa-angle-left"></i></a>
                                 <a href="" class="active">1</a>
                                 <a href="">2</a>
@@ -85,7 +85,7 @@
                                 <a class="no-active">...</a>
                                 <a href="">9</a>
                                 <a href=""><i class="fa fa-angle-right"></i></a>
-                            </div>
+                            </div> -->
                             <!-- End Pagination -->
                             
                         </div>
@@ -105,191 +105,13 @@
             
             
             <!-- Widgets Section -->
-            <section class="page-section">
-                <div class="container relative">
-                    
-                    <div class="row multi-columns-row">
-                        
-                        <div class="col-sm-6 col-md-3 col-lg-3">
-                            
-                            <!-- Widget -->
-                            <div class="widget">
-                                
-                                <h5 class="widget-title font-alt">Cart</h5>
-                                
-                                <div class="widget-body">
-                                    <ul class="clearlist widget-posts">
-                                        
-                                        <!-- Preview item 
-                                        <li class="clearfix">
-                                            <a href=""><img src="../../assets/shop-prev-1.jpg" alt="" class="widget-posts-img" /></a>
-                                            <div class="widget-posts-descr">
-                                                <a href="#" title="">Polo Shirt With Argyle Print</a>
-                                                <div>
-                                                    1 x $25.99
-                                                </div>
-                                                <div>
-                                                    <a href=""><i class="fa fa-times"></i> Remove</a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <!-- End Preview item -->
-                                        
-                                         <!-- Preview item 
-                                        <li class="clearfix">
-                                            <a href=""><img src="../../assets/shop-prev-1.jpg" alt="" class="widget-posts-img" /></a>
-                                            <div class="widget-posts-descr">
-                                                <a href="#" title="">Shirt With Mesh Sleeves</a>
-                                                <div>
-                                                    1 x $30.00
-                                                </div>
-                                                <div>
-                                                    <a href=""><i class="fa fa-times"></i> Remove</a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <!-- End Preview item -->
-                                        
-                                    </ul>
-                                    
-                                    
-                                    
-                                    <div>
-                                        
-                                    </div>
-                                    
-                                </div>
-                                
-                            </div>
-                            <!-- End Widget -->
-                            
-                        </div>
-                        
-                        <div class="col-sm-6 col-md-3 col-lg-3">
-                            
-                            <!-- Widget -->
-                            <div class="widget">
-                                
-                                <h5 class="widget-title font-alt">Tags</h5>
-                                
-                                <div class="widget-body">
-                                    <div class="tags">
-                                        <a href="">Concert</a>
-                                        <a href="">Rock</a>
-                                        <a href="">Conference</a>
-                                        <a href="">Theatre</a>
-                                        <a href="">Musicals</a>
-                                        <a href="">Speeches</a>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                            <!-- End Widget -->
-                            
-                            
-                            
-                        </div>
-                        
-                        <div class="col-sm-6 col-md-3 col-lg-3">
-                            
-                            <!-- Widget -->
-                            <div class="widget">
-                                
-                                <h5 class="widget-title font-alt">Categories</h5>
-                                
-                                <div class="widget-body">
-                                    <ul class="clearlist widget-menu">
-                                        <li>
-                                            <a href="#" title="">Branding</a>
-                                            <small>
-                                                - 7
-                                            </small>
-                                        </li>
-                                        <li>
-                                            <a href="#" title="">Design</a>
-                                            <small>
-                                                - 15
-                                            </small>
-                                        </li>
-                                        <li>
-                                            <a href="#" title="">Development</a>
-                                            <small>
-                                                - 3
-                                            </small>
-                                        </li>
-                                        <li>
-                                            <a href="#" title="">Photography</a>
-                                            <small>
-                                                - 5
-                                            </small>
-                                        </li>
-                                        <li>
-                                            <a href="#" title="">Other</a>
-                                            <small>
-                                                - 1
-                                            </small>
-                                        </li>
-                                    </ul>
-                                </div>
-                                
-                            </div>
-                            <!-- End Widget -->
-                            
-                            
-                            
-                        </div>
-                        
-                        <div class="col-sm-6 col-md-3 col-lg-3">
-                            
-                            <!-- Widget -->
-                            <div class="widget">
-                                
-                                <h5 class="widget-title font-alt">Bestsellers</h5>
-                                
-                                <div class="widget-body">
-                                    <ul class="clearlist widget-posts">
-                                        
-                                        <!-- Preview item -->
-                                       <!--  <li class="clearfix">
-                                            <a href=""><img src="../../assets/shop-prev-1.jpg" alt="" class="widget-posts-img" /></a>
-                                            <div class="widget-posts-descr">
-                                                <a href="#" title="">Polo Shirt With Argyle Print</a>
-                                                <div>
-                                                    <del>
-                                                        50.00
-                                                    </del>&nbsp;
-                                                    $25.99
-                                                </div>
-                                                <div>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-half-o"></i>
-                                                </div>
-                                            </div>
-                                        </li> -->
-                                        <!-- End Preview item -->
-                                        
-
-                                        
-                                    </ul>
-                                </div>
-                                
-                            </div>
-                            <!-- End Widget -->
-                            
-                        </div>
-                        
-                    </div>
-                    
-                </div>
-            </section>
+            
             <!-- End Widgets Section -->
             
-
+            
+         
         
         
         </div>
         <!-- End Page Wrap -->
-
+        

@@ -35,6 +35,7 @@
 	<% total += number_of_tickets * ticket.ticket_selling_price %>
 	<% current_user_band = Band.where(:id => current_user.buyer_band) %>
 	<% band_value = nil%>
+	<% total_amount = nil%>
     <% current_user_band.each do |band|%>
 	<% total += total*band.value%>
 	<% band_value = band.value%>

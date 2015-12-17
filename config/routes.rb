@@ -51,6 +51,8 @@ Rails.application.routes.draw do
 
   get '/search' => 'searches#index'
 
+  post '/search' => 'searches#search'
+
   get "/concerts" => "events#concerts", as: :concerts
 
   get "/theatre" => "events#theatre", as: :theatre
@@ -75,7 +77,7 @@ Rails.application.routes.draw do
 
   
 
-  #match ':controller(/:action(/:id))',:via => [:get, :post]
+  match ':controller(/:action(/:id))',:via => [:get, :post]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

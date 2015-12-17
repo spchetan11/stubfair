@@ -29,6 +29,6 @@ class Event < ActiveRecord::Base
     validates :description, :length => {:maximum => 10000}, :presence =>true
     validates :venue, :length => {:maximum => 30}, :presence =>true
     validates :location, :length => {:maximum => 50}, :presence =>true
-    validates :genre, :length => {:maximum => 30}, :presence =>true
+    #validates :genre, :length => {:maximum => 30}, :presence =>true
     validates :category, :inclusion => %w(Concerts Sports Theatre Comedy Festivals Family Deals Other)
 end
