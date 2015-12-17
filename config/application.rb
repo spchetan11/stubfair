@@ -28,14 +28,14 @@ module StubfairClient
     Paperclip::Railtie.insert
 
 
- ActionMailer::Base.smtp_settings = {
-        :address        => 'smtp.gmail.com',
-        :domain         => 'mail.gmail.com',
-        :port           => '587',
-        :authentication => :plain,
-        :user_name      => "stubfairsmtp@gmail.com",
-        :password       => "stubfair1",
-        :enable_starttls_auto => true
-      }
+ # ActionMailer::Base.smtp_settings = {
+ #        :address        => 'smtp.gmail.com',
+ #        :domain         => 'mail.gmail.com',
+ #        :port           => '587',
+ #        :authentication => :plain,
+ #        :user_name      => "stubfairsmtp@gmail.com",
+ #        :password       => "stubfair1",
+ #        :enable_starttls_auto => true
+ #      }
   end
 end
