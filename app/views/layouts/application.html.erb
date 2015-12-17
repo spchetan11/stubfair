@@ -1,167 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>StubfairClient</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta charset="utf-8">
+  <meta name="author" content="Stubfair">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Stubfair</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
   <%= csrf_meta_tags %>
-
-  <style>
-	button a{
-		color:white !important;
-	}
-  </style>
-  <%= javascript_include_tag "themed/jquery-1.11.2.min", 'data-turbolinks-track' => true %>
 </head>
-<body>
-	
-	<!-- Navigation panel -->
-            <nav class="main-nav js-stick">
-                <div class="full-wrapper relative clearfix">
-                    <!-- Logo ( * your text or image into link tag *) -->
-                    <div class="nav-logo-wrap local-scroll">
-                        <%= link_to root_path do %><img src="../../assets/logo.png" alt=""> <% end %>
-                    </div>
-                    <div class="mobile-nav">
-                        <i class="fa fa-bars"></i>
-                    </div>
-                    
-                    <!-- Main Menu -->
-                    <div class="inner-nav desktop-nav">
-                        <ul class="clearlist">
-                            
-                            <!-- Item With Sub -->
-                            <li>
-                                <%= link_to 'Home', root_path %>
-                               
-                            </li>
-                            <!-- End Item With Sub -->
-                            
-                            <!-- Item With Sub -->
-                            <ul class="events-sub">
-                                <li class="first"><%=link_to 'Events', events_path%></li>
-                                <!-- Item With Sub -->
-                            <li>
-                                <a href="/concerts" class="mn-has-sub">Concerts</a>
-                               
-                            </li>
-                            <!-- End Item With Sub -->
-                            
-                            <!-- Item With Sub -->
-                            <li>
-                                <a href="/theatre" class="mn-has-sub">Theatre</a>
-                               
-                            </li>
-                            <!-- End Item With Sub -->
-                            <!-- Item With Sub -->
-                            <li>
-                                <a href="/sports" class="mn-has-sub">Sports</a>
-                               
-                            </li>
-                            <!-- End Item With Sub -->
+<body class="appear-animate">
+	<div class="page" id="top">
+		<%= render 'layouts/header'%>
+      <!-- <div class="underbar" style="float:left; clear:both; width:100%; text-align:center; font-weight:400; font-size:16px;">
+        <%if user_signed_in?%>
+          <%= link_to 'Create New Event', new_event_path %>
+        <%end%>
+      </div> -->
+		<%= yield %>
+		<%= render 'layouts/footer'%>
+	</div>
 
-                             <!-- Item With Sub -->
-                            <li>
-                                <a href="/comedy" class="mn-has-sub">Comedy</a>
-                               
-                            </li>
-                            <!-- End Item With Sub -->
-
-                             <!-- Item With Sub -->
-                            <li>
-                                <a href="/festivals" class="mn-has-sub">Festivals</i></a>
-                               
-                            </li>
-                            <!-- End Item With Sub -->
-
-                             <!-- Item With Sub -->
-                            <li>
-                                <a href="/family" class="mn-has-sub">Family</a>
-                               
-                            </li>
-                            </ul>
-                            
-                            
-                           
-                            <!-- Search -->
-                            <li>
-                                <a href="/search" class="mn-has-sub"><i class="fa fa-search"></i> Search</a>
-                                
-                                <ul class="mn-sub">
-                                    
-                                    <li>
-                                        <div class="mn-wrap">
-                                            <form method="post" class="form">
-                                                <div class="search-wrap">
-                                                    <button class="search-button animate" type="submit" title="Start Search">
-                                                        <i class="fa fa-search"></i>
-                                                    </button>
-                                                    <input type="text" class="form-control search-field" placeholder="Search...">
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </li>
-                                    
-                                </ul>
-                                
-                            </li>
-                            <!-- End Search -->
-                            
-                            <!-- Cart -->
-                            <li>
-                                <a href="/cart/" class="active"><i class="fa fa-shopping-cart"></i> Cart</a>
-                            </li>
-                            <!-- End Cart -->
-                            
-                            <!-- Login -->
-                            <%if user_signed_in?%>
-								<li>
-                                <%= link_to 'Logout', destroy_user_session_path,method: :delete %>
-                              
-                                </li>
-                                <li>
-                                <%= link_to 'Sell Ticket', ticket_new_path%>
-                               </li>
-
-                                <li>
-                                <%= link_to "My Profile", controller:"users", action:"show", id: current_user.id%>
-                              
-                                </li>
-                             
-                            <%else%>
-                            <li>
-                                <%= link_to 'Login', new_user_session_path %>
-                              
-                            </li>
-                            <!-- End login -->
-                            <%end%>
-                            <!-- Signup -->
-                            <% if !user_signed_in?%>
-                            <li>
-                                <a href="/users/sign_up" class="mn-has-sub">Signup</a>
-                              
-                            </li>
-                            <%end%>
-                            <!-- End Signup -->
-                            
-                        </ul>
-                        
-                    </div>
-                    <!-- End Main Menu -->
-                    <div class="underbar" style="float:left;clear:both;width:100%;text-align:center; font-weight:400;font-size:16px;">
-                            <%if user_signed_in?%>
-<%= link_to 'Create New Event', new_event_path %>
-<%end%>
-                        </div>
-
-                </div>
-            </nav>
-            <!-- End Navigation panel -->
-	<div class="spacing-top"></div>
-
-<%= yield %>
-<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-
-<script>
+ <!--  <script>
       var theForm = document.getElementById( 'theForm' );
       
       new stepsForm( theForm, {
@@ -183,13 +46,8 @@
           //$('.dynamic_search').load('/sellers/refresh_search');
         }
       } );
-    </script>
-    <script>
-    $(document).ready(function(){
-        $(".page-loader").css({
-            display:"none",
-        });
-    });
-</script>
-</body>
+  </script> -->
+
+  <!-- To be removed once imagesLoaded error is fixed -->
+  </body>
 </html>

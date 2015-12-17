@@ -1,20 +1,18 @@
 Rails.application.routes.draw do
  
-
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+  root 'welcome#index'
+  
+  devise_for :users
   #post "/tickets/:id" => "tickets#show"
+  
+
   post "/transactions/:id" => "transactions#paypal_redirect", as: :transaction
 
   post "/hook" => "tickets#hook"
   
-  devise_for :users
   
-  resources :users
-  resources :events
-  resources :devise
-  resources :sessions
-  resources :tickets
 
   # devise_for :users, :controllers => {:sessions =>
   #   "sessions", :passwords => "passwords", :registrations =>
@@ -25,10 +23,13 @@ Rails.application.routes.draw do
   #   get "logout", :to => "devise/sessions#destroy"
   #   end
 
-  devise_scope :user do 
-    root 'welcome#index'
-    match '/sessions/user', to: 'devise/sessions#create', via: :post
-  end
+  resources :users
+  resources :events
+  resources :devise
+  #resources :sessions
+  resources :tickets
+
+ 
 
   get 'welcome/index' => 'welcome#index'
 
