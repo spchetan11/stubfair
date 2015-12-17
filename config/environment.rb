@@ -8,17 +8,17 @@ Rails.application.initialize!
 #devise mail setup
 
 #require 'tlsmail' 
-Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE) 
-ActionMailer::Base.delivery_method = :smtp
-ActionMailer::Base.smtp_settings = {
-   :tls => true,
-   :address => "smtp.gmail.com",
-   :port => 587,
-   :domain => "gmail.com",
-   :authentication => :plain,
-   :user_name => "stubfairsmtp@gmail.com",
-   :password => "stubfair1"
- }
+# Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE) 
+# ActionMailer::Base.delivery_method = :smtp
+# ActionMailer::Base.smtp_settings = {
+#    :tls => true,
+#    :address => "smtp.gmail.com",
+#    :port => 587,
+#    :domain => "gmail.com",
+#    :authentication => :plain,
+#    :user_name => "stubfairsmtp@gmail.com",
+#    :password => "stubfair1"
+#  }
 # require 'tlsmail'    
 # Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)
 
