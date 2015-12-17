@@ -1,7 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
-require 'tlsmail' 
+#require 'tlsmail' 
 require "sprockets/railtie"
 
 # Require the gems listed in Gemfile, including any gems
@@ -41,7 +41,7 @@ module StubfairClient
 #  }
 
     
-Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)
+#Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)
 ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.perform_deliveries = true
 ActionMailer::Base.raise_delivery_errors = true
