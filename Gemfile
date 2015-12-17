@@ -79,7 +79,7 @@ gem 'active_model_serializers'
 
 gem 'country_select'
 
-#gem 'tlsmail', '~> 0.0.1'
+gem 'tlsmail', '~> 0.0.1'
 
 # gem 'aws-sdk-v1'
 
