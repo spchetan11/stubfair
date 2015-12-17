@@ -102,8 +102,8 @@ Rails.application.configure do
   config.action_mailer.default_url_options = {:host => 'stubfair.herokuapp.com'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-  :address => "127.0.0.1",
-  :port    => 25,
+  :address => "smtp.gmail.com",
+  :port    => 587,
   :domain  => 'stubfair.herokuapp.com'
 }
 end
