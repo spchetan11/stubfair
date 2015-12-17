@@ -7,7 +7,8 @@ Rails.application.initialize!
 
 #devise mail setup
 
-#require 'tlsmail'  
+#require 'tlsmail' 
+Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE) 
 ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.smtp_settings = {
    :tls => true,
