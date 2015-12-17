@@ -27,7 +27,7 @@ module StubfairClient
 
     Paperclip::Railtie.insert
 
-Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)
+#Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)
 ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.smtp_settings = {
    :tls => true,
