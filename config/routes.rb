@@ -51,7 +51,7 @@ Rails.application.routes.draw do
 
   get '/search' => 'searches#index'
 
-  post '/search' => 'searches#search'
+  #post '/search' => 'searches#search'
 
   get "/concerts" => "events#concerts", as: :concerts
 

@@ -1,27 +1,56 @@
-<h1 style="text-align:center">We Found The Following Events</h1>
-<%= will_paginate @search_result %>
-<% @search_result.each do |event| %>
-                                <!-- Shop Item -->
-                                <div class="col-md-3 col-lg-3 mb-60 mb-xs-40">
-                                    
-                                    <div class="post-prev-img">
-                                        
-                                      <!--   
-                                        <%= link_to  controller:"events", action:"show", id: event.id do%><img src="../../assets/shop/shop-prev-1.jpg" alt="" /><% end %> -->
-                                       <%if (event.event_images.exists?)%>
-                                         
-                                            <%= link_to event ,:class => "event-link" do%><img src="<%=event.event_images.first.image_url%>" alt="" /><% end %>
-                                        <%else%>
-                                            <%= link_to event ,:class => "event-link" do%><img src="../../assets/logo.png"  alt="" /><% end %>
-                                        <%end%>
-                                        
-                                    </div>
-                                    
-                                    <div class="post-prev-title font-alt align-center">
-                                        
-                                        <%= link_to event ,:class => "event-link" do%><%= event.title %><% end %>
-                                    </div>
-                                    
-                                </div>
-                                <!-- End Shop Item -->
-                                <% end %>
+<div class="page" id="top">
+
+  <!-- Head Section -->
+ <!--  <section class="small-section bg-dark-lighter">
+      <div class="relative container align-left">
+          
+          <div class="row">
+              
+              <div class="col-md-8">
+                  <h1 class="hs-line-11 font-alt mb-20 mb-xs-0">My Account</h1>
+                  <div class="hs-line-4 font-alt">
+                      Sign in or register here
+                  </div>
+              </div>
+
+          </div>
+          
+      </div>
+  </section> -->
+  <!-- End Head Section -->
+  
+  
+  <!-- Section -->
+  <section class="page-section">
+      <div class="container relative">
+            <%= will_paginate @search_result %>
+            <% @search_result.each do |event| %>
+            <!-- Shop Item -->
+            <div class="col-md-3 col-lg-3 mb-60 mb-xs-40">
+                
+                <div class="post-prev-img">
+                    
+                  <!--   
+                    <%= link_to  controller:"events", action:"show", id: event.id do%><img src="../../assets/shop/shop-prev-1.jpg" alt="" /><% end %> -->
+                   <%if (event.event_images.exists?)%>
+                     
+                        <%= link_to event ,:class => "event-link" do%><img src="<%=event.event_images.first.image_url%>" alt="" /><% end %>
+                    <%else%>
+                        <%= link_to event ,:class => "event-link" do%><img src="../../assets/logo.png"  alt="" /><% end %>
+                    <%end%>
+                    
+                </div>
+                
+                <div class="post-prev-title font-alt align-center">
+                    
+                    <%= link_to event ,:class => "event-link" do%><%= event.title %><% end %>
+                </div>
+                
+            </div>
+            <!-- End Shop Item -->
+            <% end %>
+      </div>
+  </section>
+  <!-- End Section -->
+
+</div>

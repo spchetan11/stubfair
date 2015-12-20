@@ -90,11 +90,11 @@ class EventsController < ApplicationController
   def ticket_step1
 
     #@event=Event.new
-    @event = Event.new(event_params)
+    # @event = Event.new(event_params)
     #@event=params[:event]
-    title=@event.title
-    location=@event.location
-    @search_result=Event.where("title LIKE ? and location LIKE ?", "%#{title}%" ,"%#{location}%").where(:published => true).paginate(:page => params[:page], :per_page => 16)
+    # title=@event.title
+    # location=@event.location
+    @search_result=Event.where("title LIKE ? and location LIKE ?", "%#{params[:search_text]}%" ,"%#{params[:search_text]}%").where(:published => true).paginate(:page => params[:page], :per_page => 16)
     #redirect_to '/event/search_result' 
     render 'events/search'
 
