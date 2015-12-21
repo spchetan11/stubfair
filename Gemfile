@@ -81,7 +81,7 @@ gem 'country_select'
 
 #gem 'tlsmail', '~> 0.0.1'
 
-gem 'aws-sdk-v1'
+#gem 'aws-sdk-v1'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
