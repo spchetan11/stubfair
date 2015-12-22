@@ -81,6 +81,23 @@ Rails.application.configure do
 
   config.assets.css_compressor = :yui
 
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default :charset => "utf-8"
+  host = 'stubfair.herokuapp.com'
+  config.action_mailer.default_url_options = { host: host }
+  ActionMailer::Base.smtp_settings = {
+    :address        => 'smtp.gmail.com',
+    :port           => '587',
+    :authentication => :plain,
+    :user_name      => "stubfairsmtp@gmail.com",
+    :password       => "stubfair1",
+    :domain         => 'herokuapp.com',
+    :enable_starttls_auto => true    
+  }
+
+
 
   #enter the amazon s3 credentials here 
   config.paperclip_defaults = {
