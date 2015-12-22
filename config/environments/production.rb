@@ -122,5 +122,5 @@ Rails.application.configure do
   # :address => "smtp.gmail.com",
   # :port    => 587,
   # :domain  => 'stubfair.herokuapp.com'
-}
+#}
 end
