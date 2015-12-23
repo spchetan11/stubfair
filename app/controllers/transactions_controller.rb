@@ -59,10 +59,14 @@ class TransactionsController < ApplicationController
     end
     @ticket_i=Ticket.new
     @purchase_history=Transaction.where(:user_id => @user).where.not(:transaction_id => nil)
-    
-
     end
 
+    def user_transactions
+    @user = params[:user_id]    
+    @purchase_history=Transaction.where(:user_id => @user).where.not(:transaction_id => nil)
+    render 'transactions/paypal_redirect'
+    end
+ 
  private
     # Use callbacks to share common setup or constraints between actions.
     def set_transactions
