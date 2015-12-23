@@ -13,6 +13,24 @@ ActiveAdmin.register Event do
 #   permitted
 # end
 
+index do 
+  id_column
+    column :title
+    column :description do |data|
+      data.description[0..30]
+    end
+    column :category
+    column :venue
+    column :location
+    column :event_date_time
+    #column :expires_on
+    column :published
+    actions
+
+
+  
+end
+
 show do
     attributes_table do
       row :title
@@ -21,7 +39,7 @@ show do
       row :venue
       row :location
       row :event_date_time
-      row :expires_on
+      # row :expires_on
       row :published
       row :event_id  do 
 

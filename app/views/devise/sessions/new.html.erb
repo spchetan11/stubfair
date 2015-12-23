@@ -56,8 +56,18 @@
                   <div class="row">
                       <div class="col-md-4 col-md-offset-4">
                           <% flash.each do |message_type, message| %>
-                              <div style="border-color: #f9ce75;" class="alert notice">
-                                <i class="fa fa-lg fa-exclamation-triangle"></i>
+                              <div style="border-color: #f9ce75;" class="alert <%=
+                                if message_type == "alert"
+                                  'notice'
+                                 else
+                                  'success'
+                                end%> ">
+                                <i class="fa fa-lg <%=
+                                if message_type == "alert"
+                                  'fa-exclamation-triangle'
+                                 else
+                                  'fa-check-circle-o'
+                                end%>"></i>
                                 <%= message %>
                               </div>
                           <% end %>
@@ -95,13 +105,7 @@
                                         <p><%= link_to "Forgot password?", new_password_path(resource_name) %></p>
                                       <% end -%>
                                   </div>
-                                  <div class="form-tip">
-                                    <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-                                      <div class="form-tip form-group">
-                                          <p>New user? <%= link_to "Sign up now!", new_registration_path(resource_name) %></p>
-                                      </div>            
-                                    <% end -%> 
-                                  </div>
+                                  
                                   </div>                                    
                               </div>
 
@@ -134,6 +138,7 @@
                   <div class="row">
                       <div class="col-md-4 col-md-offset-4">
                           
+                          <%= devise_error_messages! %>
                           <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => 'form contact-form'}) do |f| %>
                             <!-- <form class="form contact-form" id="contact_form"> -->
                             <div class="clearfix">                                                  

@@ -12,7 +12,18 @@ ActiveAdmin.register Ticket do
 #   permitted
 # end
 
-
+index do 
+  id_column
+    column :number_of_tickets
+    # column :comments do |data|
+    #   data.description[0..30]
+    # end
+    column :ticket_selling_price
+    column "Ticket Face Value", :ticket_printed_price
+    column :ticket_type
+    column :published
+    actions
+end
 
 show do
     attributes_table do

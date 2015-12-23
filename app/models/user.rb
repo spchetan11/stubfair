@@ -33,4 +33,6 @@ class User < ActiveRecord::Base
     # Or: [first_name, last_name].join(' ')
   end
 
+  
+
 end

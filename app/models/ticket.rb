@@ -79,7 +79,19 @@ class Ticket < ActiveRecord::Base
 #   response = http.post("/nvp", stringified_params)
 # end
 
+    after_validation :is_published_changed
+ 
+  protected
+    def is_published_changed
+      if published_changed?
+        if published?
+           self.tickets_published_mail
+        end
+      end
+    end
 
+    def tickets_published_mail
+    UserMailer.tickets_published(self).deliver_now
+    end
 
-
-  end
+end

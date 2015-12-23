@@ -1,29 +1,177 @@
-<h2>Sign up</h2>
+<div class="page" id="top">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+  <!-- Head Section -->
+ <!--  <section class="small-section bg-dark-lighter">
+      <div class="relative container align-left">
+          
+          <div class="row">
+              
+              <div class="col-md-8">
+                  <h1 class="hs-line-11 font-alt mb-20 mb-xs-0">My Account</h1>
+                  <div class="hs-line-4 font-alt">
+                      Sign in or register here
+                  </div>
+              </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+          </div>
+          
+      </div>
+  </section> -->
+  <!-- End Head Section -->
+  
+  
+  <!-- Section -->
+  <section class="page-section">
+      <div class="container relative">
+          
+          <!-- Nav Tabs -->
+          <div class="align-center mb-40 mb-xxs-30">
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+              <ul style="border: none;" class="nav nav-tabs tpl-minimal-tabs">
+                  <style>
+                    .tmp-a-hover:hover{
+                      background: none;
+                      border-color: #e9e9e9 !important;
+                      color: #777;
+                    }
+                  </style>
+                  <li >
+                      <a class="tmp-a-hover" style="background: none; padding: 6px 20px 5px; border: 1px solid transparent; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px;" href="#mini-one" data-toggle="tab">Login</a>
+                  </li>
+                  
+                  <li class="active">
+                      <a class="tmp-a-hover" style="background: none; padding: 6px 20px 5px; border: 1px solid transparent; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px;" href="#mini-two" data-toggle="tab">Registration</a>
+                  </li>
+                  
+              </ul>
+          </div>
+          <!-- End Nav Tabs -->
+          
+          <!-- Tab panes -->
+          <div class="tab-content tpl-minimal-tabs-cont section-text">
+              
+              <div class="tab-pane fade" id="mini-one">
+                  
+                  <!-- Login Form -->                            
+                  <div class="row">
+                      <div class="col-md-4 col-md-offset-4">
+                          <% flash.each do |message_type, message| %>
+                              <div style="border-color: #f9ce75;" class="alert notice">
+                                <i class="fa fa-lg fa-exclamation-triangle"></i>
+                                <%= message %>
+                              </div>
+                          <% end %>
+                          <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'form contact-form'}) do |f| %>
+                            <!-- <form class="form contact-form" id="contact_form"> -->
+                            <div class="clearfix">                                                  
+                                <!-- Email -->
+                                <div class="form-group">
+                                    <%= f.email_field :email , :class => "input-md round form-control",:placeholder =>"Email", autofocus: true %>
+                                </div> 
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+                                <!-- Password -->
+                                <div class="form-group">                       
+                                    
+                                    <%= f.password_field :password , :class => "input-md round form-control",:placeholder =>"Password", autocomplete: "off" %>
+                                </div>
+                                <% if true || devise_mapping.rememberable? -%>
+                                  <div class="form-group" style="margin: 15px 0 0 0;">
+                                      <%= f.label :remember_me, class: "checkbox inline " do %>
+                                          <%= f.check_box :remember_me %>
+                                          <span class="help-block"  style="    opacity: .65;    text-decoration: none;    font-weight: 400;">Remember me </span>
+                                      <% end %>
+                                  </div>
+                                <% end -%>
+                                
+                            </div>
+                            
+                            <div class="clearfix form-tip">
+                              <div class="cf-left-col">
+                                      
+                                  <!-- Inform Tip -->    
+                                  <div class="row">
+                                  <div class="form-tip pt-10">
+                                      <%- if true || devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+                                        <p><%= link_to "Forgot password?", new_password_path(resource_name) %></p>
+                                      <% end -%>
+                                  </div>
+                                  
+                                  </div>                                    
+                              </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+                              <div class="cf-right-col">
+                                <!-- Send Button -->
+                                <div class="align-right pt-10 ">
+                                    
+                                    <%= f.submit "Login", :class => "submit_btn btn btn-mod btn-medium btn-round"%>
+                                </div>
+                              </div>  
+                                <!-- Inform Tip --> 
+                                   
+                            </div>            
+                                
+                            <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+                              <p class="pt-20"><%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %></p>
+                            <% end -%>
+                            <!-- </form> -->
+                        <% end %> 
+                          
+                      </div>
+                  </div>
+                  <!-- End Login Form -->
+                  
+              </div>
+              
+              <div class="tab-pane fade in active" id="mini-two">
+                  
+                  <!-- Registry Form -->                            
+                  <div class="row">
+                      <div class="col-md-4 col-md-offset-4">
+                        <%= devise_error_messages! %>
+                          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => 'form contact-form'}) do |f| %>
+                            <!-- <form class="form contact-form" id="contact_form"> -->
+                            <div class="clearfix">                                                  
+                                <!-- Email -->
+                                <div class="form-group">
+                                    <%= f.email_field :email , :class => "input-md round form-control",:placeholder =>"Email", autofocus: true %>
+                                </div> 
 
-<%= render "devise/shared/links" %>
+                                <!-- Password -->
+                                <div class="form-group">                       
+                                    
+                                    <%= f.password_field :password , :class => "input-md round form-control",:placeholder =>"Password", autocomplete: "off" %>
+                                </div>
+                                <div class="form-group">                       
+                                    
+                                    <%= f.password_field :password_confirmation , :class => "input-md round form-control",:placeholder =>"Confirm Password", autocomplete: "off" %>
+                                </div>
+                                
+                            </div>
+                            
+                            <div class="clearfix form-tip">
+
+                                <!-- Send Button -->
+                                <div class="align-right pt-10 ">
+                                    
+                                    <%= f.submit "Register", :class => "submit_btn btn btn-mod btn-medium btn-round"%>
+                                </div>
+                                <!-- Inform Tip --> 
+                                   
+                            </div>            
+                                
+                            <!-- </form> -->
+                        <% end %> 
+                          
+                      </div>
+                  </div>
+                  <!-- End Registry Form -->
+                  
+              </div>
+              
+          </div>
+          
+      </div>
+  </section>
+  <!-- End Section -->
+
+</div>

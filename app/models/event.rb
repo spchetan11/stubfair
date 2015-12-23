@@ -31,4 +31,29 @@ class Event < ActiveRecord::Base
     validates :location, :length => {:maximum => 50}, :presence =>true
     #validates :genre, :length => {:maximum => 30}, :presence =>true
     validates :category, :inclusion => %w(Concerts Sports Theatre Comedy Festivals Family Deals Other)
+
+
+
+
+
+    
+
+after_validation :is_published_changed
+ 
+  protected
+    def is_published_changed
+      if published_changed?
+        if published?
+           self.events_published_mail
+        end
+      end
+    end
+
+    def events_published_mail
+    UserMailer.event_published(self).deliver_now
+    end
 end
+
+
+
+

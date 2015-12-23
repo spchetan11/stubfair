@@ -3,8 +3,15 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   root 'welcome#index'
-  
+  # devise_scope :user do
+  #   # using login path for registration
+  #   get '/login' => 'registrations#new', :as => :new_user_registration
+  #   post '/signup' => 'registrations#create', :as => :user_registration
+  #   post '/signin' => 'sessions#create', :as => :user_session
+  # end
   devise_for :users
+  
+
   #post "/tickets/:id" => "tickets#show"
   
 
