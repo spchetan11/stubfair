@@ -89,7 +89,7 @@ class TicketsController < ApplicationController
   def payment
     # amount = params[:ticket_selling_price]
     # type_of_ticket = params[:ticket_type]
-    Transaction.where(:user_id => current_user.id).where.not(:status => nil).destroy_all
+    Transaction.where(:user_id => current_user.id).where(:status => nil).destroy_all
     no_of_ticket= params["number_of_tickets"]
     events_id = params["event_id"]
     #puts(events_id)
