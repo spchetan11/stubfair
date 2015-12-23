@@ -50,7 +50,7 @@ after_validation :is_published_changed
     end
 
     def events_published_mail
-    UserMailer.event_published(self).deliver_now
+    UserMailer.events_published(self).deliver_now
     end
 end
 

@@ -6,7 +6,7 @@ class UserMailer < ActionMailer::Base
   #
   #   en.user_mailer.account_activation.subject
   #
-  def event_published(event)
+  def events_published(event)
     @user_email = event.user.email
     mail from: "stubfair@gmail.com", to: event.user.email, subject: "Your events are now published on stubfair.com"
   end
