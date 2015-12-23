@@ -5,6 +5,21 @@ ActiveAdmin.register User do
 #
 permit_params :email,:password, :first_name, :last_name, :gender, :phone, :age, :address, :postcode,:id, :buyer_band, :seller_band
 #
+
+
+index do 
+  id_column
+    column :email
+    column :buyer_band
+    column :seller_band
+    column :first_name
+    column :last_name
+    column :gender
+    column :phone
+    column :age
+    column :confirmation_token
+    actions
+end
 # or
 #
 # permit_params do
