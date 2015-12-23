@@ -31,6 +31,21 @@ index do
   
 end
 
+# form do |f|
+#     f.input :user_id do 
+#         event.user_id
+#       end
+#     f.input :category
+#     f.input :title
+#     f.input :description
+#     f.input :venue
+#     f.input :location
+#     f.input :event_date_time
+#     f.input :published
+#     f.actions
+
+# end
+
 show do
     attributes_table do
       row :title
