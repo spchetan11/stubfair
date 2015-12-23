@@ -99,9 +99,9 @@ class EventsController < ApplicationController
     # title=@event.title
     # location=@event.location
     if Rails.env.development?
-    @search_result=Event.where("title LIKE ? and location LIKE ?", "%#{params[:search_text]}%" ,"%#{params[:search_text]}%").where(:published => true).paginate(:page => params[:page], :per_page => 16)
+    @search_result=Event.where("title LIKE ? or location LIKE ?", "%#{params[:search_text]}%" ,"%#{params[:search_text]}%").where(:published => true).paginate(:page => params[:page], :per_page => 16)
     elsif Rails.env.production?
-    @search_result=Event.where("title ILIKE ? and location ILIKE ?", "%#{params[:search_text]}%" ,"%#{params[:search_text]}%").where(:published => true).paginate(:page => params[:page], :per_page => 16)
+    @search_result=Event.where("title ILIKE ? or location ILIKE ?", "%#{params[:search_text]}%" ,"%#{params[:search_text]}%").where(:published => true).paginate(:page => params[:page], :per_page => 16)
     end
     #redirect_to '/event/search_result' 
     render 'events/search'
