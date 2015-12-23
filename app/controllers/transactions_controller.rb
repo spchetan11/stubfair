@@ -54,7 +54,7 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.find params[:invoice]
     @user_transaction = @transaction.update(status: status, transaction_id: txn_id, purchased_at: Time.now, purchase_amount: payment_gross, number_of_tickets_purchased: quant, :purchased => true)
     session[:cart] = nil
-    @mail = self.tickets_purchased_mail
+    UserMailer.tickets_purchased(self).deliver_now
     else
     render nothing: true
     end
