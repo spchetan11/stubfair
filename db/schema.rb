@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151223093542) do
+ActiveRecord::Schema.define(version: 20151223182233) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -80,12 +80,13 @@ ActiveRecord::Schema.define(version: 20151223093542) do
     t.string   "description"
     t.string   "venue"
     t.datetime "event_date_time"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.integer  "user_id"
-    t.boolean  "published",       default: false
+    t.boolean  "published",         default: false
     t.string   "category"
     t.string   "location"
+    t.text     "stadium_image_url"
   end
 
   add_index "events", ["user_id"], name: "index_events_on_user_id"
@@ -132,7 +133,6 @@ ActiveRecord::Schema.define(version: 20151223093542) do
   add_index "ticket_images", ["ticket_id"], name: "index_ticket_images_on_ticket_id"
 
   create_table "tickets", force: :cascade do |t|
-    t.string   "comments"
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
     t.integer  "user_id"
@@ -143,6 +143,9 @@ ActiveRecord::Schema.define(version: 20151223093542) do
     t.float    "ticket_printed_price"
     t.string   "ticket_type"
     t.integer  "event_id"
+    t.string   "section"
+    t.string   "row"
+    t.string   "seat_number"
   end
 
   add_index "tickets", ["event_id"], name: "index_tickets_on_event_id"

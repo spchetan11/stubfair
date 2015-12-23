@@ -3,7 +3,7 @@ ActiveAdmin.register Ticket do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
- permit_params :user_id, :event_id, :published, :comments,  :number_of_tickets, :ticket_type, :ticket_printed_price, :ticket_selling_price, :ticket_number
+ permit_params :user_id, :event_id, :published,  :number_of_tickets, :ticket_type, :ticket_printed_price, :ticket_selling_price, :ticket_number, :ticket_type, :section, :seat_number, :row
 # or
 #
 # permit_params do
@@ -21,36 +21,43 @@ index do
     column :ticket_selling_price
     column "Ticket Face Value", :ticket_printed_price
     column :ticket_type
+    column :section
+    column :row
+    column :seat_number
     column :published
     actions
 end
 
 show do
     attributes_table do
-      row :comments
+      #row :comments
       row :number_of_tickets
       row :ticket_selling_price
       row :ticket_printed_price
       row :published
       row :ticket_type
+      row :section
+      row :row
+      row :seat_number
+   
       row :user_id  do
-      	ticket.user_id
-      	end
+        ticket.user_id
+        end
       row :event_id
       row :number_of_images do
-      	ticket.ticket_images.length
+        ticket.ticket_images.length
       end
     #   row :images do
-	   #     event.pictures.each{ |img|
-	   #     	image_tag img.image.url
-	   #     }
-	   # end
-	  table_for ticket.ticket_images do
-	  	#column :description do |col|
-	  		#{}"#{col.description}"
-	  	#end
+     #     event.pictures.each{ |img|
+     #      image_tag img.image.url
+     #     }
+     # end
+    table_for ticket.ticket_images do
+      #column :description do |col|
+        #{}"#{col.description}"
+      #end
         column :image do |col|
-        	image_tag col.image.url, class: "img-responsive" ,style: "width: 600px;"
+          image_tag col.image.url, class: "img-responsive" ,style: "width: 600px;"
         end
       end
     end
@@ -58,4 +65,3 @@ show do
   end
 
 end
- 

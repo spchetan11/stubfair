@@ -36,6 +36,8 @@ Rails.application.routes.draw do
 
   get 'ticket/new' => 'events#search'
 
+  get 'ticket/search_result' => 'events#search'
+
   post 'ticket/search_result' => 'events#ticket_step1'
 
   get "my_events" => "events#my_events"

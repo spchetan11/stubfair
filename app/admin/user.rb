@@ -17,7 +17,6 @@ index do
     column :gender
     column :phone
     column :age
-    column :confirmation_token
     actions
 end
 # or

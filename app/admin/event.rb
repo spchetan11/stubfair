@@ -3,7 +3,7 @@ ActiveAdmin.register Event do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
- permit_params :category,:title, :description, :venue, :event_date_time,:user_id, :expires_on,:published, :location
+ permit_params :category,:title, :description, :venue, :event_date_time,:user_id, :expires_on,:published, :location, :stadium_image_url
 #
 # or
 #
@@ -15,6 +15,7 @@ ActiveAdmin.register Event do
 
 index do 
   id_column
+  
     column :title
     column :description do |data|
       data.description[0..30]
@@ -24,6 +25,7 @@ index do
     column :location
     column :event_date_time
     #column :expires_on
+    column :stadium_image_url
     column :published
     actions
 
@@ -61,24 +63,25 @@ show do
         event.id
         
       end
+      row :stadium_image_url
         
       row :user_id do 
         event.user_id
       end
       row :number_of_images do
-      	event.event_images.length
+        event.event_images.length
       end
     #   row :attachments do
-	   #     event.event_images.each{ |img|
-	   #     	image_tag img.attachment.url
-	   #     }
-	   # end
-	  table_for event.event_images do
-	  	#column :description do |col|
-	  		#{}"#{col.description}"
-	  	#end
+     #     event.event_images.each{ |img|
+     #      image_tag img.attachment.url
+     #     }
+     # end
+    table_for event.event_images do
+      #column :description do |col|
+        #{}"#{col.description}"
+      #end
         column :attachment do |col|
-        	image_tag col.attachment.url, class: "img-responsive" ,style: "width: 600px;"
+          image_tag col.attachment.url, class: "img-responsive" ,style: "width: 600px;"
         end
       end
     

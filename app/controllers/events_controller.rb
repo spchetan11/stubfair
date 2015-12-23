@@ -69,7 +69,11 @@ class EventsController < ApplicationController
     @tickets_q=Ticket.new
     @events=Event.find(params[:id])
     loc=@events.location
+    if Rails.env.development?
     @related=Event.where("location LIKE ?","%#{loc}%").where(:published =>true)
+    elsif Rails.env.production?
+    @related=Event.where("location ILIKE ?","%#{loc}%").where(:published =>true)
+    end  
     #@event_image = @events.event_images
     @image=EventImage.where(:event_id => @events.id)
     @image.each do |img|
@@ -94,7 +98,11 @@ class EventsController < ApplicationController
     #@event=params[:event]
     # title=@event.title
     # location=@event.location
+    if Rails.env.development?
     @search_result=Event.where("title LIKE ? and location LIKE ?", "%#{params[:search_text]}%" ,"%#{params[:search_text]}%").where(:published => true).paginate(:page => params[:page], :per_page => 16)
+    elsif Rails.env.production?
+    @search_result=Event.where("title ILIKE ? and location ILIKE ?", "%#{params[:search_text]}%" ,"%#{params[:search_text]}%").where(:published => true).paginate(:page => params[:page], :per_page => 16)
+    end
     #redirect_to '/event/search_result' 
     render 'events/search'
 
@@ -106,7 +114,11 @@ class EventsController < ApplicationController
     #@event=params[:event]
     title=@event.title
     location=@event.location
+     if Rails.env.development?
     @search_result=Event.where("title LIKE ?", "%#{title}%").where(:published => true).paginate(:page => params[:page], :per_page => 16)
+    elsif Rails.env.production?
+      @search_result=Event.where("title ILIKE ?", "%#{title}%").where(:published => true).paginate(:page => params[:page], :per_page => 16)
+    end
     #redirect_to '/event/search_result' 
     render 'events/popular_events'
   end
@@ -194,10 +206,10 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:category, :title, :description, :venue, :event_date_time,:user_id, :expires_on, :published, :location, :event_image)
+      params.require(:event).permit(:category, :title, :description, :venue, :event_date_time,:user_id, :expires_on, :published, :location, :event_image,:stadium_image_url)
     end
 
     def event_edit_params
-      params.require(:event).permit(:category, :title, :description, :venue, :event_date_time, :expires_on, :location)
+      params.require(:event).permit(:category, :title, :description, :venue, :event_date_time, :expires_on, :location,:stadium_image_url)
     end
 end

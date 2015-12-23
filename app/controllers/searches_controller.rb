@@ -11,7 +11,12 @@ class SearchesController < ApplicationController
   #   	venue=@event.venue
   #   	categ=@event.category
   #   	puts(categ)
+        if Rails.env.development?
 		@search_result=Event.where("title LIKE ? or venue LIKE ?", "%#{params[:search_text]}%" ,"%#{params[:search_text]}%").where(:published => true).paginate(:page => params[:page], :per_page => 16)
+		elsif Rails.env.production?
+		@search_result=Event.where("title ILIKE ? or venue ILIKE ?", "%#{params[:search_text]}%" ,"%#{params[:search_text]}%").where(:published => true).paginate(:page => params[:page], :per_page => 16)
+		end
+		
 	end
 
 	private

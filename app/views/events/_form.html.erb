@@ -16,16 +16,16 @@
     <%= f.select :category, ['Concerts', 'Sports', 'Theatre', 'Comedy', 'Festivals', 'Family', 'Deals', 'Other'], :autocomplete => :off %>
   </div>
   <div class="field title">
-    <%= f.text_field :title, :placeholder=>"Title" %>
+    <%= f.text_field :title, :placeholder=>"Title", :required => true %>
   </div>
   <div class="field desc">
-    <%= f.text_area :description, :placeholder=>"Description", :rows => 5 %>
+    <%= f.text_area :description, :placeholder=>"Description", :rows => 5, :required => true %>
   </div>
     <div class="field loc">
-    <%= f.text_field :location, :placeholder=>"Location" %>
+    <%= f.text_field :location, :placeholder=>"Location", :required => true %>
   </div>
   <div class="field ven">
-    <%= f.text_field :venue, :placeholder=>"Venue" %>
+    <%= f.text_field :venue, :placeholder=>"Venue", :required => true %>
   </div>
  
   <div class="field date">

@@ -28,21 +28,34 @@
 
   <div class="field">
     <h3>Number Of Tickets</h3>
-    <%= f.text_field :number_of_tickets , :autocomplete => :off %>
+    <%= f.text_field :number_of_tickets , :autocomplete => :off, :required => true %>
   </div>
   <div class="field">
      <h3>Ticket Printed Price</h3>
-    <%= f.text_area :ticket_printed_price, :autocomplete => :off %>
+    <%= f.text_area :ticket_printed_price, :autocomplete => :off, :required => true %>
   </div>
 
   <div class="field">
    <h3>Ticket Selling Price</h3>
-    <%= f.text_area :ticket_selling_price, :autocomplete => :off %>
+    <%= f.text_area :ticket_selling_price, :autocomplete => :off, :required => true %>
   </div>
   
   <div class="field">
     <h3>Ticket Serial Number</h3>
-    <%= f.text_field :ticket_number, :autocomplete => :off,:placeholder=>"Please Enter the Serial Number On your Ticket" %>
+    <%= f.text_field :ticket_number, :autocomplete => :off,:placeholder=>"Please Enter the Serial Number On your Ticket", :required => true %>
+  </div>
+
+   <div class="field">
+   <h3>Section</h3>
+    <%= f.text_area :section, :autocomplete => :off %>
+  </div>
+   <div class="field">
+   <h3>Rowe</h3>
+    <%= f.text_area :row, :autocomplete => :off %>
+  </div>
+   <div class="field">
+   <h3>Seat Number</h3>
+    <%= f.text_area :seat_number, :autocomplete => :off %>
   </div>
 
 
@@ -51,14 +64,6 @@
   <h3>Ticket Type</h3>
     <%= f.select :ticket_type, ['Electronic', 'Paper'], {}, {:class =>"input-md round",:autocomplete => :off} %>
   </div>
-<!--
-    <div class="field">
-     <h3>Comments</h3>
-    <%= f.text_area :comments, :autocomplete => :off %>
-  </div>
--->
-
-
     
   <!-- The magic is coming ...look at my eyes....shazammmm , multiple: true -->
   <div class="field">
