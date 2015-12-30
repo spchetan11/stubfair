@@ -76,7 +76,7 @@ class TransactionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transactions_params
-    params.require(:transaction).permit(:user_id, :ticket_id, :expires_on, :purchase_amount, :comments, :number_of_tickets, :ticket_printed_price, :ticket_number, :published, :event_id, :ticket_selling_price, :sale_amount, :ticket_type, :ticket_created_at, :ticket_updated_at, :purchased, :number_of_tickets_purchased, :notification_params, :status, :transaction_id,:purchased_at, :seller_id)     
+    params.require(:transaction).permit(:user_id, :ticket_id, :expires_on, :purchase_amount, :number_of_tickets, :ticket_printed_price, :ticket_number, :published, :event_id, :ticket_selling_price, :sale_amount, :ticket_type, :ticket_created_at, :ticket_updated_at, :purchased, :number_of_tickets_purchased, :notification_params, :status, :transaction_id,:purchased_at, :seller_id)     
     end
 
 

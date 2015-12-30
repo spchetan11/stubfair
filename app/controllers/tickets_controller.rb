@@ -100,7 +100,7 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find(params[:id])
     @user = current_user.id
     @transaction = Transaction.new
-    @transaction.update(:ticket_id => @ticket.id,:comments => @ticket.comments, :ticket_created_at => @ticket.created_at, :ticket_updated_at => @ticket.updated_at, :user_id => @user, :event_id => @ticket.event_id, :number_of_tickets => @ticket.number_of_tickets, :ticket_selling_price => @ticket.ticket_selling_price, :ticket_printed_price => @ticket.ticket_printed_price, :ticket_number => @ticket.ticket_number, :published => @ticket.published, :ticket_type => @ticket.ticket_type, :seller_id => @ticket.user_id)
+    @transaction.update(:ticket_id => @ticket.id, :ticket_created_at => @ticket.created_at, :ticket_updated_at => @ticket.updated_at, :user_id => @user, :event_id => @ticket.event_id, :number_of_tickets => @ticket.number_of_tickets, :ticket_selling_price => @ticket.ticket_selling_price, :ticket_printed_price => @ticket.ticket_printed_price, :ticket_number => @ticket.ticket_number, :published => @ticket.published, :ticket_type => @ticket.ticket_type, :seller_id => @ticket.user_id)
     tx_id = @transaction.id
     puts(tx_id)
     puts("this is id")
