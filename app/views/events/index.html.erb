@@ -17,16 +17,13 @@
                 <div class="container relative">
                     <div class="row">
                         <h3>Popular Events </h3>
-             <%@popular_events.each do |pop|%>
-             <div class="popular-event-tile">
-                 <%= link_to popular_events_path(@event, event: {:title => "#{pop.name}"}), :method => :post do %>
-                <img src="<%= pop.image_url%>">
-                <%end%> 
-                <div><%=pop.name%></div> 
-             </div>
-             
-             
-             <%end%>      
+                        <%@popular_events.each do |pop|%>
+                            <div class="popular-event-tile">
+                                <%= link_to popular_events_path(@event, event: {:title => "#{pop.name}"}), :method => :post do %>
+                                    <%=pop.name%><img src="<%= pop.image_url%>">
+                                <%end%> 
+                            </div>
+                        <%end%>   
                     </div>
                     <div class="row">
                         

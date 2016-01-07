@@ -1,41 +1,58 @@
-<div class="container">
-  
 
-  <h2>Hello <%=@user.name%></h2>
-
-  <table summary="User detail view">
-    <tr> 
-      <th>Email</th>
-      <td><%= @user.email %></td>
-    </tr>
-   
-     <tr>
-      <th>Name</th>
-      <td><%= @user.name %></td>
-    </tr>
-    <tr>
-      <th>Gender</th>
-      <td><%= @user.gender %></td>
-    </tr>
-    <tr>
-      <th>Address</th>
-      <td><%=@user.address %></td>
-    </tr>
-    <tr>
-      <th>Postcode</th>
-      <td><%= @user.postcode %></td>
-    </tr>
-  
-  </table>
-
+<div class="page" id="top">            
+    <!-- Home Section -->
+    <section class="home-section bg-dark-alfa-50 " style='background-color: #fff;' id="home">
+       <div class="container">            
+            <!-- Hero Content -->
+            <div class="home-content">
+                <div class="home-text" style="    padding: 100px 0px 45px 0px;">
+                    
+                    <h1 class="hs-line-8 no-transp font-alt mb-50 mb-xs-30">
+                      Hello <%=@user.name%>
+                    </h1>
+                </div>
+            </div>
+            <!-- End Hero Content -->            
+       </div>
+    </section>
+    <div class="container">
+  <div class=" mt-50 col-md-6 col-md-offset-3">
+    <table summary="User detail view" class="table">
+      <tr> 
+        <th>Email</th>
+        <td><%= @user.email %></td>
+      </tr>
+     
+       <tr>
+        <th>Name</th>
+        <td><%= @user.name %></td>
+      </tr>
+      <tr>
+        <th>Gender</th>
+        <td><%= @user.gender %></td>
+      </tr>
+      <tr>
+        <th>Address</th>
+        <td><%=@user.address %></td>
+      </tr>
+      <tr>
+        <th>Postcode</th>
+        <td><%= @user.postcode %></td>
+      </tr>
+    
+    </table>
+    <div class="mt-50 align-right">
+      <%= link_to 'Edit', edit_user_path(@user), :class => "submit_btn btn btn-mod btn-medium btn-round" %> 
+      <%= link_to 'Back', root_path, :class => "submit_btn btn btn-mod btn-medium btn-round" %>
+      <%= link_to 'My Transactions', {controller:"transactions", action:"user_transactions", :user_id => current_user.id}, :class => "submit_btn btn btn-mod btn-medium btn-round" %>
+    </div>
+  </div>
 </div>
 
 
 
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', root_path%> |
-<%= link_to 'My Transactions', controller:"transactions", action:"user_transactions", :user_id => current_user.id %>
+
 
 
 

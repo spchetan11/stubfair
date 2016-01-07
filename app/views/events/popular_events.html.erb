@@ -1,3 +1,16 @@
+<section class="home-section bg-dark-alfa-50 " style='background-color: white;' id="home">
+   <div class="container">            
+        <!-- Hero Content -->
+        <div class="home-content">
+            <div class="home-text mb-30" style="padding: 130px 0px 25px 0px;">
+                <h1 class="hs-line-8 no-transp font-alt mb-50 mb-xs-30">
+                   Popular Events
+                </h1>
+            </div>
+        </div>
+        <!-- End Hero Content -->            
+   </div>
+</section>
   <% if @search_result.count==0 %>
   <h3> No Such Event Found <h3>
   <%=link_to "Create New Event", controller: "events", action: "new" %>

@@ -1,23 +1,39 @@
-<div class="container">
-	<h1>Your Transaction History</h1>
 
-<table id="transactions-history-table">
-	<th>Transaction ID</th><th>Event Name</th><th>Ticket Number</th><th>Event Time</th><th>Price Paid</th><th>Quantity</th><th>Ticket Type</th><th> Payment Status</th><th>Purchased At</th>
-	<% @purchase_history.each do |purchase_history|%>
-	<tr>
-		<td><%= purchase_history.transaction_id%></td>
-		<td><%= link_to Event.where(:id => purchase_history.event_id).first.title, :controller => "events", :action=> "show", :id => purchase_history.event_id%></td>
-		<td><%= purchase_history.ticket_number%></td>
-		<td><%= Event.where(:id => purchase_history.event_id).first.event_date_time %></td>
-		<td><%= purchase_history.purchase_amount%></td>
-		<td><%= purchase_history.number_of_tickets_purchased%></td>
-		<td><%= purchase_history.ticket_type%></td>
-		<td><%= purchase_history.status%></td>
-		<td><%= purchase_history.purchased_at%></td>
+<div class="page" id="top">            
+    <!-- Home Section -->
+    <section class="home-section bg-dark-alfa-50 " style='background-color: #fff;' id="home">
+       <div class="container">            
+            <!-- Hero Content -->
+            <div class="home-content">
+                <div class="home-text" style="    padding: 100px 0px 45px 0px;">
+                    
+                    <h1 class="hs-line-8 no-transp font-alt mb-50 mb-xs-30">
+                    	Your Transaction History
+                    </h1>
+                </div>
+            </div>
+            <!-- End Hero Content -->            
+       </div>
+    </section>
+	<div class="col-md-10 col-md-offset-1" style="min-height: 350px;">
+		<table class="table mt-50" id="transactions-history-table">
+			<th>Transaction ID</th><th>Event Name</th><th>Ticket Number</th><th>Event Time</th><th>Price Paid</th><th>Quantity</th><th>Ticket Type</th><th> Payment Status</th><th>Purchased At</th>
+			<% @purchase_history.each do |purchase_history|%>
+			<tr>
+				<td><%= purchase_history.transaction_id%></td>
+				<td><%= link_to Event.where(:id => purchase_history.event_id).first.title, :controller => "events", :action=> "show", :id => purchase_history.event_id%></td>
+				<td><%= purchase_history.ticket_number%></td>
+				<td><%= Event.where(:id => purchase_history.event_id).first.event_date_time %></td>
+				<td><%= purchase_history.purchase_amount%></td>
+				<td><%= purchase_history.number_of_tickets_purchased%></td>
+				<td><%= purchase_history.ticket_type%></td>
+				<td><%= purchase_history.status%></td>
+				<td><%= purchase_history.purchased_at%></td>
 
-		
-	</tr>
+				
+			</tr>
 
-	<%end%>
-</table>
+			<%end%>
+		</table>
+	</div>
 </div>
