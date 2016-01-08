@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable#, :confirmable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   has_many :transactions 
@@ -25,14 +25,11 @@ class User < ActiveRecord::Base
   validates :gender, :inclusion => %w(Male Female), :allow_nil => true, :allow_blank => true
   validates :address,  :length =>  {:maximum => 100}, :allow_nil => true, :allow_blank => true
   validates :postcode, :length =>  {:within => 3..10}, numericality: { only_integer: true }, :allow_nil => true, :allow_blank => true
-
   
   def name
     "#{first_name} #{last_name}"
     # Or: first_name + ' ' + last_name
     # Or: [first_name, last_name].join(' ')
   end
-
-  
 
 end

@@ -11,17 +11,32 @@
 </style>
 
 
-<div class="spacing-top"></div>
-<div class="row center-block">
-	<div class="col-md-4">
-		<h3>Sell your events via Stubfair.com</h3>
-		<p style="padding:30px;">
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+<div class="page" id="top">            
+    <!-- Home Section -->
+    <section class="home-section bg-dark-alfa-50 " style='background-color: #fff;' id="home">
+       <div class="container">            
+            <!-- Hero Content -->
+            <div class="home-content">
+                <div class="home-text" style="    padding: 100px 0px 45px 0px;">
+                    
+                    <h1 class="hs-line-8 no-transp font-alt mb-50 mb-xs-30">
+                    	Sell your events via Stubfair.com
+                    </h1>
+                </div>
+            </div>
+            <!-- End Hero Content -->            
+       </div>
+    </section>
+	<div class="row center-block">
+		<div class="col-md-4">
+			<p style="padding:30px;">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-		</p>
+			</p>
+		</div>
+		<div class="col-md-4">
+			<%= render 'form' %>
+		</div>
 	</div>
-	<div class="col-md-4">
-		<%= render 'form' %>
-	</div>
+	<%= link_to 'Back', events_path %>
 </div>
-<%= link_to 'Back', events_path %>

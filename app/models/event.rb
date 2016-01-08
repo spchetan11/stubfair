@@ -1,15 +1,13 @@
 class Event < ActiveRecord::Base
-    
-
-   
 	has_many :tickets, :dependent => :destroy
     has_many :pictures, :dependent => :destroy
     has_many :event_images, :dependent => :destroy
 	belongs_to :user, :foreign_key => "user_id"
 
-
 	has_attached_file :stadium_image
-    do_not_validate_attachment_file_type :stadium_image
+    validates_attachment_content_type :stadium_image, :content_type => /\Aimage\/.*\Z/
+    validates_attachment :stadium_image#, presence: true
+    # do_not_validate_attachment_file_type :stadium_image
 
     #validates_attachment_content_type :ticket_attachment, :content_type => [/png\Z/, /jpe?g\Z/, /gif\Z/]
     #DONT FORGET TO SETUP paperclip.rb IN CONFIG->INITIALIZERS
@@ -34,10 +32,9 @@ class Event < ActiveRecord::Base
     validates :category, :inclusion => %w(Concerts Sports Theatre Comedy Festivals Family Deals Other)
 
 
-
-
-
-    
+# def to_s
+#     self.user_id
+# end    
 
 after_validation :is_published_changed
  
