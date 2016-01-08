@@ -12,5 +12,34 @@ permit_params :user_id, :ticket_id, :expires_on, :purchase_amount, :comments, :n
 #   permitted
 # end
 
+index do 
+  id_column
+    column :transaction_id
+    column :status
+    column :number_of_tickets
+    column :ticket_printed_price
+    column :ticket_selling_price
+    column :sale_amount
+    column :ticket_type
+    column :number_of_tickets_purchased
+    column :published
+    column :purchased_at
+        #  column :user_id  do
+        # transaction.user_id
+        # end
+
+        #  column :ticket_id  do
+        # transaction.ticket_id
+        # end
+
+        #  column :event_id  do
+        # transaction.event_id
+        # end
+    actions
+
+
+  
+end
+
 
 end

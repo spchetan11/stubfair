@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151223182233) do
+ActiveRecord::Schema.define(version: 20160108103103) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -80,13 +80,17 @@ ActiveRecord::Schema.define(version: 20151223182233) do
     t.string   "description"
     t.string   "venue"
     t.datetime "event_date_time"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
     t.integer  "user_id"
-    t.boolean  "published",         default: false
+    t.boolean  "published",                  default: false
     t.string   "category"
     t.string   "location"
     t.text     "stadium_image_url"
+    t.string   "stadium_image_file_name"
+    t.string   "stadium_image_content_type"
+    t.integer  "stadium_image_file_size"
+    t.datetime "stadium_image_updated_at"
   end
 
   add_index "events", ["user_id"], name: "index_events_on_user_id"

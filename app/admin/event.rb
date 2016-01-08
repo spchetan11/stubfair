@@ -24,8 +24,8 @@ index do
     column :venue
     column :location
     column :event_date_time
-    #column :expires_on
-    column :stadium_image_url
+    column :stadium_image_file_name
+    #column :stadium_image_url
     column :published
     actions
 

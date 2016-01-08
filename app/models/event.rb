@@ -8,9 +8,10 @@ class Event < ActiveRecord::Base
 	belongs_to :user, :foreign_key => "user_id"
 
 
-	#has_attached_file :ticket_attachment
+	has_attached_file :stadium_image
+    do_not_validate_attachment_file_type :stadium_image
+
     #validates_attachment_content_type :ticket_attachment, :content_type => [/png\Z/, /jpe?g\Z/, /gif\Z/]
-    #do_not_validate_attachment_file_type :ticket_attachment
     #DONT FORGET TO SETUP paperclip.rb IN CONFIG->INITIALIZERS
     #AND PASTE  --  Paperclip::Railtie.insert -- IN CONFIG->LOCALES->application.rb
     #add config.gem 'paperclip' to your environment.rb 

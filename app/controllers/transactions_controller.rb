@@ -55,6 +55,7 @@ class TransactionsController < ApplicationController
     @user_transaction = @transaction.update(status: status, transaction_id: txn_id, purchased_at: Time.now, purchase_amount: payment_gross, number_of_tickets_purchased: quant, :purchased => true)
     session[:cart] = nil
     UserMailer.tickets_purchased(current_user).deliver_now
+    #UserMailer.tickets_sold(@transaction).deliver_now
     else
     render nothing: true
     end
