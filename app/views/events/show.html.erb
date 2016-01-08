@@ -119,9 +119,10 @@
                                                     <td>
                                                         <%= form_for(@tickets_q ,:url => {:controller => :cart, :action => :add ,:id=> ticket.id}) do |f| %>
                                                             <%= f.select(:number_of_tickets, 1.. ticket.number_of_tickets - ticket.transactions.sum(:number_of_tickets_purchased),  :class => "myDropDown") %>
-                                                            <%unless session[:cart]%>
-                                                                <%= f.submit "Buy",:class=>"submit_btn btn btn-mod btn-medium btn-round" %>
-                                                            <%end%>
+                                                           
+                                                            <!--<%#unless session[:cart]%>-->
+                                                                 <%= f.submit "Buy",:class=>"submit_btn btn btn-mod btn-medium btn-round" %>
+                                                            <!--<%#end%>-->
                                                         <%end%>
                                                     </td> 
                                                 </tr>
