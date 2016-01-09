@@ -53,12 +53,12 @@ class TransactionsController < ApplicationController
     if status == "Completed"
         @transaction = Transaction.find params[:invoice]
         @seller_user_id=@transaction.seller_id
-        seller=User.where(:user_id => @seller_user_id)
+        seller=User.find(:id => @seller_user_id)
         #seller_email = seller.email
         @user_transaction = @transaction.update(status: status, transaction_id: txn_id, purchased_at: Time.now, purchase_amount: payment_gross, number_of_tickets_purchased: quant, :purchased => true)
         #session[:cart] = nil
         UserMailer.tickets_purchased(current_user).deliver_now
-        #UserMailer.tickets_sold(seller).deliver_now
+        UserMailer.tickets_sold(seller).deliver_now
     else
         render nothing: true
     end
