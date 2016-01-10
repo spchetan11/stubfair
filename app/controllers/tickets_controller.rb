@@ -4,15 +4,18 @@ class TicketsController < ApplicationController
   # GET /tickets
   # GET /tickets.json
   def index
-    @tickets = Ticket.all
+   @tickets = Ticket.where(:user_id => current_user.id)
   end
-  
   # GET /tickets/1
   # GET /tickets/1.json
   def show
     #only show users tickets
-    #@user = current_user.id
-    
+    #@tickets = Ticket.where(:user_id => current_user.id)
+  end
+
+  def ticket_updated
+    #only show users tickets
+    #@tickets = Ticket.where(:user_id => current_user.id)
   end
 
   # GET /tickets/new
@@ -62,7 +65,7 @@ class TicketsController < ApplicationController
     respond_to do |format|
       if @ticket.update(ticket_params)
         format.html { redirect_to @ticket, notice: 'Ticket was successfully updated.' }
-        format.json { render :show, status: :ok, location: @ticket }
+        format.json { render :ticket_updated, status: :ok, location: @ticket }
       else
         format.html { render :edit }
         format.json { render json: @ticket.errors, status: :unprocessable_entity }

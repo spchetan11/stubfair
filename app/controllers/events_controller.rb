@@ -5,7 +5,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all.where(:published=>"t").paginate(:page => params[:page], :per_page => 16)
+    @events = Event.all.where(:published=> true).paginate(:page => params[:page], :per_page => 16)
     @popular_events = PopularEvent.all
 
 

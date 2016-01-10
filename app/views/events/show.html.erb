@@ -59,10 +59,10 @@
                                   </a>
                                 
                             </div>
-                            <%if (@events.event_images.exists?)%>         
+                            <%if (@events.stadium_image.exists?)%>         
                                 <img src="<%=@events.stadium_image.url%>" alt="" />
                             <%else%>
-                                <img src="../../assets/logo.png" alt="" />  
+                                <img src="../../assets/stadium.jpg" alt="" />  
                             <%end%>
                             
                        

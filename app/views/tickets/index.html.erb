@@ -1,24 +1,34 @@
 
- <table>
+
+<table class="table">
     <tr>
       
-      <th>ticket price</th>
-    
-      <th>comments</th>
-      <th>number of tickets</th>
-      
-
+      <th>Number Of Tickets</th>
+      <th>Ticket Printed Price</th>
+      <th>Ticket Selling Price</th>
+      <th>Ticket Serial Number</th>
+      <th>Seat Number</th>
+      <th>Section</th>
+      <th>Rows</th>
+      <th>Ticket Type</th>
+      <th>Published</th>
     </tr>
 
 <% @tickets.each do |ticket| %>
     <tr>
-      <td><%= ticket.ticket_number %></td>
-      
-      <td><%= ticket.ticket_printed_price %></td>
-      
-      <td><%= ticket.comments %></td>
-      
       <td><%= ticket.number_of_tickets %></td>
+      <td><%= ticket.ticket_printed_price %></td>
+      <td><%= ticket.ticket_selling_price %></td>
+      <td><%= ticket.ticket_number %></td>
+      <td><%= ticket.seat_number %></td>
+      <td><%= ticket.section %></td>
+      <td><%= ticket.row %></td>
+      <td><%= ticket.ticket_type %></td>
+      <td><%= ticket.published %></td>
+      <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
+      <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure you want to delete this ticket?' } %></td>
+      
  </tr>
  <%end%>
 </table>
+<%= link_to 'Back', controller:"users", action:"show", id: current_user.id %>

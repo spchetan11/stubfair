@@ -1,2 +1,17 @@
-<h1>Tickets#destroy</h1>
-<p>Find me in app/views/tickets/destroy.html.erb</p>
+<h2>"Delete Ticket"</h2>
+
+<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+
+
+  <h2>Delete Ticket</h2>
+
+  <%= form_for(@ticket, :url => {:action => 'destroy', :id => @ticket.id}) do |f| %>
+
+    <p>Are you sure you want to permanently delete this ticket?</p>
+
+    <div class="form-buttons">
+      <%= submit_tag("Delete Ticket") %>
+    </div>
+
+  <% end %>
+

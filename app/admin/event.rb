@@ -15,7 +15,7 @@ ActiveAdmin.register Event do
 
 form :html => { :enctype => "multipart/form-data"} do |f|
   f.inputs "New Event" do 
-    f.input :user_id, as: :select, collection: User.all
+    f.input :user_id, as: :select, collection: User.all.select(:id)
     f.input :title
     f.input :description
     f.input :category, as: :select, collection: ['Concerts', 'Sports', 'Theatre', 'Comedy', 'Festivals', 'Family', 'Deals', 'Other']

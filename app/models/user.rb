@@ -26,8 +26,9 @@ class User < ActiveRecord::Base
   validates :address,  :length =>  {:maximum => 100}, :allow_nil => true, :allow_blank => true
   validates :postcode, :length =>  {:within => 3..10}, numericality: { only_integer: true }, :allow_nil => true, :allow_blank => true
   
-  def name
-    "#{first_name} #{last_name}"
+  def to_s
+    "#{id}"
+    #{}"#{first_name} #{last_name}"
     # Or: first_name + ' ' + last_name
     # Or: [first_name, last_name].join(' ')
   end
