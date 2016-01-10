@@ -1,16 +1,48 @@
-<h2>Resend confirmation instructions</h2>
+<div class="page" id="top">            
+    <!-- Home Section -->
+    <section class="home-section bg-dark-alfa-50 mb-50" style='background-color: #fff;' id="home">
+       <div class="container">            
+            <!-- Hero Content -->
+            <div class="home-content">
+                <div class="home-text" style="    padding: 100px 0px 45px 0px;">
+                    
+                    <h1 class="hs-line-8 no-transp font-alt mb-50 mb-xs-30">
+                      Resend confirmation instructions
+                    </h1>
+                </div>
+            </div>
+            <!-- End Hero Content -->            
+       </div>
+    </section>
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+    <div class="container col-md-4 col-md-offset-4">
+      <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+      <%= devise_error_messages! %>
+        <% if resource.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(resource.errors.count, "error") %> prohibited the password from being changed:</h2>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %> 
-  </div>
+            <ul>
+            <% resource.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
 
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
-  </div>
-<% end %>
+        <div class="row">
+          <div class="field">
+            <%= f.email_field :email,autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), :class => "input-md round form-control mb-30", :placeholder => "Email", autofocus: true, autocomplete: "off" %>
+          </div>
+
+          <div class="clearfix">
+          <div class="align-center pt-10">
+              <%= submit_tag "Resend confirmation instructions", :class => "submit_btn btn btn-mod btn-medium btn-round", :id => "login-btn" %>
+          </div>
+        </div>   
+        </div>     
+      <% end %>
+    </div>
+</div>
 
 <%= render "devise/shared/links" %>
