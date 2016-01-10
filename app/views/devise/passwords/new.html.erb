@@ -1,4 +1,3 @@
-
 <div class="page" id="top">            
     <!-- Home Section -->
     <section class="home-section bg-dark-alfa-50 mb-50" style='background-color: #fff;' id="home">
@@ -8,7 +7,7 @@
                 <div class="home-text" style="    padding: 100px 0px 45px 0px;">
                     
                     <h1 class="hs-line-8 no-transp font-alt mb-50 mb-xs-30">
-                      Change password
+                      Forgot your password?
                     </h1>
                 </div>
             </div>
@@ -17,9 +16,8 @@
     </section>
 
     <div class="container col-md-2 col-md-offset-5">
-      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
         <%= devise_error_messages! %>
-        <%= f.hidden_field :reset_password_token %>
         <% if resource.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(resource.errors.count, "error") %> prohibited the password from being changed:</h2>
@@ -34,22 +32,14 @@
 
         <div class="row">
           <div class="field">
-            <% if @minimum_password_length %>
-              <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-            <% end %>
-            <%= f.password_field :password, :class => "input-md round form-control mb-30", :placeholder => "Password", autofocus: true, autocomplete: "off" %>
-          </div>
-
-          <div class="field">
-            <%= f.password_field :password_confirmation, autocomplete: "off",:class => "input-md round form-control mb-10", :placeholder => "Confirm new password" %>
+            <%= f.email_field :email, :class => "input-md round form-control mb-30", :placeholder => "Email", autofocus: true, autocomplete: "off" %>
           </div>
 
           <div class="clearfix">
           <div class="align-right pt-10">
-              <%= submit_tag "SUBMIT", :class => "submit_btn btn btn-mod btn-medium btn-round", :id => "login-btn" %>
+              <%= submit_tag "Send me reset password instructions", :class => "submit_btn btn btn-mod btn-medium btn-round", :id => "login-btn" %>
           </div>
-        </div>
-        </div>          
+        </div>        
       <% end %>
     </div>
 </div>
