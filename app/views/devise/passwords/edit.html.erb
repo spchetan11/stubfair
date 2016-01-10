@@ -41,8 +41,8 @@
           </div>
 
           <div class="field">
-            <%= f.label :password_confirmation, :class => "input-md round form-control", :placeholder => "Confirm new password" %><br />
-            <%= f.password_field :password_confirmation, autocomplete: "off" %>
+            <%= f.label :password_confirmation, "Confirm Password" %><br />
+            <%= f.password_field :password_confirmation, :class => "input-md round form-control", :placeholder => "Confirm New Password", autofocus: true, autocomplete: "off"  %>
           </div>
            <div class="clearfix">
           <div class="align-right pt-10">
