@@ -17,9 +17,14 @@ class EventsController < ApplicationController
     #   puts(@url)
     # end
   end
+end
 
-    
+
+  def user_events
+    @events = Event.all.where(:user_id => current_user.id).paginate(:page => params[:page], :per_page => 20)
   end
+
+
   def my_events
     @user = current_user.id
     @events=Event.where(:user_id => current_user.id).where(:published => true).paginate(:page => params[:page], :per_page => 16)

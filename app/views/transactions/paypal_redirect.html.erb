@@ -23,7 +23,7 @@
 				<td><%= purchase_history.transaction_id%></td>
 				<td><%= link_to Event.where(:id => purchase_history.event_id).first.title, :controller => "events", :action=> "show", :id => purchase_history.event_id%></td>
 				<td><%= purchase_history.ticket_number%></td>
-				<td><%= Event.where(:id => purchase_history.event_id).first.event_date_time %></td>
+				<td><%= Event.where(:id => purchase_history.event_id).first.local_time(event_date_time, '%d/%m/%Y %l:%M%p') %></td>
 				<td><%= purchase_history.purchase_amount%></td>
 				<td><%= purchase_history.number_of_tickets_purchased%></td>
 				<td><%= purchase_history.ticket_type%></td>

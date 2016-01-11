@@ -4,7 +4,7 @@ class TicketsController < ApplicationController
   # GET /tickets
   # GET /tickets.json
   def index
-   @tickets = Ticket.where(:user_id => current_user.id)
+   @tickets = Ticket.where(:user_id => current_user.id).paginate(:page => params[:page], :per_page => 20)
   end
   # GET /tickets/1
   # GET /tickets/1.json
@@ -105,8 +105,13 @@ class TicketsController < ApplicationController
     @transaction = Transaction.new
     @transaction.update(:ticket_id => @ticket.id, :ticket_created_at => @ticket.created_at, :ticket_updated_at => @ticket.updated_at, :user_id => @user, :event_id => @ticket.event_id, :number_of_tickets => @ticket.number_of_tickets, :ticket_selling_price => @ticket.ticket_selling_price, :ticket_printed_price => @ticket.ticket_printed_price, :ticket_number => @ticket.ticket_number, :published => @ticket.published, :ticket_type => @ticket.ticket_type, :seller_id => @ticket.user_id)
     tx_id = @transaction.id
-    puts(tx_id)
-    puts("this is id")
+    #puts(tx_id)
+    #puts("this is id")
+    # seller_user_id=@transaction.seller_id
+    # seller=User.find(seller_user_id)
+    # puts("seller id is #{seller_user_id}")
+    # puts("user is #{seller.email}")
+    
     redirect_to  @transaction.ticket.paypal_url(transaction_path,no_of_ticket,event_name,tx_id)
     
     

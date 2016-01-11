@@ -47,8 +47,9 @@
     <div class="mt-50 align-left">
       <%= link_to 'Edit', edit_user_path(@user), :class => "submit_btn btn btn-mod btn-medium btn-round" %> 
      <!-- <%= link_to 'Back', root_path, :class => "submit_btn btn btn-mod btn-medium btn-round" %> -->
-     <!-- <%= link_to 'My Tickets',{controller:"tickets", action:"index"}, :class => "submit_btn btn btn-mod btn-medium btn-round" %> --> 
-      <%= link_to 'My Transactions', {controller:"transactions", action:"user_transactions", :user_id => current_user.id}, :class => "submit_btn btn btn-mod btn-medium btn-round" %>
+     <%= link_to 'My Tickets',{controller:"tickets", action:"index"}, :class => "submit_btn btn btn-mod btn-medium btn-round" %>
+     <%= link_to 'My Events',{controller:"events", action:"user_events"}, :class => "submit_btn btn btn-mod btn-medium btn-round", method: :post %>
+     <%= link_to 'My Transactions', {controller:"transactions", action:"user_transactions", :user_id => current_user.id}, :class => "submit_btn btn btn-mod btn-medium btn-round" %>
     </div>
   </div>
 </div>

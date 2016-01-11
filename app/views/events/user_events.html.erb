@@ -1,0 +1,53 @@
+
+<div class="page" id="top">            
+    <!-- Home Section -->
+    <section class="home-section bg-dark-alfa-50 " style='background-color: #fff;' id="home">
+       <div class="container">            
+            <!-- Hero Content -->
+            <div class="home-content">
+                <div class="home-text" style="    padding: 100px 0px 45px 0px;">
+                    
+                    <h1 class="hs-line-8 no-transp font-alt mb-50 mb-xs-30">
+                      Your Events
+                    </h1>
+                </div>
+            </div>
+            <!-- End Hero Content -->            
+       </div>
+    </section>
+  <div class="col-md-10 col-md-offset-1" style="min-height: 350px;">
+   <table class="table">
+    <tr>
+      <th>Event Name</th>
+      <th>Category</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Location</th>
+      <th>Venue</th>
+      <th>Event Date</th>
+      <th>Published</th>
+    </tr>
+
+<% @events.each do |event| %>
+  <tr>
+    <td><%=link_to Event.where(:id => event.id).first.title, :controller => "events", :action=> "show", :id => event.id%></td>
+      <td><%= event.category %></td>
+      <td><%= event.title %></td>
+      <td><%= event.description %></td>
+      <td><%= event.location %></td>
+      <td><%= event.venue %></td>
+      <td><%= local_time(event.event_date_time, '%d/%m/%Y %l:%M%p') %></td>
+      <td><%= event.published %></td>
+      <td><%= link_to 'Edit', edit_event_path(event) %></td>
+     
+      
+  </tr>
+ <%end%>
+</table>
+  </div>
+</div>
+
+
+
+
+<%= link_to 'Back', controller:"users", action:"show", id: current_user.id %>

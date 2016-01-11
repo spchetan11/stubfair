@@ -26,9 +26,9 @@ class UserMailer < ActionMailer::Base
     mail from: "stubfair@gmail.com", to: current_user.email, subject: "Stubfair.com - Purchase Complete"
   end
 
-  # def tickets_sold(seller)
-  #   @user_email = seller.email
-  #   mail from: "stubfair@gmail.com", to: seller.email, subject: "Stubfair.com - Your listed tickets have been sold"
-  # end
+  def tickets_sold(seller)
+    @user_email = seller.email
+    mail from: "stubfair@gmail.com", to: seller.email, subject: "Stubfair.com - Your listed ticket have been sold"
+  end
 
 end
