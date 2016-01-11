@@ -126,8 +126,10 @@
                                                         <%end%>
                                                     </td>
                                                     <td>
+                                                      <%if(ticket.number_of_tickets - ticket.transactions.sum(:number_of_tickets_purchased) != 0)%>
                                                         <%= form_for(@tickets_q ,:url => {:controller => :cart, :action => :add ,:id=> ticket.id}) do |f| %>
                                                             <%= f.select(:number_of_tickets, 1.. ticket.number_of_tickets - ticket.transactions.sum(:number_of_tickets_purchased),  :class => "myDropDown") %>
+                                                        
                                                            
                                                             <!--<%#unless session[:cart]%>-->
                                                             <%if(ticket.number_of_tickets - ticket.transactions.sum(:number_of_tickets_purchased) != 0) %>
@@ -135,6 +137,9 @@
                                                             <%end%>
                                                             <!--<%#end%>-->
                                                         <%end%>
+                                                       <%else%>
+                                                          UNAVAILABLE!
+                                                      <%end%>
                                                     </td> 
                                                 </tr>
                                             <% end %>
