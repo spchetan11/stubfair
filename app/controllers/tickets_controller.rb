@@ -103,7 +103,7 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find(params[:id])
     @user = current_user.id
     @transaction = Transaction.new
-    @transaction.update(:ticket_id => @ticket.id, :ticket_created_at => @ticket.created_at, :ticket_updated_at => @ticket.updated_at, :user_id => @user, :event_id => @ticket.event_id, :number_of_tickets => @ticket.number_of_tickets, :ticket_selling_price => @ticket.ticket_selling_price, :ticket_printed_price => @ticket.ticket_printed_price, :ticket_number => @ticket.ticket_number, :published => @ticket.published, :ticket_type => @ticket.ticket_type, :seller_id => @ticket.user_id)
+    @transaction.update(:ticket_id => @ticket.id, :ticket_created_at => @ticket.created_at, :ticket_updated_at => @ticket.updated_at, :user_id => @user, :event_id => @ticket.event_id, :number_of_tickets => @ticket.number_of_tickets, :ticket_selling_price => @ticket.ticket_selling_price, :ticket_printed_price => @ticket.ticket_printed_price, :ticket_number => @ticket.ticket_number, :booking_id => @ticket.booking_id, :published => @ticket.published, :ticket_type => @ticket.ticket_type, :seller_id => @ticket.user_id)
     tx_id = @transaction.id
     #puts(tx_id)
     #puts("this is id")
@@ -139,7 +139,7 @@ class TicketsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ticket_params
-    params.require(:ticket).permit(:user_id, :event_id, :published,  :number_of_tickets, :ticket_type, :ticket_printed_price, :ticket_selling_price, :ticket_number, :ticket_images, :row, :seat_number, :section)
+    params.require(:ticket).permit(:user_id, :event_id, :published,  :number_of_tickets, :ticket_type, :ticket_printed_price, :ticket_selling_price, :ticket_number, :booking_id, :ticket_images, :row, :seat_number, :section)
     end
 
   

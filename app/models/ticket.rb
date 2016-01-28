@@ -21,8 +21,9 @@ class Ticket < ActiveRecord::Base
    validates :number_of_tickets, :length => {:maximum => 100}  , :numericality => {:greater_than => 0, :only_integer => true }
    validates :ticket_selling_price, :format => { :with => /\A\d+(?:\.\d{0,2})?\z/ }, :numericality => {:greater_than_or_equal_to => 0.0}
    validates :ticket_printed_price, :format => { :with => /\A\d+(?:\.\d{0,2})?\z/ }, :numericality => {:greater_than_or_equal_to => 0.0}
-   validates :ticket_number, :length =>  {:within => 1..50}
+   #validates :ticket_number, :length =>  {:within => 1..50}
    validates :ticket_type, :inclusion => %w(Electronic Paper)
+   validates :booking_id, :length =>  {:within => 1..50}
 
    serialize :notification_params, Hash
 

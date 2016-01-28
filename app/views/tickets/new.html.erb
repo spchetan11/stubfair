@@ -42,6 +42,9 @@
               <%= f.text_field :ticket_selling_price, :class => "input-md round form-control", :autocomplete => :off, :required => true, :placeholder => "Ticket Selling Price" %>
             </div>
             <div class="field mb-10">
+              <%= f.text_field :seat_number, :class => "input-md round form-control", :autocomplete => :off, :placeholder => "Seat Number" %>
+            </div>
+            <div class="field mb-10">
               <%= f.text_field :section, :class => "input-md round form-control", :autocomplete => :off, :placeholder => "Section" %>
             </div>
             <div class="field mb-10">
@@ -50,16 +53,14 @@
           </div>
           <div class="col-md-4">
             <div class="field mb-10">
-              <%= f.text_field :ticket_number, :class => "input-md round form-control", :autocomplete => :off,:placeholder=>"Ticket Serial Number", :required => true %>
+              <%= f.text_field :booking_id, :class => "input-md round form-control", :autocomplete => :off,:placeholder=>"Your Ticket Booking ID/PNR", :required => true %>
             </div>
-            <div class="field mb-10">
-              <%= f.text_field :seat_number, :class => "input-md round form-control", :autocomplete => :off, :placeholder => "Seat Number" %>
-            </div>
+            
             <div class="field mb-10">
               <%= f.select :ticket_type, ['Electronic', 'Paper'], {:prompt => "Ticket Type"}, {:class =>"input-md form-control round",:autocomplete => :off} %>
             </div>
             <div class="field mb-10">
-              Ticket Image
+              Ticket Attachment (PDF)
               <%= file_field_tag "images[]", type: :file, multipart: true, :required => true%>
             </div>
 
