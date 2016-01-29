@@ -26,13 +26,13 @@
 			    <% @cart.each do |id, number_of_tickets|%>
 					<% ticket = Ticket.find_by_id(id)%>
 					<table class="table">
-						<th>Ticket Number</th>
+						<!-- <th>Event Name</th> -->
 						<th>Ticket Type</th>
 						<th>Amount/Ticket</th>
 						<th>Quantity</th>
 						<tr>
 
-						<td><%=ticket.ticket_number%></td>
+						<!-- ticket.ticket_number -->
 						<td><%=ticket.ticket_type%></td>
 						<td><%=number_to_currency(ticket.ticket_selling_price, :unit => '$')%></td>
 						<td><%=number_of_tickets%></td></tr>
@@ -54,7 +54,7 @@
 				<!-- 	<%if !@cart.empty?%>
 						<%= link_to 'Empty Cart', cart_clear_path, :class=>"submit_btn btn btn-mod btn-medium btn-round"%>
 					<%end%> -->
-					<td><%= link_to 'Proceed to Payment', {controller: "tickets", action: "payment", ticket_number: ticket.ticket_number,ticket_type: ticket.ticket_type,ticket_selling_price: ticket.ticket_selling_price, number_of_tickets: number_of_tickets, :id => ticket.id, event_id: ticket.event_id}, :class=>"submit_btn btn btn-mod btn-medium btn-round"%></td>
+					<td><%= link_to 'Proceed to Payment', {controller: "tickets", action: "payment", ticket_number: ticket.ticket_number,ticket_type: ticket.ticket_type,ticket_selling_price: ticket.ticket_selling_price, number_of_tickets: number_of_tickets, :id => ticket.id, event_id: ticket.event_id, booking_id: ticket.booking_id}, :class=>"submit_btn btn btn-mod btn-medium btn-round"%></td>
 
 				<%end%>
 
