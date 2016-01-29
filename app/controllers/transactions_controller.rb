@@ -79,6 +79,7 @@ class TransactionsController < ApplicationController
     end
     @ticket_i=Ticket.new
     @purchase_history=Transaction.where(:user_id => @user).where.not(:transaction_id => nil)
+    render 'transactions/paypal_redirect'
     end
 
     def user_transactions
