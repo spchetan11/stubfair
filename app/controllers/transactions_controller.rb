@@ -66,7 +66,7 @@ class TransactionsController < ApplicationController
         #     # send_data(pdf, 
         #     #   :filename    => "report_#{@verification_stub.name.gsub(/\s+/, "")}_#{@verification_stub.hallticket_no}.pdf", 
         #     #   :disposition => 'attachment') 
-        #       UserMailer.tickets_purchased(current_user,pdf).deliver_now
+        #       UserMailer.ticketss_purchased(current_user,pdf).deliver_now
         #     # render  pdf: "report_#{@verification_stub.name.gsub(/\s+/, "")}_#{@verification_stub.hallticket_no}", 
         #     #         template: "college_verification/report.html.erb"
         #   end
@@ -75,7 +75,8 @@ class TransactionsController < ApplicationController
         UserMailer.tickets_purchased(current_user).deliver_now
         UserMailer.tickets_sold(seller).deliver_now
     else
-        render nothing: true
+        #render nothing: true
+         render 'transactions/paypal_redirect'
     end
     @ticket_i=Ticket.new
     @purchase_history=Transaction.where(:user_id => @user).where.not(:transaction_id => nil)
