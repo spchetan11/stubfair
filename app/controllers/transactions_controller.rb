@@ -58,7 +58,21 @@ class TransactionsController < ApplicationController
         #puts("user is #{seller.email}")
         @user_transaction = @transaction.update(status: status, transaction_id: txn_id, purchased_at: Time.now, purchase_amount: payment_gross, number_of_tickets_purchased: quant, :purchased => true)
         session[:cart] = nil
-        UserMailer.tickets_purchased(current_user).deliver_now
+
+        respond_to do |format|
+          format.pdf do
+            html = render_to_string(template: "transactions/summary.pdf.erb") 
+            pdf = WickedPdf.new.pdf_from_string(html) 
+            # send_data(pdf, 
+            #   :filename    => "report_#{@verification_stub.name.gsub(/\s+/, "")}_#{@verification_stub.hallticket_no}.pdf", 
+            #   :disposition => 'attachment') 
+              UserMailer.tickets_purchased(current_user,pdf).deliver_now
+            # render  pdf: "report_#{@verification_stub.name.gsub(/\s+/, "")}_#{@verification_stub.hallticket_no}", 
+            #         template: "college_verification/report.html.erb"
+          end
+        end
+
+        #UserMailer.tickets_purchased(current_user).deliver_now
         UserMailer.tickets_sold(seller).deliver_now
     else
         render nothing: true
@@ -72,6 +86,8 @@ class TransactionsController < ApplicationController
     @purchase_history=Transaction.where(:user_id => @user).where.not(:transaction_id => nil)
     render 'transactions/paypal_redirect'
     end
+
+    
  
  private
     # Use callbacks to share common setup or constraints between actions.
