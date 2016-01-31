@@ -34,9 +34,9 @@
 						<th>Quantity</th>
 						<tr>
 
-						<td><%=Event.where(ticket.event_id).first.title%></td>
-					    <td><%=Event.where(ticket.event_id).first.location%></td>
-						<td><%=Event.where(ticket.event_id).first.event_date_time%></td>
+						<td><%=Event.where(:id => ticket.event_id).first.title%></td>
+					    <td><%=Event.where(:id => ticket.event_id).first.location%></td>
+						<td><%=Event.where(:id => ticket.event_id).first.event_date_time%></td>
 						<td><%=ticket.ticket_type%></td>
 						<td><%=number_to_currency(ticket.ticket_selling_price, :unit => '$')%></td>
 						<td><%=number_of_tickets%></td></tr>
