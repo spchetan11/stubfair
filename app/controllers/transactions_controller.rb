@@ -40,7 +40,7 @@ class TransactionsController < ApplicationController
 
     @ticket = Ticket.find(params[:id])
     
-    @user = current_user.id
+    @user = current_user ? current_user.id : nil
     @purchase = Transaction.new
 
     #SHOULD ADD below - number_of_tickets_purchased, purchase_flag, event_expires_on 
@@ -72,11 +72,11 @@ class TransactionsController < ApplicationController
         #   end
         # end
 
-        UserMailer.tickets_purchased(current_user).deliver_now
-        UserMailer.tickets_sold(seller).deliver_now
+        #UserMailer.tickets_purchased(current_user).deliver_now
+        #UserMailer.tickets_sold(seller).deliver_now
     else
-        #render nothing: true
-         render 'transactions/paypal_redirect'
+        render nothing: true
+         #render 'transactions/paypal_redirect'
     end
     @ticket_i=Ticket.new
     @purchase_history=Transaction.where(:user_id => @user).where.not(:transaction_id => nil)
