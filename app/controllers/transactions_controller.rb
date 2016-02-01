@@ -147,3 +147,42 @@ end
                                         #         </tr>
                                         #     <% end %>
                                         # </tbody>
+
+
+
+
+
+
+
+                                        # <tbody>
+                                        #     <% @tickets.each do |ticket|  %>
+                                        #         <tr>
+                                        #             <td>
+                                        #                 <%= number_to_currency(ticket.ticket_selling_price, :unit => '$') %>
+                                        #             </td>
+                                        #             <td>
+                                        #                 <%if(ticket.number_of_tickets - ticket.transactions.sum(:number_of_tickets_purchased) == 0)%>
+                                        #                   SOLD OUT!
+                                        #                     <%else%>
+                                        #                   <%= ticket.number_of_tickets - ticket.transactions.sum(:number_of_tickets_purchased)%>
+                                        #                 <%end%>
+                                        #             </td>
+                                        #             <td>
+                                        #               <%if(ticket.number_of_tickets - ticket.transactions.sum(:number_of_tickets_purchased) != 0)%>
+                                        #                 <%= form_for(@tickets_q ,:url => {:controller => :cart, :action => :add ,:id=> ticket.id}) do |f| %>
+                                        #                     <%= f.select(:number_of_tickets, 1.. ticket.number_of_tickets - ticket.transactions.sum(:number_of_tickets_purchased),  :class => "myDropDown") %>
+                                                        
+                                                           
+                                        #                     <!--<%#unless session[:cart]%>-->
+                                        #                     <%if(ticket.number_of_tickets - ticket.transactions.sum(:number_of_tickets_purchased) != 0) %>
+                                        #                          <%= f.submit "Buy",:class=>"submit_btn btn btn-mod btn-medium btn-round" %>
+                                        #                     <%end%>
+                                        #                     <!--<%#end%>-->
+                                        #                 <%end%>
+                                        #                <%else%>
+                                        #                   UNAVAILABLE!
+                                        #               <%end%>
+                                        #             </td> 
+                                        #         </tr>
+                                        #     <% end %>
+                                        # </tbody>
