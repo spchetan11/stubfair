@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160201121535) do
+ActiveRecord::Schema.define(version: 20160201143720) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -151,7 +151,7 @@ ActiveRecord::Schema.define(version: 20160201121535) do
     t.string   "row"
     t.string   "seat_number"
     t.string   "booking_id"
-    t.integer  "number_of_tickets_purchased"
+    t.integer  "number_of_tickets_purchased", default: 0
   end
 
   add_index "tickets", ["event_id"], name: "index_tickets_on_event_id"
