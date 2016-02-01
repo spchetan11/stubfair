@@ -78,7 +78,7 @@ class TransactionsController < ApplicationController
               end
             end
 
-            UserMailer.tickets_purchased(current_user).deliver_now
+            #UserMailer.tickets_purchased(current_user).deliver_now
             UserMailer.tickets_sold(seller).deliver_now
                     else
             render nothing: true
