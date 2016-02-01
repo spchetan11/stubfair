@@ -3,7 +3,7 @@ ActiveAdmin.register Ticket do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
- permit_params :user_id, :event_id, :published,  :number_of_tickets, :ticket_type, :ticket_printed_price, :ticket_selling_price, :ticket_number, :ticket_type, :section, :seat_number, :row, :booking_id
+ permit_params :user_id, :event_id, :published,  :number_of_tickets, :ticket_type, :ticket_printed_price, :ticket_selling_price, :ticket_number, :ticket_type, :section, :seat_number, :row, :booking_id, :number_of_tickets_purchased
 # or
 #
 # permit_params do
@@ -26,6 +26,7 @@ index do
     column :row
     column :seat_number
     column :published
+    column :number_of_tickets_purchased
     actions
 end
 
@@ -33,6 +34,7 @@ show do
     attributes_table do
       row :booking_id
       row :number_of_tickets
+      row :number_of_tickets_purchased
       row :ticket_selling_price
       row :ticket_printed_price
       row :published

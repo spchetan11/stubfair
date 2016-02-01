@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160128184328) do
+ActiveRecord::Schema.define(version: 20160201121535) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -137,13 +137,13 @@ ActiveRecord::Schema.define(version: 20160128184328) do
   add_index "ticket_images", ["ticket_id"], name: "index_ticket_images_on_ticket_id"
 
   create_table "tickets", force: :cascade do |t|
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
     t.integer  "user_id"
     t.integer  "number_of_tickets"
     t.float    "ticket_selling_price"
     t.string   "ticket_number"
-    t.boolean  "published",            default: false
+    t.boolean  "published",                   default: false
     t.float    "ticket_printed_price"
     t.string   "ticket_type"
     t.integer  "event_id"
@@ -151,6 +151,7 @@ ActiveRecord::Schema.define(version: 20160128184328) do
     t.string   "row"
     t.string   "seat_number"
     t.string   "booking_id"
+    t.integer  "number_of_tickets_purchased"
   end
 
   add_index "tickets", ["event_id"], name: "index_tickets_on_event_id"

@@ -56,7 +56,13 @@ class TransactionsController < ApplicationController
         seller=User.find(seller_user_id)
         #puts("seller id is #{seller_user_id}")
         #puts("user is #{seller.email}")
+       
         @user_transaction = @transaction.update(status: status, transaction_id: txn_id, purchased_at: Time.now, purchase_amount: payment_gross, number_of_tickets_purchased: quant, :purchased => true)
+        #incrementing the tickets purchased column in tickets table for this ticket for calculation of available tickets in events.show page.
+        @ticket_id = @transaction.ticket_id
+        @ticket = Ticket.find_by_id(@ticket_id)
+        @ticket.increment!(:number_of_tickets_purchased, quant)
+
         session[:cart] = nil
 
         # respond_to do |format|
