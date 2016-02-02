@@ -64,26 +64,19 @@ class TransactionsController < ApplicationController
             @ticket.increment!(:number_of_tickets_purchased, quant)
 
             session[:cart] = nil
-
-            # respond_to do |format|
-            #   format.html
-            #   format.pdf do
-            #     html = render_to_string(template: "transactions/summary.pdf.erb") 
-            #     pdf = WickedPdf.new.pdf_from_string(html) 
-            #     # send_data(pdf, 
-            #     #   :filename    => "report_#{@verification_stub.name.gsub(/\s+/, "")}_#{@verification_stub.hallticket_no}.pdf", 
-            #     #   :disposition => 'attachment') 
-            #     UserMailer.tickets_purchased(current_user,pdf).deliver_now
-            #     #render pdf: "summary"
-            #     render nothing: true
-            #     # render  pdf: "report_#{@verification_stub.name.gsub(/\s+/, "")}_#{@verification_stub.hallticket_no}", 
-            #     #         template: "college_verification/report.html.erb"
-            #   end
-            # end
-
-            UserMailer.tickets_purchased(current_user).deliver_now
+ 
+            UserMailer.tickets_purchased(
+                current_user, 
+                WickedPdf.new.pdf_from_string(
+                    render_to_string(
+                        layout: false,
+                        template: "transactions/summary.html.erb"
+                    )
+                )
+            ).deliver_now
+              
             UserMailer.tickets_sold(seller).deliver_now
-            else
+        else
             render nothing: true
             #render 'transactions/paypal_redirect'
         end
