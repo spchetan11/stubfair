@@ -65,22 +65,25 @@ class TransactionsController < ApplicationController
 
             session[:cart] = nil
 
-            respond_to do |format|
-              format.pdf do
-                html = render_to_string(template: "transactions/summary.pdf.erb") 
-                pdf = WickedPdf.new.pdf_from_string(html) 
-                # send_data(pdf, 
-                #   :filename    => "report_#{@verification_stub.name.gsub(/\s+/, "")}_#{@verification_stub.hallticket_no}.pdf", 
-                #   :disposition => 'attachment') 
-                UserMailer.tickets_purchased(current_user,pdf).deliver_now
-                # render  pdf: "report_#{@verification_stub.name.gsub(/\s+/, "")}_#{@verification_stub.hallticket_no}", 
-                #         template: "college_verification/report.html.erb"
-              end
-            end
+            # respond_to do |format|
+            #   format.html
+            #   format.pdf do
+            #     html = render_to_string(template: "transactions/summary.pdf.erb") 
+            #     pdf = WickedPdf.new.pdf_from_string(html) 
+            #     # send_data(pdf, 
+            #     #   :filename    => "report_#{@verification_stub.name.gsub(/\s+/, "")}_#{@verification_stub.hallticket_no}.pdf", 
+            #     #   :disposition => 'attachment') 
+            #     UserMailer.tickets_purchased(current_user,pdf).deliver_now
+            #     #render pdf: "summary"
+            #     render nothing: true
+            #     # render  pdf: "report_#{@verification_stub.name.gsub(/\s+/, "")}_#{@verification_stub.hallticket_no}", 
+            #     #         template: "college_verification/report.html.erb"
+            #   end
+            # end
 
-            #UserMailer.tickets_purchased(current_user).deliver_now
+            UserMailer.tickets_purchased(current_user).deliver_now
             UserMailer.tickets_sold(seller).deliver_now
-                    else
+            else
             render nothing: true
             #render 'transactions/paypal_redirect'
         end
