@@ -27,6 +27,9 @@ index do
     column :seat_number
     column :published
     column :number_of_tickets_purchased
+    column :image do |ticket|
+      link_to("download", ticket.ticket_images[0].image.url, :target => "blank")
+    end
     actions
 end
 
