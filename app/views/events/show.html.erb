@@ -248,8 +248,13 @@
                                     </div>
 
                                     <div class="post-prev-text align-center">
-                                        <%= link_to  controller:"tickets", action:"new", event_id: event.id do%><div class="call-to-action-sale sell">Sell Ticket</div><%end%>
-                                        <%= link_to event ,:class => "event-link" do%><div class="call-to-action-sale buy">Buy Ticket</div>
+                                        
+                                        <%= link_to  controller:"tickets", action:"new", event_id: event.id do%>
+                                            <div class="call-to-action-sale sell">Sell Ticket</div>
+                                        <%end%>
+
+                                        <%= link_to event ,:class => "event-link" do%>
+                                            <div class="call-to-action-sale buy">Buy Ticket</div>
                                         <%end%>
                                     </div>
                                     

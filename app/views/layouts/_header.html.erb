@@ -1,5 +1,5 @@
 <!-- Navigation panel -->
-<% if !(params[:controller] =='transactions' && params[:action]=='paypal_redirect')%>
+<% if !(params[:controller] =='transactions' && (params[:action]=='paypal_redirect' || params[:action]=='dummy_p'))%>
 <nav class="main-nav  stick-fixed">
     <div class="full-wrapper relative clearfix">
         <!-- Logo ( * your text or image into link tag *) -->

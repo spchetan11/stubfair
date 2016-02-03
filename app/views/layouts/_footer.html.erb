@@ -1,4 +1,4 @@
- <!-- Foter -->
+<% if !(params[:controller] =='transactions' && (params[:action]=='paypal_redirect' || params[:action]=='dummy_p'))%>
 <footer style="padding-top: 30px;" class="page-section bg-gray-lighter footer pb-30">
     <div class="container">
         
@@ -44,3 +44,4 @@
      
 </footer>
 <!-- End Foter -->
+<%end%>

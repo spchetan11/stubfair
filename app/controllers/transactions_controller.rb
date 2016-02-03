@@ -84,6 +84,10 @@ class TransactionsController < ApplicationController
         @purchase_history=Transaction.where(:user_id => @user).where.not(:transaction_id => nil)
     end
 
+    def dummy_p
+
+    end
+
     def user_transactions
         @user = params[:user_id]    
         @purchase_history=Transaction.where(:user_id => @user).where.not(:transaction_id => nil)

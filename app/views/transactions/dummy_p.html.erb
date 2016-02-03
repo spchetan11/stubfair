@@ -1,0 +1,85 @@
+<style>
+	*{
+		font-size: 22px;
+	}
+	.bordered-table, .bordered-table th, .bordered-table td{
+		border: 1px solid black; 
+		border-collapse: collapse;
+		padding: 5px;
+	}
+	time{
+		font-size: 1em;
+	}
+	hr{
+		margin: 10px 0;
+	}
+</style>
+<table style="width:60%; margin: 50px auto;">
+	<tr>
+		<td colspan="2" align="right" style="font-size: 0.7em;">
+			<%=local_time(Time.now.in_time_zone("Chennai") + 330.minutes)%>&nbsp;IP Address&nbsp;<%=request.remote_ip%><br>
+		</td>
+	</tr>
+	<tr class="report_letter_head" >
+		<td style="width:100%; max-width: 100%; height: auto;" colspan="2"><img src="<%=image_path("logo.png") %>" alt="LOGO URL"/></td>
+	</tr>
+
+	<tr>
+		<td><br></td>
+	</tr>
+	<tr>
+		<td style="white-space: pre-wrap;">Order Summary</td>
+		<td align="right" style="text-transform: uppercase;">
+			<%=local_time(Time.now.in_time_zone("Chennai") + 330.minutes, '%d/%m/%Y')%>
+		</td>
+	</tr>
+	
+	<tr>
+		<td colspan="2"><br><hr></td>
+	</tr>
+	<tr>
+		<td style="width:100%;" colspan="2">Order #: 11111
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr></td>
+	</tr>
+
+	<tr>
+		<td colspan="2">
+			<table class="" width="100%" style="width:100%;">
+				<tr>
+					<th align="left">Event Name</th>
+					<th align="left">Type</th>
+					<th align="left">HT Number/ Reg.No.</th>
+				</tr>
+				<tr>
+					<td colspan="3"><hr></td>
+				</tr>
+				<tr>
+					<td>rtxhbyjn jtn</td>
+					<td>tyjnb</td>
+					<td>tyjbncutyjn tyf</td>
+				</tr>
+				<tr>
+					<td colspan="3"><hr></td>
+				</tr>
+				<tr>
+					<td colspan="1"></td>
+					<td>TOTAL</td>
+					<td>Amount</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2"><br><hr style="margin: 0;"></td>
+	</tr>
+	<tr>
+		<td style="width:100%; padding:20px; background-color: #ccc; border-radius: 10px;" align="center" colspan="2">Some footer
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr style="margin: 0;"></td>
+	</tr>
+</table>
