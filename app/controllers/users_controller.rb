@@ -90,11 +90,11 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email,:password).except(:first_name, :last_name, :gender, :phone, :age, :address, :postcode, :buyer_band, :seller_band)
+      params.require(:user).permit(:email,:password).except(:first_name, :last_name, :gender, :phone, :age, :address, :postcode, :buyer_band, :seller_band, :paypal_email)
     end
 
     def user_edit_params
-      params.require(:user).permit(:first_name, :last_name, :gender, :phone, :age, :address, :postcode, :buyer_band, :seller_band).except(:email, :password)
+      params.require(:user).permit(:first_name, :last_name, :gender, :phone, :age, :address, :postcode, :buyer_band, :seller_band, :paypal_email).except(:email, :password)
     end
     
 end

@@ -85,7 +85,12 @@ class TransactionsController < ApplicationController
     end
 
     def dummy_p
-
+          @user_transaction = Transaction.find_by_id(62)
+          eid=@user_transaction.event_id
+          puts("event id is #{eid}")
+          @event = Event.find_by_id(eid)
+          @event_date_time = @event.event_date_time
+         
     end
 
     def user_transactions
