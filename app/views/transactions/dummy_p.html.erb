@@ -50,16 +50,16 @@
 			<table class="" width="100%" style="width:100%;">
 				<tr>
 					<th align="left">Event Name</th>
-					<th align="left">Type</th>
-					<th align="left">HT Number/ Reg.No.</th>
+					<th align="left">Event Location</th>
+					<th align="left">Event Date and Time</th>
 				</tr>
 				<tr>
 					<td colspan="3"><hr></td>
 				</tr>
 				<tr>
-					<td>rtxhbyjn jtn</td>
-					<td>tyjnb</td>
-					<td>tyjbncutyjn tyf</td>
+					<td><%=Event.where(:id => @user_transaction.event_id).first.title, :controller => "events", :action=> "show", :id => purchase_history.event_id%></td>
+					<td><%=Event.where(:id => @user_transaction.event_id).first.Location, :controller => "events", :action=> "show", :id => purchase_history.event_id%></td>
+					<td><%=Event.where(:id => @user_transaction.event_id).first.event_date_time, :controller => "events", :action=> "show", :id => purchase_history.event_id%></td>
 				</tr>
 				<tr>
 					<td colspan="3"><hr></td>
