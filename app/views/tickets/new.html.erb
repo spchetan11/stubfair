@@ -17,7 +17,7 @@
     </section>
 
     <div class="container">
-      <%= form_for(@ticket,:url =>  {controller:"tickets", action:"create", event_id: @event.id}, :html => { :multipart => true }) do |f| %> 
+      <%= form_for(@ticket, :url =>  {controller:"tickets", action:"create", event_id: @event.id, :current_user_id => current_user.id}, :html => { :multipart => true }) do |f| %> 
         <% if @ticket.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(@ticket.errors.count, "error") %> prohibited this ticket from being saved:</h2>
@@ -59,6 +59,15 @@
             <div class="field mb-10">
               <%= f.select :ticket_type, ['Electronic', 'Paper'], {:prompt => "Ticket Type"}, {:class =>"input-md form-control round",:autocomplete => :off} %>
             </div>
+
+           <%if current_user.paypal_email.blank?%>
+              <div class="field mb-10">
+              <%=form_for(:user, :url =>  {:controller => :users, :action => :update, :id => current_user.id}) do |f| %>
+              <%=f.text_field :paypal_email, :class =>"input-md form-control round",:autocomplete => :off,:required => true, :placeholder => "Paypal Email" %>
+              <%end%>
+             </div>
+            <%end%>
+
             <div class="field mb-10">
               Ticket Attachment (PDF)
               <%= file_field_tag "images[]", type: :file, multipart: true, :required => true%>

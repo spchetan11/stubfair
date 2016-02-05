@@ -80,6 +80,10 @@ class TransactionsController < ApplicationController
             render nothing: true
             #render 'transactions/paypal_redirect'
         end
+        eid=@user_transaction.event_id
+        puts("event id is #{eid}")
+        @event = Event.find_by_id(eid)
+        @event_date_time = @event.event_date_time
         @ticket_i=Ticket.new
         @purchase_history=Transaction.where(:user_id => @user).where.not(:transaction_id => nil)
     end

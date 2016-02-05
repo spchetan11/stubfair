@@ -36,6 +36,11 @@ class TicketsController < ApplicationController
 
     @ticket = Ticket.new(ticket_params)
     #@ticket.user_id=current_user.id
+
+    #paypal_email=params[:user][:paypal_email]
+    #puts("this is paypal_email #{paypal_email}")
+    @user=User.find_by_id(params[:current_user_id])
+   
     @event=Event.find(params[:event_id])
     #seller_id=current_user.id
         respond_to do |format|
@@ -48,7 +53,10 @@ class TicketsController < ApplicationController
             @ticket.ticket_images.update_all(:image_url => @pic.image.url)
            }
             end
-
+          
+          if(@user.paypal_email.blank?)
+            @user.update(:paypal_email => params[:user][:paypal_email]) 
+          end
             @ticket.update_attributes(:event_id => @event.id, :user_id => current_user.id)
             format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
             format.json { render :show, status: :created, location: @ticket}
