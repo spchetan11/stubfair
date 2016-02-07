@@ -47,9 +47,6 @@
           </div>
           <div class="col-md-4">
             <div class="field mb-10">
-              <%= f.text_area :address, :class => "input-md round form-control", :placeholder => "Address" %>
-            </div>
-            <div class="field mb-10">
               <%= f.text_field :address, :class => "input-md round form-control", :placeholder => "Address" %>
             </div>
             <div class="field mb-10">
@@ -68,5 +65,5 @@
     </div>
 </div>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', user_path %>
+<%= link_to 'Show', @user, :class=>"submit_btn btn btn-mod btn-medium btn-round" %> 
+<%= link_to 'Back', user_path, :class=>"submit_btn btn btn-mod btn-medium btn-round" %>
