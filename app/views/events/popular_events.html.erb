@@ -19,9 +19,9 @@
 
   <% @search_result.each do |event| %>
                                 <!-- Shop Item -->
-                                <div class="col-md-3 col-lg-3 mb-60 mb-xs-40">
+                              <div class="col-md-3 col-lg-3 mb-60 mb-xs-40 item-event">
                                     
-                                    <div class="post-prev-img">
+                                    <div class="post-prev-img" style="min-height:236px !important;">
                                         
                                         
                                         <%if (event.event_images.exists?)%>
@@ -39,6 +39,14 @@
                                     <div class="post-prev-title font-alt align-center">
                                         
                                         <%= link_to event ,:class => "event-link" do%><%= event.title %><% end %>
+                                    </div>
+                                      <div class="post-prev-title font-alt align-center">
+                                        
+                                        <%= link_to event ,:class => "event-link" do%><%= event.venue %><% end %>
+                                    </div>
+                                      <div class="post-prev-title font-alt align-center">
+                                        
+                                        <%= link_to event ,:class => "event-link" do%><%= event.location %><% end %>
                                     </div>
 
                                     

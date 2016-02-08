@@ -1,16 +1,106 @@
 <style>
+	body {
+	    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+	    font-size: 14px !important;
+	    line-height: 1.42857143 !important;
+	    color: #333333 !important;
+	    background-color: #fff !important;
+	}
 	*{
-		font-size: 22px;
+		    box-sizing: border-box !important;
 	}
 	.bordered-table, .bordered-table th, .bordered-table td{
-		border: 1px solid black; 
-		border-collapse: collapse;
-		padding: 5px;
+		border: 1px solid black !important; 
+		border-collapse: collapse !important;
+		padding: 5px !important;
+	}
+	time{
+		font-size: 1em !important;
+	}
+	hr{
+		margin: 10px 0 !important;
 	}
 </style>
-<table style="width:100%;">
-	<tr>Ticket</tr>
+<table style="width:90%; margin: 50px auto; min-width: 800px; !important;">
 	<tr>
-		<%=@transaction.seller_id%>
+		<td colspan="2" align="right" style="font-size: 0.7em;">
+			<%=Time.now%>&nbsp;IP Address&nbsp;<%=request.remote_ip%><br>
+		</td>
 	</tr>
+	<tr class="report_letter_head" >
+		<td style="width:100%; max-width: 100%; height: auto;" colspan="2"><img style="width:200px !important; height: 70px; !important;" src="../../assets/logo.png"/></td>
+	</tr>
+
+	<tr>
+		<td><br></td>
+	</tr>
+	<tr>
+		<td style="white-space: pre-wrap;">Order Summary</td>
+		<td align="right" style="text-transform: uppercase;">
+			<%=local_time(Time.now, '%d/%m/%Y')%>
+		</td>
+	</tr>
+	
+	<!-- <tr>
+		<td colspan="2"><br><hr></td>
+	</tr> -->
+	<tr>
+		<td style="width:100%;" colspan="2">Booking ID: <%=@user_transaction.booking_id%>
+		</td>
+	</tr>
+	<!-- <tr>
+		<td colspan="2"><hr></td>
+	</tr> -->
+    <tr>
+		<td style="width:100%;" colspan="2">Paypal Transaction Number: <%=@user_transaction.transaction_id%>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr></td>
+	</tr>
+
+	<tr>
+		<td colspan="2">
+			<table class="" width="100%" style="width:100%;">
+				<tr>
+					<th align="left">Event Name</th>
+					<th align="left">Location</th>
+					<th align="left">Date & Time</th>
+					<th align="left">Quantity</th>
+					<th align="left">Price Paid</th>
+				</tr>
+				<tr>
+					<td colspan="5"><hr></td>
+				</tr>
+				<tr>
+					<td><%=Event.where(:id => @user_transaction.event_id).first.title%></td>
+					<td><%=Event.where(:id => @user_transaction.event_id).first.location%></td>
+					<td><%=local_time(@event_date_time, '%d/%m/%Y %l:%M%p')%></td>
+					<td><%=@user_transaction.number_of_tickets_purchased%></td>
+					<td><%=number_to_currency(@user_transaction.purchase_amount, :unit => '$')%></td>
+
+				</tr>
+				<tr>
+					<td colspan="5"><hr></td>
+				</tr>
+				<tr>
+					<td colspan="1"></td>
+					<td></td>
+		            <td></td>
+					<td><b>TOTAL</b></td>
+					<td><%=number_to_currency(@user_transaction.purchase_amount, :unit => '$')%></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<!-- <tr>
+		<td colspan="2"><br><hr style="margin: 0;"></td>
+	</tr> -->
+	<tr>
+		<td style="width:100%; padding:20px; background-color: #ccc; border-radius: 10px;" align="center" colspan="2">Stubfair.com
+		</td>
+	</tr>
+	<!-- <tr>
+		<td colspan="2"><hr style="margin: 0;"></td>
+	</tr> -->
 </table>

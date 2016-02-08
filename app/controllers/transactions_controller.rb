@@ -18,7 +18,7 @@ class TransactionsController < ApplicationController
 #     #@event_i=Event.where(:event_id => pull_event)
 #     @event_i=''
 # end
-
+   
    def paypal_redirect
         #item_number is ticket_id from the paypal response
         e_id=Ticket.find(params[:id])
@@ -57,13 +57,20 @@ class TransactionsController < ApplicationController
             #puts("seller id is #{seller_user_id}")
             #puts("user is #{seller.email}")
            
-            @user_transaction = @transaction.update(status: status, transaction_id: txn_id, purchased_at: Time.now, purchase_amount: payment_gross, number_of_tickets_purchased: quant, :purchased => true)
+            @this_transaction = @transaction.update(status: status, transaction_id: txn_id, purchased_at: Time.now, purchase_amount: payment_gross, number_of_tickets_purchased: quant, :purchased => true)
             #incrementing the tickets purchased column in tickets table for this ticket for calculation of available tickets in events.show page.
             @ticket_id = @transaction.ticket_id
             @ticket = Ticket.find_by_id(@ticket_id)
             @ticket.increment!(:number_of_tickets_purchased, quant)
 
             session[:cart] = nil
+
+            @user_transaction = Transaction.find_by_id(@transaction.id)
+            puts("the booking id is #{@user_transaction.booking_id}")
+            eid=@user_transaction.event_id
+            puts("event id is #{eid}")
+            @event = Event.find_by_id(eid)
+            @event_date_time = @event.event_date_time
  
             UserMailer.tickets_purchased(
                 current_user, 
@@ -78,14 +85,10 @@ class TransactionsController < ApplicationController
             UserMailer.tickets_sold(seller).deliver_now
         else
             render nothing: true
-            #render 'transactions/paypal_redirect'
         end
-        eid=@user_transaction.event_id
-        puts("event id is #{eid}")
-        @event = Event.find_by_id(eid)
-        @event_date_time = @event.event_date_time
         @ticket_i=Ticket.new
         @purchase_history=Transaction.where(:user_id => @user).where.not(:transaction_id => nil)
+
     end
 
     def dummy_p
