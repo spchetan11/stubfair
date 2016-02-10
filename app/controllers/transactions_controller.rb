@@ -59,9 +59,9 @@ class TransactionsController < ApplicationController
            
             @this_transaction = @transaction.update(status: status, transaction_id: txn_id, purchased_at: Time.now, purchase_amount: payment_gross, number_of_tickets_purchased: quant, :purchased => true)
             #incrementing the tickets purchased column in tickets table for this ticket for calculation of available tickets in events.show page.
-            @ticket_id = @transaction.ticket_id
-            @ticket = Ticket.find_by_id(@ticket_id)
-            @ticket.increment!(:number_of_tickets_purchased, quant)
+            # @ticket_id = @transaction.ticket_id
+            # @ticket = Ticket.find_by_id(@ticket_id)
+            # @ticket.increment!(:number_of_tickets_purchased, quant)
 
             session[:cart] = nil
 
@@ -126,28 +126,27 @@ end
 
 
 
-
-                                        #   <tbody>
+                                        # <tbody>
                                         #     <% @tickets.each do |ticket|  %>
                                         #         <tr>
                                         #             <td>
                                         #                 <%= number_to_currency(ticket.ticket_selling_price, :unit => '$') %>
                                         #             </td>
                                         #             <td>
-                                        #                 <%if((ticket.number_of_tickets - ticket.number_of_tickets_purchased) == 0)%>
+                                        #                 <%if((ticket.number_of_tickets - ticket.number_of_tickets_purchased) <= 0)%>
                                         #                   SOLD OUT!
                                         #                     <%else%>
                                         #                   <%= ticket.number_of_tickets - ticket.number_of_tickets_purchased%>
                                         #                 <%end%>
                                         #             </td>
                                         #             <td>
-                                        #               <%if((ticket.number_of_tickets - ticket.number_of_tickets_purchased) != 0)%>
+                                        #               <%if((ticket.number_of_tickets - ticket.number_of_tickets_purchased) > 0)%>
                                         #                 <%= form_for(@tickets_q ,:url => {:controller => :cart, :action => :add ,:id=> ticket.id}) do |f| %>
                                         #                     <%= f.select(:number_of_tickets, 1.. (ticket.number_of_tickets - ticket.number_of_tickets_purchased),  :class => "myDropDown") %>
                                                         
                                                            
                                         #                     <!--<%#unless session[:cart]%>-->
-                                        #                     <%if((ticket.number_of_tickets - ticket.number_of_tickets_purchased) != 0) %>
+                                        #                     <%if((ticket.number_of_tickets - ticket.number_of_tickets_purchased) > 0) %>
                                         #                          <%= f.submit "Buy",:class=>"submit_btn btn btn-mod btn-medium btn-round" %>
                                         #                     <%end%>
                                         #                     <!--<%#end%>-->
@@ -161,11 +160,6 @@ end
                                         # </tbody>
 
 
-
-
-
-
-
                                         # <tbody>
                                         #     <% @tickets.each do |ticket|  %>
                                         #         <tr>
@@ -173,20 +167,20 @@ end
                                         #                 <%= number_to_currency(ticket.ticket_selling_price, :unit => '$') %>
                                         #             </td>
                                         #             <td>
-                                        #                 <%if(ticket.number_of_tickets - ticket.transactions.sum(:number_of_tickets_purchased) == 0)%>
+                                        #                 <%if(ticket.number_of_tickets - ticket.transactions.sum(:number_of_tickets_purchased) <= 0)%>
                                         #                   SOLD OUT!
                                         #                     <%else%>
                                         #                   <%= ticket.number_of_tickets - ticket.transactions.sum(:number_of_tickets_purchased)%>
                                         #                 <%end%>
                                         #             </td>
                                         #             <td>
-                                        #               <%if(ticket.number_of_tickets - ticket.transactions.sum(:number_of_tickets_purchased) != 0)%>
+                                        #               <%if(ticket.number_of_tickets - ticket.transactions.sum(:number_of_tickets_purchased) > 0)%>
                                         #                 <%= form_for(@tickets_q ,:url => {:controller => :cart, :action => :add ,:id=> ticket.id}) do |f| %>
                                         #                     <%= f.select(:number_of_tickets, 1.. ticket.number_of_tickets - ticket.transactions.sum(:number_of_tickets_purchased),  :class => "myDropDown") %>
                                                         
                                                            
                                         #                     <!--<%#unless session[:cart]%>-->
-                                        #                     <%if(ticket.number_of_tickets - ticket.transactions.sum(:number_of_tickets_purchased) != 0) %>
+                                        #                     <%if(ticket.number_of_tickets - ticket.transactions.sum(:number_of_tickets_purchased) > 0) %>
                                         #                          <%= f.submit "Buy",:class=>"submit_btn btn btn-mod btn-medium btn-round" %>
                                         #                     <%end%>
                                         #                     <!--<%#end%>-->

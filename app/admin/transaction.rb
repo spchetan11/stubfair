@@ -19,7 +19,7 @@ index do
     column :number_of_tickets
     column :ticket_printed_price
     column :ticket_selling_price
-    column :sale_amount
+    column :purchase_amount
     column "Booking ID", :booking_id
     column :ticket_type
     column :number_of_tickets_purchased

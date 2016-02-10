@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   post "/transactions/:id" => "transactions#paypal_redirect", as: :transaction
 
-  post "/hook" => "tickets#hook"
+  post "/hook" => "transactions#hook"
   
 
   resources :users
