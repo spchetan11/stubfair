@@ -19,7 +19,7 @@
        
       </div> -->
 		<%= yield %>
-    <%if user_signed_in? && (params[:controller] =='events' || params[:controller] =='welcome' || params[:controller] =='searches') %>
+    <%if user_signed_in? && (params[:controller] =='events' || params[:controller] =='searches') %>
           <%= link_to new_event_path do%>
               <div class="submit_btn btn btn-mod btn-medium btn-round align-right">Create New Event</div>
           <%end%>

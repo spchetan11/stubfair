@@ -32,23 +32,24 @@
 
         <div class="row mt-50 col-md-offset-2"> 
           <div class="col-md-4">
+          If seat numbers are specified on your tickets, all tickets must be consecutive. For non-consecutive tickets, you must create separate listings.
             <div class="field mb-10">
               <%= f.text_field :number_of_tickets, :class => "input-md round form-control", :autocomplete => :off, :required => true, :placeholder => "Number of Tickets" %>
             </div>
             <div class="field mb-10">
-              <%= f.text_field :ticket_printed_price, :class => "input-md round form-control", :autocomplete => :off, :required => true, :placeholder => "Ticket Printed Price" %>
+              <%= f.text_field :ticket_printed_price, :class => "input-md round form-control", :autocomplete => :off, :required => true, :placeholder => "Ticket Face Value/Ticket" %>
             </div>
             <div class="field mb-10">
-              <%= f.text_field :ticket_selling_price, :class => "input-md round form-control", :autocomplete => :off, :required => true, :placeholder => "Ticket Selling Price" %>
+              <%= f.text_field :ticket_selling_price, :class => "input-md round form-control", :autocomplete => :off, :required => true, :placeholder => "Ticket Selling Price/Ticket" %>
             </div>
             <div class="field mb-10">
-              <%= f.text_field :seat_number, :class => "input-md round form-control", :autocomplete => :off, :placeholder => "Seat Number" %>
+              <%= f.text_field :seat_number, :class => "input-md round form-control", :autocomplete => :off, :placeholder => "Seat Number", :required => true %>
             </div>
             <div class="field mb-10">
-              <%= f.text_field :section, :class => "input-md round form-control", :autocomplete => :off, :placeholder => "Section" %>
+              <%= f.text_field :section, :class => "input-md round form-control", :autocomplete => :off, :placeholder => "Section", :required => true %>
             </div>
             <div class="field mb-10">
-              <%= f.text_field :row, :class => "input-md round form-control", :autocomplete => :off, :placeholder => "Rows" %>
+              <%= f.text_field :row, :class => "input-md round form-control", :autocomplete => :off, :placeholder => "Rows", :required => true %>
             </div>
           </div>
           <div class="col-md-4">
@@ -69,7 +70,7 @@
             <%end%>
 
             <div class="field mb-10">
-              Ticket Attachment (PDF)
+              Please upload your Ticket Attachment (PDF) here for verification. 
               <%= file_field_tag "images[]", type: :file, multipart: true, :required => true%>
             </div>
 
@@ -85,3 +86,4 @@
       <% end %>
     </div>
 </div>
+

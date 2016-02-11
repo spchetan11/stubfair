@@ -107,14 +107,18 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>Price</th>
-                                                <th>Available Quantity</th>
-                                                <th>Select Quantity</th>
+                                                <th>Section</th>
+                                                <th>Price/ticket</th>
+                                                <th>Available</th>
+                                                <th>Quantity</th>
                                             </tr>
                                         </thead>
                                               <tbody>
                                             <% @tickets.each do |ticket|  %>
                                                 <tr>
+                                                    <td>
+                                                        <%= "Section"+" "+ticket.section+" "+"|"+" "+"Row"+" "+ticket.row%>
+                                                    </td>
                                                     <td>
                                                         <%= number_to_currency(ticket.ticket_selling_price, :unit => '$') %>
                                                     </td>
