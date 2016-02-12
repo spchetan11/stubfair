@@ -39,13 +39,14 @@
               <%= f.text_field :last_name, :class => "input-md round form-control", :placeholder => "Last Name" %>
             </div>
             <div class="field mb-10">
+            <th>Paypal Email</th>
+              <%= f.text_field :paypal_email, :class => "input-md round form-control", :placeholder => "Paypal Email" %>
+            </div>
+            <div class="field mb-10">
               <%= f.select :gender, ['Male', 'Female'], :class => "input-md round form-control" %>
             </div>
           </div>
           <div class="col-md-4">
-            <div class="field mb-10">
-              <%= f.text_area :address, :class => "input-md round form-control", :placeholder => "Address" %>
-            </div>
             <div class="field mb-10">
               <%= f.text_field :address, :class => "input-md round form-control", :placeholder => "Address" %>
             </div>
@@ -65,5 +66,5 @@
     </div>
 </div>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', user_path %>
+<!--<%= link_to 'Show', @user, :class=>"submit_btn btn btn-mod btn-medium btn-round" %>--> 
+<%= link_to 'Back', user_path, :class=>"submit_btn btn btn-mod btn-medium btn-round" %>

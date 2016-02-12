@@ -18,7 +18,7 @@ class TransactionsController < ApplicationController
 #     #@event_i=Event.where(:event_id => pull_event)
 #     @event_i=''
 # end
-
+   
    def paypal_redirect
         #item_number is ticket_id from the paypal response
         e_id=Ticket.find(params[:id])
@@ -57,35 +57,47 @@ class TransactionsController < ApplicationController
             #puts("seller id is #{seller_user_id}")
             #puts("user is #{seller.email}")
            
-            @user_transaction = @transaction.update(status: status, transaction_id: txn_id, purchased_at: Time.now, purchase_amount: payment_gross, number_of_tickets_purchased: quant, :purchased => true)
+            @this_transaction = @transaction.update(status: status, transaction_id: txn_id, purchased_at: Time.now, purchase_amount: payment_gross, number_of_tickets_purchased: quant, :purchased => true)
             #incrementing the tickets purchased column in tickets table for this ticket for calculation of available tickets in events.show page.
-            @ticket_id = @transaction.ticket_id
-            @ticket = Ticket.find_by_id(@ticket_id)
-            @ticket.increment!(:number_of_tickets_purchased, quant)
+            # @ticket_id = @transaction.ticket_id
+            # @ticket = Ticket.find_by_id(@ticket_id)
+            # @ticket.increment!(:number_of_tickets_purchased, quant)
 
             session[:cart] = nil
 
-            respond_to do |format|
-              format.pdf do
-                html = render_to_string(template: "transactions/summary.pdf.erb") 
-                pdf = WickedPdf.new.pdf_from_string(html) 
-                # send_data(pdf, 
-                #   :filename    => "report_#{@verification_stub.name.gsub(/\s+/, "")}_#{@verification_stub.hallticket_no}.pdf", 
-                #   :disposition => 'attachment') 
-                UserMailer.tickets_purchased(current_user,pdf).deliver_now
-                # render  pdf: "report_#{@verification_stub.name.gsub(/\s+/, "")}_#{@verification_stub.hallticket_no}", 
-                #         template: "college_verification/report.html.erb"
-              end
-            end
-
-            #UserMailer.tickets_purchased(current_user).deliver_now
+            @user_transaction = Transaction.find_by_id(@transaction.id)
+            puts("the booking id is #{@user_transaction.booking_id}")
+            eid=@user_transaction.event_id
+            puts("event id is #{eid}")
+            @event = Event.find_by_id(eid)
+            @event_date_time = @event.event_date_time
+ 
+            UserMailer.tickets_purchased(
+                current_user, 
+                WickedPdf.new.pdf_from_string(
+                    render_to_string(
+                        layout: false,
+                        template: "transactions/summary.html.erb"
+                    )
+                )
+            ).deliver_now
+              
             UserMailer.tickets_sold(seller).deliver_now
-                    else
+        else
             render nothing: true
-            #render 'transactions/paypal_redirect'
         end
         @ticket_i=Ticket.new
         @purchase_history=Transaction.where(:user_id => @user).where.not(:transaction_id => nil)
+
+    end
+
+    def dummy_p
+          @user_transaction = Transaction.find_by_id(105)
+          eid=@user_transaction.event_id
+          puts("event id is #{eid}")
+          @event = Event.find_by_id(eid)
+          @event_date_time = @event.event_date_time
+         
     end
 
     def user_transactions
@@ -104,7 +116,7 @@ class TransactionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transactions_params
-    params.require(:transaction).permit(:user_id, :ticket_id, :expires_on, :purchase_amount, :number_of_tickets, :ticket_printed_price, :ticket_number, :booking_id, :published, :event_id, :ticket_selling_price, :sale_amount, :ticket_type, :ticket_created_at, :ticket_updated_at, :purchased, :number_of_tickets_purchased, :notification_params, :status, :transaction_id,:purchased_at, :seller_id)     
+    params.require(:transaction).permit(:user_id, :ticket_id, :expires_on, :purchase_amount, :number_of_tickets, :ticket_printed_price, :ticket_number, :booking_id, :published, :event_id, :ticket_selling_price, :sale_amount, :ticket_type, :ticket_created_at, :ticket_updated_at, :purchased, :number_of_tickets_purchased, :notification_params, :status, :transaction_id,:purchased_at, :seller_id, :row, :seat_number, :section)     
     end
 
 
@@ -114,28 +126,27 @@ end
 
 
 
-
-                                        #   <tbody>
+                                        # <tbody>
                                         #     <% @tickets.each do |ticket|  %>
                                         #         <tr>
                                         #             <td>
                                         #                 <%= number_to_currency(ticket.ticket_selling_price, :unit => '$') %>
                                         #             </td>
                                         #             <td>
-                                        #                 <%if((ticket.number_of_tickets - ticket.number_of_tickets_purchased) == 0)%>
+                                        #                 <%if((ticket.number_of_tickets - ticket.number_of_tickets_purchased) <= 0)%>
                                         #                   SOLD OUT!
                                         #                     <%else%>
                                         #                   <%= ticket.number_of_tickets - ticket.number_of_tickets_purchased%>
                                         #                 <%end%>
                                         #             </td>
                                         #             <td>
-                                        #               <%if((ticket.number_of_tickets - ticket.number_of_tickets_purchased) != 0)%>
+                                        #               <%if((ticket.number_of_tickets - ticket.number_of_tickets_purchased) > 0)%>
                                         #                 <%= form_for(@tickets_q ,:url => {:controller => :cart, :action => :add ,:id=> ticket.id}) do |f| %>
                                         #                     <%= f.select(:number_of_tickets, 1.. (ticket.number_of_tickets - ticket.number_of_tickets_purchased),  :class => "myDropDown") %>
                                                         
                                                            
                                         #                     <!--<%#unless session[:cart]%>-->
-                                        #                     <%if((ticket.number_of_tickets - ticket.number_of_tickets_purchased) != 0) %>
+                                        #                     <%if((ticket.number_of_tickets - ticket.number_of_tickets_purchased) > 0) %>
                                         #                          <%= f.submit "Buy",:class=>"submit_btn btn btn-mod btn-medium btn-round" %>
                                         #                     <%end%>
                                         #                     <!--<%#end%>-->
@@ -149,11 +160,6 @@ end
                                         # </tbody>
 
 
-
-
-
-
-
                                         # <tbody>
                                         #     <% @tickets.each do |ticket|  %>
                                         #         <tr>
@@ -161,20 +167,20 @@ end
                                         #                 <%= number_to_currency(ticket.ticket_selling_price, :unit => '$') %>
                                         #             </td>
                                         #             <td>
-                                        #                 <%if(ticket.number_of_tickets - ticket.transactions.sum(:number_of_tickets_purchased) == 0)%>
+                                        #                 <%if(ticket.number_of_tickets - ticket.transactions.sum(:number_of_tickets_purchased) <= 0)%>
                                         #                   SOLD OUT!
                                         #                     <%else%>
                                         #                   <%= ticket.number_of_tickets - ticket.transactions.sum(:number_of_tickets_purchased)%>
                                         #                 <%end%>
                                         #             </td>
                                         #             <td>
-                                        #               <%if(ticket.number_of_tickets - ticket.transactions.sum(:number_of_tickets_purchased) != 0)%>
+                                        #               <%if(ticket.number_of_tickets - ticket.transactions.sum(:number_of_tickets_purchased) > 0)%>
                                         #                 <%= form_for(@tickets_q ,:url => {:controller => :cart, :action => :add ,:id=> ticket.id}) do |f| %>
                                         #                     <%= f.select(:number_of_tickets, 1.. ticket.number_of_tickets - ticket.transactions.sum(:number_of_tickets_purchased),  :class => "myDropDown") %>
                                                         
                                                            
                                         #                     <!--<%#unless session[:cart]%>-->
-                                        #                     <%if(ticket.number_of_tickets - ticket.transactions.sum(:number_of_tickets_purchased) != 0) %>
+                                        #                     <%if(ticket.number_of_tickets - ticket.transactions.sum(:number_of_tickets_purchased) > 0) %>
                                         #                          <%= f.submit "Buy",:class=>"submit_btn btn btn-mod btn-medium btn-round" %>
                                         #                     <%end%>
                                         #                     <!--<%#end%>-->

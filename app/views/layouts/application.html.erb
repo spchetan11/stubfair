@@ -19,9 +19,15 @@
        
       </div> -->
 		<%= yield %>
-    <%if user_signed_in?%>
-          <%= link_to 'Create New Event', new_event_path %>
-        <%end%>
+    <%if user_signed_in? && (params[:controller] =='events' || params[:controller] =='searches') %>
+      <a href="/events/new" style=" display: inline; position: fixed; right: 0px; top: 130px; width: 120px; height: 50px;">
+          <div class="submit_btn btn btn-mod btn-medium btn-round align-right" style=" margin: 0; text-align: center !important; width: 100%; height: 100%; padding: 10px; ">
+            Create New<br>Event</div>
+      </a>
+      <!--<%= link_to new_event_path do%>
+        <div class="submit_btn btn btn-mod btn-medium btn-round align-right">Create New Event</div>
+      <%end%>-->
+    <%end%>
 		<%= render 'layouts/footer'%>
 	</div>
 

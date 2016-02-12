@@ -17,7 +17,7 @@
     </section>
 
     <div class="container">
-      <%= form_for(@ticket,:url =>  {controller:"tickets", action:"create", event_id: @event.id}, :html => { :multipart => true }) do |f| %> 
+      <%= form_for(@ticket, :url =>  {controller:"tickets", action:"create", event_id: @event.id, :current_user_id => current_user.id}, :html => { :multipart => true }) do |f| %> 
         <% if @ticket.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(@ticket.errors.count, "error") %> prohibited this ticket from being saved:</h2>
@@ -32,23 +32,24 @@
 
         <div class="row mt-50 col-md-offset-2"> 
           <div class="col-md-4">
+          If seat numbers are specified on your tickets, all tickets must be consecutive. For non-consecutive tickets, you must create separate listings.
             <div class="field mb-10">
               <%= f.text_field :number_of_tickets, :class => "input-md round form-control", :autocomplete => :off, :required => true, :placeholder => "Number of Tickets" %>
             </div>
             <div class="field mb-10">
-              <%= f.text_field :ticket_printed_price, :class => "input-md round form-control", :autocomplete => :off, :required => true, :placeholder => "Ticket Printed Price" %>
+              <%= f.text_field :ticket_printed_price, :class => "input-md round form-control", :autocomplete => :off, :required => true, :placeholder => "Ticket Face Value/Ticket" %>
             </div>
             <div class="field mb-10">
-              <%= f.text_field :ticket_selling_price, :class => "input-md round form-control", :autocomplete => :off, :required => true, :placeholder => "Ticket Selling Price" %>
+              <%= f.text_field :ticket_selling_price, :class => "input-md round form-control", :autocomplete => :off, :required => true, :placeholder => "Ticket Selling Price/Ticket" %>
             </div>
             <div class="field mb-10">
-              <%= f.text_field :seat_number, :class => "input-md round form-control", :autocomplete => :off, :placeholder => "Seat Number" %>
+              <%= f.text_field :seat_number, :class => "input-md round form-control", :autocomplete => :off, :placeholder => "Seat Number", :required => true %>
             </div>
             <div class="field mb-10">
-              <%= f.text_field :section, :class => "input-md round form-control", :autocomplete => :off, :placeholder => "Section" %>
+              <%= f.text_field :section, :class => "input-md round form-control", :autocomplete => :off, :placeholder => "Section", :required => true %>
             </div>
             <div class="field mb-10">
-              <%= f.text_field :row, :class => "input-md round form-control", :autocomplete => :off, :placeholder => "Rows" %>
+              <%= f.text_field :row, :class => "input-md round form-control", :autocomplete => :off, :placeholder => "Rows", :required => true %>
             </div>
           </div>
           <div class="col-md-4">
@@ -59,8 +60,17 @@
             <div class="field mb-10">
               <%= f.select :ticket_type, ['Electronic', 'Paper'], {:prompt => "Ticket Type"}, {:class =>"input-md form-control round",:autocomplete => :off} %>
             </div>
+
+           <%if current_user.paypal_email.blank?%>
+              <div class="field mb-10">
+              <%=form_for(:user, :url =>  {:controller => :users, :action => :update, :id => current_user.id}) do |f| %>
+              <%=f.text_field :paypal_email, :class =>"input-md form-control round",:autocomplete => :off,:required => true, :placeholder => "Paypal Email" %>
+              <%end%>
+             </div>
+            <%end%>
+
             <div class="field mb-10">
-              Ticket Attachment (PDF)
+              Please upload your Ticket Attachment (PDF) here for verification. 
               <%= file_field_tag "images[]", type: :file, multipart: true, :required => true%>
             </div>
 
@@ -76,3 +86,4 @@
       <% end %>
     </div>
 </div>
+

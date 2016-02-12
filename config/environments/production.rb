@@ -26,7 +26,7 @@ Rails.application.configure do
   config.serve_static_files = true
 
   # Compress JavaScripts and CSS.
-  config.assets.js_compressor = :uglifier
+  config.assets.js_compressor = :yui
   # config.assets.css_compressor = :sass
   config.assets.css_compressor = :yui
 

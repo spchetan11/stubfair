@@ -1,4 +1,6 @@
 <!-- Navigation panel -->
+<% if !(params[:action]=='dummy_p' || params[:action] == 'summary')%>
+
 <nav class="main-nav  stick-fixed">
     <div class="full-wrapper relative clearfix">
         <!-- Logo ( * your text or image into link tag *) -->
@@ -98,3 +100,4 @@
 </nav>
 <!-- End Navigation panel -->
 
+<%end%>

@@ -1,111 +1,146 @@
-
+<!-- Page Loader -->        
+<div class="page-loader">
+    <div class="loader">Loading...</div>
+</div>
+<!-- End Page Loader -->
         
-        <!-- Page Loader -->        
-        <div class="page-loader">
-            <div class="loader">Loading...</div>
+<!-- Page Wrap -->
+<div class="page" id="top">
+            
+<!-- Head Section -->
+<section class="small-section bg-gray-lighter" style="margin-top: 75px;">
+    <div class="relative container align-left">
+        
+        <div class="row">
+                <h1 class="hs-line-11 font-alt mb-20 mb-xs-0">Events</h1>
         </div>
-        <!-- End Page Loader -->
         
-        <!-- Page Wrap -->
-        <div class="page" id="top">
-            
-            
-            
-            
-            <!-- Section -->
-            <section class="page-section" style="background:white">
-                <div class="container relative">
-                    <div class="row">
-                        <h3>Popular Events </h3>
-                        <%@popular_events.each do |pop|%>
-                            <div class="popular-event-tile">
-                                <%= link_to popular_events_path(@event, event: {:title => "#{pop.name}"}), :method => :post do %>
-                                    <%=pop.name%><img src="<%= pop.image_url%>">
-                                <%end%> 
-                            </div>
-                        <%end%>   
-                    </div>
-                    <div class="row">
-                        
-                        <!-- Content -->
-                        <div class="col-sm-12">
-                            
-                            <!-- Shop options -->
-                            <div class="clearfix mb-40">
-                                
-                                <div class="left section-text mt-10">
-                                    Showing 1 – <% if (@events.count >12) %>12 <% else %> <%= @events.count%><%end%> of <%= @events.count%> results
-                                </div>
-                                
-                              <!--   <div class="right">
-                                    <form method="post" action="#" class="form">
-                                        <select class="input-md round">
-                                            <option>Default sorting</option>
-                                            <option>Sort by price: low to high</option>
-                                            <option>Sort by price: high to low</option>
-                                        </select>
-                                    </form>
-                                </div> -->
-                                
-                            </div>
-                            <!-- End Shop options -->
-                            
-                            <div class="row multi-columns-row">
-                                <%= will_paginate @events %>
-                                <% @events.each do |event| %>
-                                <!-- Shop Item -->
-                                <div class="col-md-3 col-lg-3 mb-60 mb-xs-40 item-event">
-                                    
-                                    <div class="post-prev-img" style="min-height:236px !important;">
-                                        <%if (event.event_images.exists?)%>
-                                         
-                                            <%= link_to event ,:class => "event-link" do%><img src="<%=event.event_images.first.image_url%>" alt="" /><% end %>
-                                        <%else%>
-                                            <%= link_to event ,:class => "event-link" do%><img src=<%= image_path("logo.png") %>   alt="" /><% end %>
-                                        <%end%>
-                                        <!-- <div class="intro-label">
-                                            <span class="label label-danger bg-red">Sale</span>
-                                        </div> -->
-                                        
-                                    </div>
-                                    
-                                    <div class="post-prev-title font-alt align-center">
-                                        
-                                        <%= link_to event ,:class => "event-link" do%><%= event.title %><% end %>
-                                    </div>
+    </div>
+</section>
+<!-- End Head Section -->
 
-                                    <div class="post-prev-text align-center">
-                                        <%= link_to  controller:"tickets", action:"new", event_id: event.id do%><div class="call-to-action-sale sell">Sell Ticket</div><%end%>
-                                        <%= link_to event ,:class => "event-link" do%><div class="call-to-action-sale buy">Buy Ticket</div>
-                                        <%end%>
-                                    </div>
-                                    
-                                    <!-- <div class="post-prev-more align-center">
-                                        <a href="#" class="btn btn-mod btn-gray btn-round"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                    </div> -->
-                                    
-                                </div>
-                                <!-- End Shop Item -->
-                                <% end %>
+<!-- Section -->
+<section class="page-section" style="padding: 60px 0;">
+    <div class="container">
+        
+       <!--  <div class="row mb-70 mb-xs-40">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="section-text align-center">
+                    Curabitur eu adipiscing lacus, a iaculis diam. Nullam placerat blandit auctor. 
+                    Nulla accumsan ipsum et nibh rhoncus, eget tempus sapien ultricies. Donec 
+                    mollis lorem vehicula. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Curabitur vehicula porttitor rutrum.
+                </div>
+            </div>
+        </div> -->
+        
+        <!-- Pricing row -->
+        <div class="row multi-columns-row">
+            
+            <!-- Pricing Item -->
+            <div class="col-sm-4 col-md-4 col-lg-4 col-md-offset-4">
+                <div class="pricing-item">
+                    <div class="pricing-item-inner">
+                        <div class="pricing-wrap">
+                            
+                            <!-- Icon (Simple-line-icons) -->
+                            <div class="pricing-icon">
+                                <i class="fa fa-group"></i>
                             </div>
                             
+                            <!-- Pricing Title -->
+                            <div class="pricing-title">
+                                Popular Events
+                            </div>
                             
+                            <!-- Pricing Features -->
+                            <div class="pricing-features font-alt">
+                                <ul class="sf-list pr-list">
+                                    <%@popular_events.each do |pop|%>
+                                        <div class="popular-event-tile">
+                                            <li>
+                                                <%= link_to popular_events_path(@event, event: {:title => "#{pop.name}"}), :method => :post do %>
+                                                <%=pop.name%><img src="<%= pop.image_url%>">
+                                            <%end%>
+                                            </li> 
+                                        </div>
+                                    <%end%>
+                                </ul>
+                            </div>
+
+
+                            
+                            <!-- <div class="pricing-num">
+                                <sup>$</sup>199
+                            </div>
+                            
+                            <div class="pr-per">
+                                per month
+                            </div>                                                                                   
+                            <div class="pr-button">
+                                <a href="" class="btn btn-mod">Buy Now</a>
+                            </div> -->
                             
                         </div>
-                        <!-- End Content -->
-                        
-                        
                     </div>
+                </div>
+            </div>
+            <!-- End Pricing Item -->
+            
+        </div>
+        <!-- End Pricing row -->
+        
+    </div>
+</section>
+<!-- End Section -->
+
+<!-- Section -->
+<section class="page-section" style="padding: 0px;">
+    <div class="container">
+        <div class="left section-text mt-10">
+            Showing 1 – <% if (@events.count >12) %>12 <% else %> <%= @events.count%><%end%> of <%= @events.count%> results
+        </div>
+    </div>
+
+    <div class="row multi-columns-row">
+        <%= will_paginate @events %>
+        <% @events.each do |event| %>
+        <!-- Shop Item -->
+            <div class="col-md-3 col-lg-3 mb-60 mb-xs-40 item-event">
+                
+                <div class="post-prev-img" style="min-height:236px !important;">
+                    <%if (event.event_images.exists?)%>
+                     
+                        <%= link_to event ,:class => "event-link" do%><img src="<%=event.event_images.first.image_url%>" alt="" /><% end %>
+                    <%else%>
+                        <%= link_to event ,:class => "event-link" do%><img src=<%= image_path("logo.png") %>   alt="" /><% end %>
+                    <%end%>
+                    <!-- <div class="intro-label">
+                        <span class="label label-danger bg-red">Sale</span>
+                    </div> -->
                     
                 </div>
-            </section>
-            <!-- End Section -->
-            
-            
-            <!-- Divider -->
-            <hr class="mt-0 mb-0"/>
-            <!-- End Divider -->
-            
+                
+                <div class="post-prev-title font-alt align-center">
+                    
+                    <%= link_to event ,:class => "event-link" do%><%= event.title %><% end %>
+                </div>
+
+                <div class="post-prev-text align-center">
+                    <%= link_to  controller:"tickets", action:"new", event_id: event.id do%><div class="call-to-action-sale sell">Sell Ticket</div><%end%>
+                    <%= link_to event ,:class => "event-link" do%><div class="call-to-action-sale buy">Buy Ticket</div>
+                    <%end%>
+                </div>
+                
+                <!-- <div class="post-prev-more align-center">
+                    <a href="#" class="btn btn-mod btn-gray btn-round"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                </div> -->
+                
+            </div>
+        <% end %>
+    </div>
+</section>
+<!-- End Section -->
            
             
  </div>

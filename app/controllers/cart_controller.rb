@@ -4,9 +4,11 @@ class CartController < ApplicationController
   before_action :authenticate_user!, except: [:index]
 	#if there is a cart, pass it to the page for display else pass an empty value
   def index
+
   	if session[:cart] then
   		@cart = session[:cart]
   	else
+      #session[:cart] = nil
   		@cart = {}
   	end
   end

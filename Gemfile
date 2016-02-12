@@ -79,6 +79,10 @@ gem 'active_model_serializers'
 
 gem 'country_select'
 
+gem 'wicked_pdf'
+
+gem 'wkhtmltopdf-binary'
+
 #gem 'tlsmail', '~> 0.0.1'
 
 #gem 'aws-sdk-v1'

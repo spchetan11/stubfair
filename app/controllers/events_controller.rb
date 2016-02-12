@@ -86,7 +86,8 @@ end
       puts("url is")
       puts(@url)
     end
-    @tickets=Ticket.where(:event_id => @events.id).where(:published => true).order('ticket_selling_price ASC')
+    @tickets=Ticket.where(:event_id => @events.id).where(:published => true).order('ticket_selling_price ASC').
+        paginate(page: params[:page],:per_page => 10)
   end
 
   def search

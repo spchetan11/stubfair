@@ -14,7 +14,7 @@
 /.bundle
 
 # Ignore locally compiled assets
-/public/assets/**
+# /public/assets/**
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
