@@ -23,7 +23,7 @@ class UserMailer < ActionMailer::Base
 
   def tickets_purchased(current_user, pdf)
     @user_email = current_user ? current_user.email : nil
-    attachments["ticket.pdf"] = pdf
+    attachments["ticket.pdf"] = WickedPdf.new.pdf_from_string(template: "transactions/summary.pdf.erb") 
     mail from: "stubfair@gmail.com", to: current_user ? current_user.email : nil, subject: "Stubfair.com - Purchase Complete"
   end
 
