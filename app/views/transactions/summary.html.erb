@@ -27,8 +27,16 @@
 			<%=Time.now%>&nbsp;IP Address&nbsp;<%=request.remote_ip%><br>
 		</td>
 	</tr>
+	<!-- <tr class="report_letter_head" >
+		<td style="width:100%; max-width: 100%; height: auto;" colspan="2"><img style="width:200px !important; height: 70px; !important;" src="https://s3-us-west-2.amazonaws.com/stubfair-images/logo1.jpg" alt="LOGO URL"/></td>
+	</tr> -->
+
 	<tr class="report_letter_head" >
-		<td style="width:100%; max-width: 100%; height: auto;" colspan="2"><img style="width:200px !important; height: 70px; !important;" src="../../assets/logo.png"/></td>
+	  <td>
+		<div>
+		<%=wicked_pdf_image_tag 'https://s3-us-west-2.amazonaws.com/stubfair-images/logo1.jpg'%>
+		</div>
+	  </td>
 	</tr>
 
 	<tr>
@@ -67,6 +75,7 @@
 					<th align="left">Location</th>
 					<th align="left">Date & Time</th>
 					<th align="left">Quantity</th>
+					<th align="left">Seat Details</th>
 					<th align="left">Price Paid</th>
 				</tr>
 				<tr>
@@ -76,7 +85,8 @@
 					<td><%=Event.where(:id => @user_transaction.event_id).first.title%></td>
 					<td><%=Event.where(:id => @user_transaction.event_id).first.location%></td>
 					<td><%=local_time(@event_date_time, '%d/%m/%Y %l:%M%p')%></td>
-					<td><%=@user_transaction.number_of_tickets_purchased%></td>
+					<td><%=@user_transaction.number_of_tickets_purchased.to_s+" "+"of"+" "+@user_transaction.number_of_tickets.to_s%></td>
+					<td><%="Section"+" "+@user_transaction.section+" "+"|"+" "+"Row"+" "+@user_transaction.row+" "+"|"+" "+"Seat"+"-"+@user_transaction.seat_number%></td>
 					<td><%=number_to_currency(@user_transaction.purchase_amount, :unit => '$')%></td>
 
 				</tr>
@@ -84,7 +94,7 @@
 					<td colspan="5"><hr></td>
 				</tr>
 				<tr>
-					<td colspan="1"></td>
+					<td colspan="2"></td>
 					<td></td>
 		            <td></td>
 					<td><b>TOTAL</b></td>
