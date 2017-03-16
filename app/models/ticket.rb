@@ -31,7 +31,7 @@ class Ticket < ActiveRecord::Base
   
    def paypal_url(return_path,no_of_ticket,event_name,tx_id)
     values = {
-        business: "chetan-seller1@gmail.com",
+        business: "chetan-seller@gmail.com",
         cmd: "_xclick",
         upload: 1,
         return: "#{Rails.application.secrets.app_host}#{return_path}",
